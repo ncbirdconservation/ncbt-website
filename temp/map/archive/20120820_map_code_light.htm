@@ -1,0 +1,958 @@
+<!-- backed up 2012 08 13, code loads xml data and builds label windows before displaying map, runs SLOWLY on IE
+-->
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBq3s5965sCxAclqaIJnvYgW80RNvuELB0&sensor=false"></script>
+<script src="/storage/js/infobox.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+
+var siteMarkers = {}; //dictionary of google.map.Markers of each site
+var groupLatLngs = {}; //dictionary of lat/lng coords for each group (for zooming to group)
+var regionLatLngs = {};
+var infoWindows = {};
+var infoText = {};
+
+//var defaultLatLng = new google.maps.LatLng(35.3,-80.003243);
+var defaultLatLng = new google.maps.LatLng(35.3,-78.323181); // offcenter to allow for panel
+var defaultZoomLevel = 7;
+
+//retrieve site information from full description page
+function getSiteData(slug) {
+	$.ajax({
+		type: "GET",
+		url: "/sites/2012/8/1/" + slug + ".html",
+		dataType: "html",
+		success: function(result){
+			$("#info-description").html(trimByWord($(result).find("#description p").text())),
+			$("#info-species").html($(result).find("#species p").text()),
+			$("#info-habitats").html($(result).find("#habitats p").text()),
+			$("#info-directions").html($(result).find("#directions p").text())
+		}
+	});
+};
+
+function trimByWord(sentence) {
+	var result = sentence;
+	var resultArray = result.split(" ");
+	if(resultArray.length > 50){
+		resultArray = resultArray.slice(0, 50);
+		result = resultArray.join(" ") + "…";
+	}
+	return result;
+};
+
+function slugify(text) {
+	t=text.toLowerCase();
+	return t.replace(/[ -]/g,"-");
+};
+
+function highlightArray(sitelist){
+	//highlights on map passed list of site slugs
+	for (var i in sitelist) {
+		try {siteMarkers[sitelist[i]].setIcon(highlightIcon);}
+		catch (e) {}
+		}
+};
+
+function highlightGroup(group_slug) {
+	unhighlightAll();
+	highlightArray(groupSites[group_slug]);
+};
+function highlightRegion(region) {
+	unhighlightAll();
+	highlightArray(regionSites[region]);
+};
+
+function highlightSite(slug) {
+	unhighlightAll();
+	siteMarkers[slug].setIcon(highlightIcon);
+};
+
+function unhighlightAll(){
+	for (var i in siteMarkers) {
+		if (siteMarkers[i].getIcon() == highlightIcon) {
+			siteMarkers[i].setIcon(siteIcon);
+		}
+	}
+};
+
+//returns map to the original center and zoom level
+function zoomToDefault(){
+		map.setOptions({
+			center: defaultLatLng,
+			zoom: defaultZoomLevel
+			});
+};
+
+function zoomToRegion(region){
+	var LL = regionLatLngs[region];
+	map.setCenter(LL.getCenter());
+	map.fitBounds(LL); 
+};
+function zoomToGroup(group_slug){
+	var LL = groupLatLngs[group_slug];
+	map.setCenter(LL.getCenter());
+	map.fitBounds(LL); 
+};
+//controls the expansion/contraction of the site list info-panel
+function expandGroup(group_slug) {
+	if ($("#group-list-" + group_slug).find(".site-item").css("display")=="none") {
+		$(".site-item").css({"display":"none"}); //collapse all sites
+		$("#group-header-" + group_slug).css({"background-color":"rgb(128,128,128)"});
+		$("#group-list-" + group_slug).find(".site-item").css({"display":"block"});
+		//zoom to group
+		zoomToGroup(group_slug);
+	}
+	else {
+		$(".site-item").css({"display":"none"}); //collapse all sites
+		$(".group-header").css({"background-color":"rgb(81,112,152)"});
+		//zoom back to full screen
+		zoomToDefault();
+	}
+};
+
+function getSppSites(spp) {
+	//query GAE database for sites matching the species slug passed
+		//connect to xml file with basic site info, create markers, populate arrays
+	var sitelist_url = 
+	//result = $.getJSON("http://ncbirdingtrail.appspot.com/sitelist?=" + spp + "&callback=?");
+	result = $.getJSON("localhost:8083/sitelist?=" + spp + "&callback=?");
+
+};
+
+function sppcb(json){
+	sppResults = $("#spp-results");
+	console.log(json);
+	
+	//comment this out when testing
+	//add new site item to results list for each entry response
+	/*$.each(json, function(k,v) {
+		$("<div/>", {"class":"site-item",onclick:"google.maps.event.trigger(siteMarkers[\""+ slug +"\"], \"click\")", onmouseover:"google.maps.event.trigger(siteMarkers[\""+ v +"\"], \"mouseover\")", onmouseout:"google.maps.event.trigger(siteMarkers[\""+ v +"\"], \"mouseout\")", text:slugSites[v]}).appendTo(sppResults);
+	});
+	*/
+};
+
+//<div class="site-item" onclick="google.maps.event.trigger(siteMarkers["airlie-gardens"], "click")" onmouseover="google.maps.event.trigger(siteMarkers["airlie-gardens"], "mouseover")" onmouseout="google.maps.event.trigger(siteMarkers["airlie-gardens"], "mouseout")" style="display: none;">Airlie Gardens</div>
+
+
+$(document).ready(function() {
+	// splash screen settings
+	/*$("#splash").css({
+		height:$(window).height(),
+		width: $(window).width()
+		});
+
+	// run splash
+	$("#splash").click(function() {
+		$(this).css({display:"none"});
+	});
+    */
+	// setup map
+
+	//setup marker definitions
+	siteIcon = {url: "http://ncbirdingtrail.squarespace.com/storage/img/map_dot.png"};
+	highlightIcon = {url: "http://ncbirdingtrail.squarespace.com/storage/img/map_dot_highlight.png"};
+	
+	var ncbtMapStyle = [{ featureType: "administrative", stylers: [ { visibility: "on" }, { saturation: -90 }, { lightness: 52 } ] }];
+	var myOptions = {
+	                  zoom: defaultZoomLevel,
+                      panControl: false,
+                      streetViewControl: false,
+			  center: defaultLatLng,
+			  mapTypeId: google.maps.MapTypeId.TERRAIN,
+			  mapTypeControlOptions: {position: google.maps.ControlPosition.TOP_LEFT},
+			  /*scaleControl: true,
+			  scaleControlOptions: {position: google.maps.ControlPosition.BOTTOM_LEFT},
+			  zoomControl: true,
+			  zoomControlOptions: {position: google.maps.ControlPosition.LEFT_TOP},
+			  */
+			  styles: ncbtMapStyle
+			};
+
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	//SS server - static bfb layer
+	bfbLayer = new google.maps.KmlLayer("http://ncbirdingtrail.squarespace.com/storage/kml/bfbs.kml", {preserveViewport:true});
+	google.maps.event.addListener(bfbLayer, 'status_changed', function() {
+		console.log(bfbLayer.getStatus());
+		if (bfbLayer.getStatus()==google.maps.KmlLayerStatus.OK) {
+			//console.log("bfb loaded!");
+		}
+		else {
+			//console.log("bfb failed!");
+		}
+		$("#show-business-busy-img").css({display:"none"});
+		return;
+	});
+	
+	
+	//GAE server - ebird layer
+    ebirdLayer = new google.maps.KmlLayer("http://ncbirdingtrail.appspot.com/kml?t=byAll&k=ebirdwebsite", {preserveViewport:true});	
+	google.maps.event.addListener(ebirdLayer, 'status_changed', function() {
+		console.log(ebirdLayer.getStatus());
+		if (ebirdLayer.getStatus()==google.maps.KmlLayerStatus.OK) { }
+		else { 
+			alert("eBird observations are unavailable at this time. Please visit www.ebird.org for the most recent observations.");
+		}
+		$("#show-recent-busy-img").css({display:"none"});
+		return;
+	});
+	
+	//set up blank html text for info window setup
+	var infoWindowBlank = '<div style="top: 0px; display: block;" id="info-site"><div id="info-title-section"><div id="info-title" title=""></div><div id="button-region" class="button" onclick=""></div><div id="button-group" class="button" onclick=""></div><div></div><hr></div><div><div style="height:inherit;overflow-y:auto;"><div><div class="info-heading" id="info-heading-description">Description<a id="description-link" href="" style="font-size:0.5em;vertical-align:bottom;float:right;" target="_blank">Full Description</a></div><p class="info-text" id="info-description"></p></div><div><div class="info-heading">Species of Interest <a href="" style= "font-size:0.5em;vertical-align:bottom;float:right;">Full Bird List</a></div><p class="info-text" id="info-species"></p></div><div><div class="info-heading">Habitats</div><p class="info-text" id="info-habitats"></p></div><div><div class="info-heading">Directions</div><p class="info-text" id="info-directions"></p></div></div></div></div>';
+	
+	
+	//controls display of the info-panel tabs
+	$(".info-tab").click(function(){
+		//loop through all tabs and turn color inactive, hide information
+		$(".info-tab").each(function(i) {
+			$(this).css({"background-color":"rgb(128,128,128)"});
+			$($(this).attr("title")).css({"display":"none"});
+		});
+
+		//activate clicked tab, make content visible
+		$(this).css({"background-color":"rgb(81,112,152)"});
+		$($(this).attr("title")).css({"display":"block"});
+	});
+	
+	//controls display of headers for toggling ebird and bfb layers
+	$("#show-recent-bird-header").click(function(){
+		if (ebirdLayer.getMap()==null) {
+			ebirdLayer.setMap(map);
+			$("#show-recent-busy-img").css({display:"block"});
+			$("#show-recent-bird-header").css({backgroundColor:"rgb(56,56,56)",text:"Hide Recent Sightings"});	
+		}
+		else {
+			ebirdLayer.setMap(null);
+			$("#show-recent-bird-header").css({backgroundColor:"rgb(128,128,128)",text:"Show Recent Sightings"});			
+		}
+	});
+	$("#show-business-header").click(function(){
+		bfbLayer.setMap(map);
+		$("#show-business-busy-img").css({display:"block"});
+	});
+	
+	
+	groupSites = {}; // dictionary of sites by group
+	regionSites ={}; //dictionary of sites in each region
+	slugSites = {}; //dictionary of site names by slug
+
+	//connect to xml file with basic site info, create markers, populate arrays
+	<!-- slug, name, region, group, siteid, coords (lat,lon)-->
+		
+	$.ajax({
+		type: "GET",
+		url: "/storage/kml/ncbt.xml",
+		dataType: "xml",
+		success: function(xml) {
+			//siteList = $("<div/>");
+			
+			$(xml).find("Placemark").each(function(i) {
+			    //parse through each xml site entry and retrieve data
+				var title = $(this).find("name").text();
+				var siteid = $(this).find("siteid").text();
+				var group = $(this).find("group").text();
+				var group_slug = slugify(group);
+				var region = $(this).find("region").text();
+				var slug = $(this).find("slug").text();
+				var latlong = $(this).find("coords").text();
+				var c = latlong.split(",");
+
+				var currPos = new google.maps.LatLng(c[0],c[1]);
+				
+				//add slug to groupLatLngs
+				groupLatLngs[group_slug];
+
+				console.log(currPos);
+				//new - create array so we can look up title from slug
+				slugSites[slug] = title;
+				
+				//populate site/group and region/group dictionary and
+				//build html for list of sites
+				if (regionSites[region]) {
+					// region already exists, add slug to list	
+					regionSites[region].push(slug);
+					regionLatLngs[region].push(currPos); //positions in each region - for zooming later
+					
+				}
+				else {
+					//region doesn't exist, create one and add slug
+					regionSites[region] = [slug];
+					regionLatLngs[region] = [currPos]; //positions in each region - for zooming later
+					
+					/*&
+					var rList = $("<div/>",{"class":"region-list",id:"region-list-" + region});
+					$("<div/>",{"class":"region-header",id:"region-header-" + region, onmouseover:"highlightRegion(\"" + region + "\")", onmouseout:"unhighlightAll()", onclick:"zoomToRegion(\"" + region +"\")", text:region + " Region"}).appendTo(rList);
+					rList.appendTo(siteList);
+					*/
+				}
+
+				//var rList = siteList.find("#region-list-" + region);
+				if (groupSites[group_slug]) {
+					// group already exists, add slug to list	
+					groupSites[group_slug].push(slug);
+					groupLatLngs[group_slug].push(currPos); //positions in each group - for zooming later
+				}
+				else {
+					//group doesn't exist, create one and add slug
+					groupSites[group_slug] = [slug];
+					groupLatLngs[group_slug] = [currPos]; //positions in each group - for zooming later
+					
+					/*
+					var gList = $("<div/>",{"class":"group-list",id:"group-list-" + group_slug});
+					
+					$("<div/>",{"class":"group-header",id:"group-header-" + group_slug, onmouseover:"highlightGroup(\"" + group_slug + "\")", onmouseout:"unhighlightAll()", onclick:"expandGroup(\"" + group_slug +"\")", text:group}).appendTo(gList);
+					gList.appendTo(rList);
+					*/
+
+				}
+				
+				
+				/*
+				// add site to appropriate region/site in list
+				var siteListItem = $("<div/>", {"class":"site-item",onclick:"google.maps.event.trigger(siteMarkers[\""+ slug +"\"], \"click\")", onmouseover:"google.maps.event.trigger(siteMarkers[\""+ slug +"\"], \"mouseover\")", onmouseout:"google.maps.event.trigger(siteMarkers[\""+ slug +"\"], \"mouseout\")", text:title});
+				siteListItem.appendTo(siteList.find("#group-list-" + group_slug));
+				*/
+				
+				
+				//pre-build elements of the information window
+				boxText = $(infoWindowBlank);
+				boxText.find("#info-title").attr({title:slug, onclick:"highlightSite(\"" + slug + "\")"});
+				boxText.find("#info-title").text(title);
+				boxText.find("#button-region").text(region)
+				boxText.find("#button-region").attr({onclick:"highlightRegion(\"" + region + "\")"}); 
+				boxText.find("#button-group").text(group)
+				boxText.find("#button-group").attr({onclick:"zoomToGroup(\"" + group_slug + "\")"}); 
+				
+				boxText.find("#description-link").attr({href:"/sites/2012/8/1/" + slug + ".html"});
+				
+				infoText[slug] = boxText.html();
+
+				//build html and populate array for the hover box/label
+				var hoverBoxText = "<div class=\"info-title\" style=\"border:none;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background:#517098;color:#ffffff;padding:5px;font-weight:bold;font-variant:small-caps;font-size:1.1em;color:white;line-height:1em\"><div>" + title + "</div><hr/><div style=\"font-weight:normal;font-variant:normal;font-size: 1em;\">" + region + " : " + group +"</div></div>"
+				
+				infoWindows[slug] = new InfoBox({
+					content: hoverBoxText,
+					alignBottom: true,
+					pixelOffset: new google.maps.Size(5,5),
+					closeBoxURL: "",
+					infoBoxClearance: new google.maps.Size(1,1),
+					pane: "floatPane",
+					boxStyle: {
+						opacity:0.9,
+						width: "250px"
+						}
+				});
+				
+				//populate array for markers - add event listeners for hover and click
+				siteMarkers[slug] = new google.maps.Marker({
+					position: currPos,
+					title: title,
+					icon: siteIcon
+				});
+				siteMarkers[slug].setMap(map);
+			
+				google.maps.event.addListener(siteMarkers[slug], "click", function() {
+					$("#info-site").html(infoText[slug]),
+					$('#info-tab-site-info').trigger('click'),
+					//highlightSite(slug),
+					//$(this).setIcon(highlightIcon),
+					getSiteData(slug),
+					siteMarkers[slug].setIcon(highlightIcon);
+				});
+								
+				google.maps.event.addListener(siteMarkers[slug], 'mouseover', function() {
+					infoWindows[slug].open(map, siteMarkers[slug]),
+					siteMarkers[slug].setIcon(highlightIcon)
+				});
+				google.maps.event.addListener(siteMarkers[slug], 'mouseout', function() {
+					infoWindows[slug].close(),
+					siteMarkers[slug].setIcon(siteIcon)
+				});
+				
+			});
+			
+			//place the completed info-window html site list onto the page
+			//$("#info-list-content").html(siteList).end();
+			
+			//calculate bounds for each group of coords
+			$.each(groupLatLngs,function(i,v) {
+				var latlngbounds = new google.maps.LatLngBounds();
+				$.each(v, function(ind,val) {latlngbounds.extend(val);});
+				groupLatLngs[i] = latlngbounds
+			});			
+			//calculate bounds for each region of coords
+			$.each(regionLatLngs,function(i,v) {
+				var latlngbounds = new google.maps.LatLngBounds();
+				$.each(v, function(ind,val) {latlngbounds.extend(val);});
+				regionLatLngs[i] = latlngbounds
+			});
+			/*
+			// map: an instance of GMap3
+// latlng: an array of instances of GLatLng
+var latlngbounds = new google.maps.LatLngBounds();
+latlng.each(function(n){
+   latlngbounds.extend(n);
+});
+map.setCenter(latlngbounds.getCenter());
+map.fitBounds(latlngbounds); 
+			
+			*/
+			/*
+			$(".site-item").hover(function(){
+				$(this).css({"backgroundColor":"rgb(128,128,128)"});
+			}, function(){
+				$(this).css({"background-color":"rgb(81,112,152)"});
+			});	
+			
+			$(".group-header").hover(function(){
+				$(this).css({"backgroundColor":"rgb(128,128,128)"});
+			}, function(){
+				$(this).css({"background-color":"rgb(81,112,152)"});
+			});
+*/			//console.log(siteList.html());
+		}
+	});
+
+	});
+</script>
+<div id="map-wrapper">
+	<div id="map_canvas"></div>
+
+	<div id="info-panel">
+		<div id="tab-wrapper">
+			<div class="info-tab" id="info-tab-listing" title="#info-list">Site List</div>
+			<div class="info-tab" id="info-tab-birds" title="#info-birds">Birds</div>
+			<div class="info-tab" id="info-tab-site-info" title="#info-site">Site Info</div>
+			<div class="info-tab" id="info-tab-business" title="#info-business">Local Business</div>
+
+		</div>
+		<div id="map-info-wrapper">
+			<div id="info-site" ><div class="site-item">Click on site in the map to see more information</div></div>
+			<div id="info-list" ><!--<div id="info-title">Birding Trail Sites <span style="text-variant:normal;text-size:0.9em;float:right;"(click headings to expand)</span></div>--><div id="info-list-content">
+<div>
+	<div class="region-list" id="region-list-Mountain">
+		<div class="region-header" id="region-header-Mountain" onmouseover="highlightRegion(&quot;Mountain&quot;)" onmouseout="unhighlightAll()" onclick="zoomToRegion(&quot;Mountain&quot;)">Mountain Region</div>
+		<div class="group-list" id="group-list-greater-charlotte-west">
+			<div class="group-header" id="group-header-greater-charlotte-west" onmouseover="highlightGroup(&quot;greater-charlotte-west&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;greater-charlotte-west&quot;)">Greater Charlotte West</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;carolina-raptor-center&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;carolina-raptor-center&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;carolina-raptor-center&quot;], &quot;mouseout&quot;)">Carolina Raptor Center</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cowans-ford-wildlife-refuge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cowans-ford-wildlife-refuge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cowans-ford-wildlife-refuge&quot;], &quot;mouseout&quot;)">Cowan's Ford Wildlife Refuge</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lake-norman-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lake-norman-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lake-norman-state-park&quot;], &quot;mouseout&quot;)">Lake Norman State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;latta-plantation-nature-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;latta-plantation-nature-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;latta-plantation-nature-preserve&quot;], &quot;mouseout&quot;)">Latta Plantation Nature Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mcdowell-nature-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mcdowell-nature-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mcdowell-nature-preserve&quot;], &quot;mouseout&quot;)">McDowell Nature Preserve</div>
+		</div>
+		<div class="group-list" id="group-list-cleveland-county">
+			<div class="group-header" id="group-header-cleveland-county" onmouseover="highlightGroup(&quot;cleveland-county&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;cleveland-county&quot;)">Cleveland County</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;broad-river-greenway&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;broad-river-greenway&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;broad-river-greenway&quot;], &quot;mouseout&quot;)">Broad River Greenway</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;crowders-mountain-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;crowders-mountain-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;crowders-mountain-state-park&quot;], &quot;mouseout&quot;)">Crowders Mountain State Park</div>
+		</div>
+		<div class="group-list" id="group-list-nantahala">
+			<div class="group-header" id="group-header-nantahala" onmouseover="highlightGroup(&quot;nantahala&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;nantahala&quot;)">Nantahala</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;gorges-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;gorges-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;gorges-state-park&quot;], &quot;mouseout&quot;)">Gorges State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;highlands-nature-center&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;highlands-nature-center&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;highlands-nature-center&quot;], &quot;mouseout&quot;)">Highlands Nature Center</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;little-tennessee-river-greenway&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;little-tennessee-river-greenway&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;little-tennessee-river-greenway&quot;], &quot;mouseout&quot;)">Little Tennessee River Greenway</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;needmore-game-land&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;needmore-game-land&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;needmore-game-land&quot;], &quot;mouseout&quot;)">Needmore Game Land</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;padgett-poplar-tree-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;padgett-poplar-tree-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;padgett-poplar-tree-trail&quot;], &quot;mouseout&quot;)">Padgett Poplar Tree Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;queen-branch&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;queen-branch&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;queen-branch&quot;], &quot;mouseout&quot;)">Queen Branch</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;ranger-falls-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;ranger-falls-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;ranger-falls-trail&quot;], &quot;mouseout&quot;)">Ranger Falls Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;sunset-rock-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;sunset-rock-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;sunset-rock-trail&quot;], &quot;mouseout&quot;)">Sunset Rock Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;tessentee-bottomland-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;tessentee-bottomland-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;tessentee-bottomland-preserve&quot;], &quot;mouseout&quot;)">Tessentee Bottomland Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;whiteside-mountain&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;whiteside-mountain&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;whiteside-mountain&quot;], &quot;mouseout&quot;)">Whiteside Mountain</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;high-hampton-inn-and-country-club-&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;high-hampton-inn-and-country-club-&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;high-hampton-inn-and-country-club-&quot;], &quot;mouseout&quot;)">High Hampton Inn and Country Club </div>
+		</div>
+		<div class="group-list" id="group-list-french-broad">
+			<div class="group-header" id="group-header-french-broad" onmouseover="highlightGroup(&quot;french-broad&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;french-broad&quot;)">French Broad</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;beaver-lake-bird-sanctuary&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;beaver-lake-bird-sanctuary&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;beaver-lake-bird-sanctuary&quot;], &quot;mouseout&quot;)">Beaver Lake Bird Sanctuary</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;biltmore-estate&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;biltmore-estate&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;biltmore-estate&quot;], &quot;mouseout&quot;)">Biltmore Estate</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;carl-sandburg-home-national-historic-site&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;carl-sandburg-home-national-historic-site&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;carl-sandburg-home-national-historic-site&quot;], &quot;mouseout&quot;)">Carl Sandburg Home National Historic Site</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;french-broad-river-greenway&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;french-broad-river-greenway&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;french-broad-river-greenway&quot;], &quot;mouseout&quot;)">French Broad River Greenway</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;jackson-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;jackson-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;jackson-park&quot;], &quot;mouseout&quot;)">Jackson Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;north-carolina-arboretum&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;north-carolina-arboretum&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;north-carolina-arboretum&quot;], &quot;mouseout&quot;)">North Carolina Arboretum</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;north-mills-river&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;north-mills-river&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;north-mills-river&quot;], &quot;mouseout&quot;)">North Mills River</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;sandy-mush-game-land&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;sandy-mush-game-land&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;sandy-mush-game-land&quot;], &quot;mouseout&quot;)">Sandy Mush Game Land</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;richmond-hill-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;richmond-hill-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;richmond-hill-park&quot;], &quot;mouseout&quot;)">Richmond Hill Park</div>
+		</div>
+		<div class="group-list" id="group-list-northern-blue-ridge-parkway">
+			<div class="group-header" id="group-header-northern-blue-ridge-parkway" onmouseover="highlightGroup(&quot;northern-blue-ridge-parkway&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;northern-blue-ridge-parkway&quot;)">Northern Blue Ridge Parkway</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cumberland-knob&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cumberland-knob&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cumberland-knob&quot;], &quot;mouseout&quot;)">Cumberland Knob</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;doughton-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;doughton-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;doughton-park&quot;], &quot;mouseout&quot;)">Doughton Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mahogany-rock&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mahogany-rock&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mahogany-rock&quot;], &quot;mouseout&quot;)">Mahogany Rock</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;stone-mountain-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;stone-mountain-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;stone-mountain-state-park&quot;], &quot;mouseout&quot;)">Stone Mountain State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;thurmond-chatham-game-land&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;thurmond-chatham-game-land&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;thurmond-chatham-game-land&quot;], &quot;mouseout&quot;)">Thurmond Chatham Game Land</div>
+		</div>
+		<div class="group-list" id="group-list-southern-foothills">
+			<div class="group-header" id="group-header-southern-foothills" onmouseover="highlightGroup(&quot;southern-foothills&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;southern-foothills&quot;)">Southern Foothills</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;chimney-rock-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;chimney-rock-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;chimney-rock-state-park&quot;], &quot;mouseout&quot;)">Chimney Rock State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;foothills-equestrian-nature-center&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;foothills-equestrian-nature-center&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;foothills-equestrian-nature-center&quot;], &quot;mouseout&quot;)">Foothills Equestrian Nature Center</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;green-river-game-land&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;green-river-game-land&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;green-river-game-land&quot;], &quot;mouseout&quot;)">Green River Game Land</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;norman-wilder-forest&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;norman-wilder-forest&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;norman-wilder-forest&quot;], &quot;mouseout&quot;)">Norman Wilder Forest</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;pearsons-falls&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;pearsons-falls&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;pearsons-falls&quot;], &quot;mouseout&quot;)">Pearson's Falls</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;weaverbarton-shuford-memorial-wildlife-sanctuary&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;weaverbarton-shuford-memorial-wildlife-sanctuary&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;weaverbarton-shuford-memorial-wildlife-sanctuary&quot;], &quot;mouseout&quot;)">Weaverbarton Shuford Memorial Wildlife Sanctuary</div>
+		</div>
+		<div class="group-list" id="group-list-haywood-county">
+			<div class="group-header" id="group-header-haywood-county" onmouseover="highlightGroup(&quot;haywood-county&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;haywood-county&quot;)">Haywood County</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;big-creek&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;big-creek&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;big-creek&quot;], &quot;mouseout&quot;)">Big Creek</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;heintooga-spur-road&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;heintooga-spur-road&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;heintooga-spur-road&quot;], &quot;mouseout&quot;)">Heintooga Spur Road</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lake-junaluska&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lake-junaluska&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lake-junaluska&quot;], &quot;mouseout&quot;)">Lake Junaluska</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;max-patch&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;max-patch&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;max-patch&quot;], &quot;mouseout&quot;)">Max Patch</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;southern-great-balsam-mountains&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;southern-great-balsam-mountains&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;southern-great-balsam-mountains&quot;], &quot;mouseout&quot;)">Southern Great Balsam Mountains</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;waterrock-knob&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;waterrock-knob&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;waterrock-knob&quot;], &quot;mouseout&quot;)">Waterrock Knob</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cataloochee-ranch&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cataloochee-ranch&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cataloochee-ranch&quot;], &quot;mouseout&quot;)">Cataloochee Ranch</div>
+		</div>
+		<div class="group-list" id="group-list-central-foothills">
+			<div class="group-header" id="group-header-central-foothills" onmouseover="highlightGroup(&quot;central-foothills&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;central-foothills&quot;)">Central Foothills</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;catawba-river-and-freedom-trail-greenways&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;catawba-river-and-freedom-trail-greenways&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;catawba-river-and-freedom-trail-greenways&quot;], &quot;mouseout&quot;)">Catawba River and Freedom Trail Greenways</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cottages-at-spring-house-farm&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cottages-at-spring-house-farm&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cottages-at-spring-house-farm&quot;], &quot;mouseout&quot;)">Cottages at Spring House Farm</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;inn-on-mill-creek&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;inn-on-mill-creek&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;inn-on-mill-creek&quot;], &quot;mouseout&quot;)">Inn on Mill Creek</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lake-james-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lake-james-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lake-james-state-park&quot;], &quot;mouseout&quot;)">Lake James State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mount-ida-nature-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mount-ida-nature-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mount-ida-nature-preserve&quot;], &quot;mouseout&quot;)">Mount Ida Nature Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mountain-gateway-museum&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mountain-gateway-museum&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mountain-gateway-museum&quot;], &quot;mouseout&quot;)">Mountain Gateway Museum</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;south-mountains-game-land&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;south-mountains-game-land&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;south-mountains-game-land&quot;], &quot;mouseout&quot;)">South Mountains Game Land</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;south-mountains-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;south-mountains-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;south-mountains-state-park&quot;], &quot;mouseout&quot;)">South Mountains State Park</div>
+		</div>
+		<div class="group-list" id="group-list-catawba-valley">
+			<div class="group-header" id="group-header-catawba-valley" onmouseover="highlightGroup(&quot;catawba-valley&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;catawba-valley&quot;)">Catawba Valley</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;bakers-mountain-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;bakers-mountain-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;bakers-mountain-park&quot;], &quot;mouseout&quot;)">Bakers Mountain Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;glenn-c-hilton-jr-memorial-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;glenn-c-hilton-jr-memorial-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;glenn-c-hilton-jr-memorial-park&quot;], &quot;mouseout&quot;)">Glenn C. Hilton, Jr. Memorial Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;hickory-city-park-geitner-park-greenway&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;hickory-city-park-geitner-park-greenway&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;hickory-city-park-geitner-park-greenway&quot;], &quot;mouseout&quot;)">Hickory City Park-Geitner Park Greenway</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lakeside-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lakeside-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lakeside-park&quot;], &quot;mouseout&quot;)">Lakeside Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;riverbend-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;riverbend-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;riverbend-park&quot;], &quot;mouseout&quot;)">Riverbend Park</div>
+		</div>
+		<div class="group-list" id="group-list-northern-foothills">
+			<div class="group-header" id="group-header-northern-foothills" onmouseover="highlightGroup(&quot;northern-foothills&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;northern-foothills&quot;)">Northern Foothills</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lenoir-greenway&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lenoir-greenway&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lenoir-greenway&quot;], &quot;mouseout&quot;)">Lenoir Greenway</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;w-kerr-scott-reservoir&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;w-kerr-scott-reservoir&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;w-kerr-scott-reservoir&quot;], &quot;mouseout&quot;)">W. Kerr Scott Reservoir</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;whippoorwill-academy-and-village&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;whippoorwill-academy-and-village&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;whippoorwill-academy-and-village&quot;], &quot;mouseout&quot;)">Whippoorwill Academy and Village</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;yadkin-river-greenway&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;yadkin-river-greenway&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;yadkin-river-greenway&quot;], &quot;mouseout&quot;)">Yadkin River Greenway</div>
+		</div>
+		<div class="group-list" id="group-list-cherokee">
+			<div class="group-header" id="group-header-cherokee" onmouseover="highlightGroup(&quot;cherokee&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;cherokee&quot;)">Cherokee</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;ferguson-fields-kituwah-farm&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;ferguson-fields-kituwah-farm&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;ferguson-fields-kituwah-farm&quot;], &quot;mouseout&quot;)">Ferguson Fields (Kituwah Farm)</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mingo-falls&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mingo-falls&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mingo-falls&quot;], &quot;mouseout&quot;)">Mingo Falls</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;oconaluftee-indian-village-botanical-garden&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;oconaluftee-indian-village-botanical-garden&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;oconaluftee-indian-village-botanical-garden&quot;], &quot;mouseout&quot;)">Oconaluftee Indian Village Botanical Garden</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;oconaluftee-island-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;oconaluftee-island-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;oconaluftee-island-park&quot;], &quot;mouseout&quot;)">Oconaluftee Island Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;oconaluftee-visitor-center&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;oconaluftee-visitor-center&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;oconaluftee-visitor-center&quot;], &quot;mouseout&quot;)">Oconaluftee Visitor Center</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;riverwalk-at-riverbend&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;riverwalk-at-riverbend&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;riverwalk-at-riverbend&quot;], &quot;mouseout&quot;)">Riverwalk at Riverbend</div>
+		</div>
+		<div class="group-list" id="group-list-watauga-county">
+			<div class="group-header" id="group-header-watauga-county" onmouseover="highlightGroup(&quot;watauga-county&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;watauga-county&quot;)">Watauga County</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;boone-greenway&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;boone-greenway&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;boone-greenway&quot;], &quot;mouseout&quot;)">Boone Greenway</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;buckeye-lake-recreation-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;buckeye-lake-recreation-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;buckeye-lake-recreation-area&quot;], &quot;mouseout&quot;)">Buckeye Lake Recreation Area</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;elk-knob-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;elk-knob-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;elk-knob-state-park&quot;], &quot;mouseout&quot;)">Elk Knob State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;meat-camp-creek-environmental-studies-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;meat-camp-creek-environmental-studies-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;meat-camp-creek-environmental-studies-area&quot;], &quot;mouseout&quot;)">Meat Camp Creek Environmental Studies Area</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;valle-crucis-community-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;valle-crucis-community-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;valle-crucis-community-park&quot;], &quot;mouseout&quot;)">Valle Crucis Community Park</div>
+		</div>
+		<div class="group-list" id="group-list-roan-mountain">
+			<div class="group-header" id="group-header-roan-mountain" onmouseover="highlightGroup(&quot;roan-mountain&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;roan-mountain&quot;)">Roan Mountain</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;bakersville-creek-walk&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;bakersville-creek-walk&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;bakersville-creek-walk&quot;], &quot;mouseout&quot;)">Bakersville Creek Walk</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;linville-falls&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;linville-falls&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;linville-falls&quot;], &quot;mouseout&quot;)">Linville Falls</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;spruce-pine-riverside-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;spruce-pine-riverside-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;spruce-pine-riverside-park&quot;], &quot;mouseout&quot;)">Spruce Pine Riverside Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;yellow-mountain-gap&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;yellow-mountain-gap&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;yellow-mountain-gap&quot;], &quot;mouseout&quot;)">Yellow Mountain Gap</div>
+		</div>
+		<div class="group-list" id="group-list-new-river">
+			<div class="group-header" id="group-header-new-river" onmouseover="highlightGroup(&quot;new-river&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;new-river&quot;)">New River</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;eb-jeffress-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;eb-jeffress-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;eb-jeffress-park&quot;], &quot;mouseout&quot;)">E.B. Jeffress Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;green-valley-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;green-valley-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;green-valley-park&quot;], &quot;mouseout&quot;)">Green Valley Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lewis-fork-overlook&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lewis-fork-overlook&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lewis-fork-overlook&quot;], &quot;mouseout&quot;)">Lewis Fork Overlook</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mount-jefferson-state-natural-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mount-jefferson-state-natural-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mount-jefferson-state-natural-area&quot;], &quot;mouseout&quot;)">Mount Jefferson State Natural Area</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;new-river-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;new-river-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;new-river-state-park&quot;], &quot;mouseout&quot;)">New River State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;shady-grove-gardens-at-the-peak&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;shady-grove-gardens-at-the-peak&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;shady-grove-gardens-at-the-peak&quot;], &quot;mouseout&quot;)">Shady Grove Gardens at the Peak</div>
+		</div>
+		<div class="group-list" id="group-list-grandfather-corridor">
+			<div class="group-header" id="group-header-grandfather-corridor" onmouseover="highlightGroup(&quot;grandfather-corridor&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;grandfather-corridor&quot;)">Grandfather Corridor</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;grandfather-mountain&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;grandfather-mountain&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;grandfather-mountain&quot;], &quot;mouseout&quot;)">Grandfather Mountain</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;julian-price-memorial-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;julian-price-memorial-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;julian-price-memorial-park&quot;], &quot;mouseout&quot;)">Julian Price Memorial Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;moses-h-cone-memorial-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;moses-h-cone-memorial-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;moses-h-cone-memorial-park&quot;], &quot;mouseout&quot;)">Moses H. Cone Memorial Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;tanawha-trail-grandfather-corridor&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;tanawha-trail-grandfather-corridor&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;tanawha-trail-grandfather-corridor&quot;], &quot;mouseout&quot;)">Tanawha Trail/ Grandfather Corridor</div>
+		</div>
+		<div class="group-list" id="group-list-pisgah">
+			<div class="group-header" id="group-header-pisgah" onmouseover="highlightGroup(&quot;pisgah&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;pisgah&quot;)">Pisgah</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;davidson-river&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;davidson-river&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;davidson-river&quot;], &quot;mouseout&quot;)">Davidson River</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;devils-courthouse&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;devils-courthouse&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;devils-courthouse&quot;], &quot;mouseout&quot;)">Devil's Courthouse</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;dupont-state-forest&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;dupont-state-forest&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;dupont-state-forest&quot;], &quot;mouseout&quot;)">DuPont State Forest</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;pink-beds&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;pink-beds&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;pink-beds&quot;], &quot;mouseout&quot;)">Pink Beds</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;pisgah-center-for-wildlife-education&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;pisgah-center-for-wildlife-education&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;pisgah-center-for-wildlife-education&quot;], &quot;mouseout&quot;)">Pisgah Center for Wildlife Education</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;pisgah-ridge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;pisgah-ridge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;pisgah-ridge&quot;], &quot;mouseout&quot;)">Pisgah Ridge</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;brevard-hike-and-bike-path-including-hospital-fields&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;brevard-hike-and-bike-path-including-hospital-fields&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;brevard-hike-and-bike-path-including-hospital-fields&quot;], &quot;mouseout&quot;)">Brevard Hike and Bike Path including Hospital Fields</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cradle-of-forestry-in-america&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cradle-of-forestry-in-america&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cradle-of-forestry-in-america&quot;], &quot;mouseout&quot;)">Cradle of Forestry in America</div>
+		</div>
+		<div class="group-list" id="group-list-southwest-mountains">
+			<div class="group-header" id="group-header-southwest-mountains" onmouseover="highlightGroup(&quot;southwest-mountains&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;southwest-mountains&quot;)">Southwest Mountains</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cherohala-skyway&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cherohala-skyway&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cherohala-skyway&quot;], &quot;mouseout&quot;)">Cherohala Skyway</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;fires-creek-picnic-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;fires-creek-picnic-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;fires-creek-picnic-area&quot;], &quot;mouseout&quot;)">Fires Creek Picnic Area</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;fontana-village&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;fontana-village&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;fontana-village&quot;], &quot;mouseout&quot;)">Fontana Village</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;john-c-campbell-folk-school&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;john-c-campbell-folk-school&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;john-c-campbell-folk-school&quot;], &quot;mouseout&quot;)">John C. Campbell Folk School</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;joyce-kilmer-memorial-forest&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;joyce-kilmer-memorial-forest&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;joyce-kilmer-memorial-forest&quot;], &quot;mouseout&quot;)">Joyce Kilmer Memorial Forest</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;snowbird-mountain-lodge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;snowbird-mountain-lodge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;snowbird-mountain-lodge&quot;], &quot;mouseout&quot;)">Snowbird Mountain Lodge</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;stecoah-gap&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;stecoah-gap&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;stecoah-gap&quot;], &quot;mouseout&quot;)">Stecoah Gap</div>
+		</div>
+		<div class="group-list" id="group-list-central-blue-ridge-parkway">
+			<div class="group-header" id="group-header-central-blue-ridge-parkway" onmouseover="highlightGroup(&quot;central-blue-ridge-parkway&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;central-blue-ridge-parkway&quot;)">Central Blue Ridge Parkway</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;black-mountains&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;black-mountains&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;black-mountains&quot;], &quot;mouseout&quot;)">Black Mountains</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;bull-creek&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;bull-creek&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;bull-creek&quot;], &quot;mouseout&quot;)">Bull Creek</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;charles-d-owen-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;charles-d-owen-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;charles-d-owen-park&quot;], &quot;mouseout&quot;)">Charles D. Owen Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;crabtree-meadows&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;crabtree-meadows&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;crabtree-meadows&quot;], &quot;mouseout&quot;)">Crabtree Meadows</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;craggy-gardens&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;craggy-gardens&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;craggy-gardens&quot;], &quot;mouseout&quot;)">Craggy Gardens</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;historic-orchard-at-altapass&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;historic-orchard-at-altapass&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;historic-orchard-at-altapass&quot;], &quot;mouseout&quot;)">Historic Orchard at Altapass</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mount-mitchell-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mount-mitchell-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mount-mitchell-state-park&quot;], &quot;mouseout&quot;)">Mount Mitchell State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;ridge-junction-overlook&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;ridge-junction-overlook&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;ridge-junction-overlook&quot;], &quot;mouseout&quot;)">Ridge Junction Overlook</div>
+		</div>
+	</div>
+	<div class="region-list" id="region-list-Piedmont">
+		<div class="region-header" id="region-header-Piedmont" onmouseover="highlightRegion(&quot;Piedmont&quot;)" onmouseout="unhighlightAll()" onclick="zoomToRegion(&quot;Piedmont&quot;)">Piedmont Region</div>
+		<div class="group-list" id="group-list-rockingham-county">
+			<div class="group-header" id="group-header-rockingham-county" onmouseover="highlightGroup(&quot;rockingham-county&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;rockingham-county&quot;)">Rockingham County</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;chinqua-penn-walking-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;chinqua-penn-walking-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;chinqua-penn-walking-trail&quot;], &quot;mouseout&quot;)">Chinqua-Penn Walking Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;dan-river&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;dan-river&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;dan-river&quot;], &quot;mouseout&quot;)">Dan River</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lake-reidsville-recreational-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lake-reidsville-recreational-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lake-reidsville-recreational-park&quot;], &quot;mouseout&quot;)">Lake Reidsville Recreational Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mayo-river-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mayo-river-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mayo-river-state-park&quot;], &quot;mouseout&quot;)">Mayo River State Park</div>
+		</div>
+		<div class="group-list" id="group-list-central-piedmont">
+			<div class="group-header" id="group-header-central-piedmont" onmouseover="highlightGroup(&quot;central-piedmont&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;central-piedmont&quot;)">Central Piedmont</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;bur-mil-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;bur-mil-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;bur-mil-park&quot;], &quot;mouseout&quot;)">Bur-Mil Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cedarock-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cedarock-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cedarock-park&quot;], &quot;mouseout&quot;)">Cedarock Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;guilford-courthouse-national-military-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;guilford-courthouse-national-military-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;guilford-courthouse-national-military-park&quot;], &quot;mouseout&quot;)">Guilford Courthouse National Military Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;haw-river-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;haw-river-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;haw-river-state-park&quot;], &quot;mouseout&quot;)">Haw River State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;haw-river-trail-glencoe-access&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;haw-river-trail-glencoe-access&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;haw-river-trail-glencoe-access&quot;], &quot;mouseout&quot;)">Haw River Trail - Glencoe Access</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;piedmont-environmental-centerl-of-high-point&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;piedmont-environmental-centerl-of-high-point&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;piedmont-environmental-centerl-of-high-point&quot;], &quot;mouseout&quot;)">Piedmont Environmental Centerl of High Point</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;the-bog-garden&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;the-bog-garden&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;the-bog-garden&quot;], &quot;mouseout&quot;)">The Bog Garden</div>
+		</div>
+		<div class="group-list" id="group-list-orange-durham">
+			<div class="group-header" id="group-header-orange-durham" onmouseover="highlightGroup(&quot;orange-durham&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;orange-durham&quot;)">Orange-Durham</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;duke-forest&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;duke-forest&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;duke-forest&quot;], &quot;mouseout&quot;)">Duke Forest</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;eno-river-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;eno-river-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;eno-river-state-park&quot;], &quot;mouseout&quot;)">Eno River State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;hill-forest&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;hill-forest&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;hill-forest&quot;], &quot;mouseout&quot;)">Hill Forest</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;indian-trail-park-west-ellerbe-creek-trail-17-acre-wood-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;indian-trail-park-west-ellerbe-creek-trail-17-acre-wood-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;indian-trail-park-west-ellerbe-creek-trail-17-acre-wood-preserve&quot;], &quot;mouseout&quot;)">Indian Trail Park - West Ellerbe Creek Trail/17 Acre Wood Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;johnston-mill-nature-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;johnston-mill-nature-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;johnston-mill-nature-preserve&quot;], &quot;mouseout&quot;)">Johnston Mill Nature Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;little-river-regional-park-and-natural-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;little-river-regional-park-and-natural-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;little-river-regional-park-and-natural-area&quot;], &quot;mouseout&quot;)">Little River Regional Park and Natural Area</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mason-farm-biological-reserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mason-farm-biological-reserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mason-farm-biological-reserve&quot;], &quot;mouseout&quot;)">Mason Farm Biological Reserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;occoneechee-mountain-state-natural-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;occoneechee-mountain-state-natural-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;occoneechee-mountain-state-natural-area&quot;], &quot;mouseout&quot;)">Occoneechee Mountain State Natural Area</div>
+		</div>
+		<div class="group-list" id="group-list-uwharrie">
+			<div class="group-header" id="group-header-uwharrie" onmouseover="highlightGroup(&quot;uwharrie&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;uwharrie&quot;)">Uwharrie</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;morrow-mountain-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;morrow-mountain-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;morrow-mountain-state-park&quot;], &quot;mouseout&quot;)">Morrow Mountain State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;nc-zoological-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;nc-zoological-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;nc-zoological-park&quot;], &quot;mouseout&quot;)">NC Zoological Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;uwharrie-national-forest-badin-lake-recreation-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;uwharrie-national-forest-badin-lake-recreation-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;uwharrie-national-forest-badin-lake-recreation-area&quot;], &quot;mouseout&quot;)">Uwharrie National Forest - Badin Lake Recreation Area</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;uwharrie-national-forest-birkhead-wilderness-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;uwharrie-national-forest-birkhead-wilderness-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;uwharrie-national-forest-birkhead-wilderness-area&quot;], &quot;mouseout&quot;)">Uwharrie National Forest - Birkhead Wilderness Area</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;uwharrie-national-forest-densons-creek-nature-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;uwharrie-national-forest-densons-creek-nature-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;uwharrie-national-forest-densons-creek-nature-trail&quot;], &quot;mouseout&quot;)">Uwharrie National Forest - Densons Creek Nature Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;uwharrie-national-forest-uwharrie-national-recreational-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;uwharrie-national-forest-uwharrie-national-recreational-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;uwharrie-national-forest-uwharrie-national-recreational-trail&quot;], &quot;mouseout&quot;)">Uwharrie National Forest - Uwharrie National Recreational Trail</div>
+		</div>
+		<div class="group-list" id="group-list-caswell-person">
+			<div class="group-header" id="group-header-caswell-person" onmouseover="highlightGroup(&quot;caswell-person&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;caswell-person&quot;)">Caswell-Person</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;caswell-game-land&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;caswell-game-land&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;caswell-game-land&quot;], &quot;mouseout&quot;)">Caswell Game Land</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mayo-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mayo-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mayo-park&quot;], &quot;mouseout&quot;)">Mayo Park</div>
+		</div>
+		<div class="group-list" id="group-list-falls-lake">
+			<div class="group-header" id="group-header-falls-lake" onmouseover="highlightGroup(&quot;falls-lake&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;falls-lake&quot;)">Falls Lake</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;blue-jay-point-county-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;blue-jay-point-county-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;blue-jay-point-county-park&quot;], &quot;mouseout&quot;)">Blue Jay Point County Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-beaverdam-reservoir&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-beaverdam-reservoir&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-beaverdam-reservoir&quot;], &quot;mouseout&quot;)">Falls Lake State Recreation Area - Beaverdam Reservoir</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-holly-point-shinleaf&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-holly-point-shinleaf&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-holly-point-shinleaf&quot;], &quot;mouseout&quot;)">Falls Lake State Recreation Area - Holly Point / Shinleaf</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-rollingview&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-rollingview&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-rollingview&quot;], &quot;mouseout&quot;)">Falls Lake State Recreation Area - Rollingview</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-sandling-beach&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-sandling-beach&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-sandling-beach&quot;], &quot;mouseout&quot;)">Falls Lake State Recreation Area - Sandling Beach</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-woodpecker-ridge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-woodpecker-ridge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;falls-lake-state-recreation-area-woodpecker-ridge&quot;], &quot;mouseout&quot;)">Falls Lake State Recreation Area - Woodpecker Ridge</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;falls-lake-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;falls-lake-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;falls-lake-trail&quot;], &quot;mouseout&quot;)">Falls Lake Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;falls-lake-tailrace-fishing-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;falls-lake-tailrace-fishing-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;falls-lake-tailrace-fishing-area&quot;], &quot;mouseout&quot;)">Falls Lake Tailrace Fishing Area</div>
+		</div>
+		<div class="group-list" id="group-list-northwest-piedmont">
+			<div class="group-header" id="group-header-northwest-piedmont" onmouseover="highlightGroup(&quot;northwest-piedmont&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;northwest-piedmont&quot;)">Northwest Piedmont</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;hanging-rock-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;hanging-rock-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;hanging-rock-state-park&quot;], &quot;mouseout&quot;)">Hanging Rock State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;historic-bethabara-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;historic-bethabara-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;historic-bethabara-park&quot;], &quot;mouseout&quot;)">Historic Bethabara Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;miller-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;miller-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;miller-park&quot;], &quot;mouseout&quot;)">Miller Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;pilot-mountain-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;pilot-mountain-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;pilot-mountain-state-park&quot;], &quot;mouseout&quot;)">Pilot Mountain State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;reynolda-gardens-of-wake-forest-university&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;reynolda-gardens-of-wake-forest-university&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;reynolda-gardens-of-wake-forest-university&quot;], &quot;mouseout&quot;)">Reynolda Gardens of Wake Forest University</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;salem-lake-salem-lake-greenway-and-civitan-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;salem-lake-salem-lake-greenway-and-civitan-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;salem-lake-salem-lake-greenway-and-civitan-park&quot;], &quot;mouseout&quot;)">Salem Lake, Salem Lake Greenway, and Civitan Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;tanglewood-park-and-arboretum&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;tanglewood-park-and-arboretum&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;tanglewood-park-and-arboretum&quot;], &quot;mouseout&quot;)">Tanglewood Park and Arboretum</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mitchells-nursery-and-greenhouse-&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mitchells-nursery-and-greenhouse-&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mitchells-nursery-and-greenhouse-&quot;], &quot;mouseout&quot;)">Mitchell's Nursery and Greenhouse </div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;sanders-ridge-winery-and-restaurant-&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;sanders-ridge-winery-and-restaurant-&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;sanders-ridge-winery-and-restaurant-&quot;], &quot;mouseout&quot;)">Sander's Ridge (Winery and Restaurant) </div>
+		</div>
+		<div class="group-list" id="group-list-pee-dee">
+			<div class="group-header" id="group-header-pee-dee" onmouseover="highlightGroup(&quot;pee-dee&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;pee-dee&quot;)">Pee Dee</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;high-ridge-gardens&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;high-ridge-gardens&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;high-ridge-gardens&quot;], &quot;mouseout&quot;)">High Ridge Gardens</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;hinson-lake&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;hinson-lake&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;hinson-lake&quot;], &quot;mouseout&quot;)">Hinson Lake</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;pee-dee-game-land-blewett-falls&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;pee-dee-game-land-blewett-falls&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;pee-dee-game-land-blewett-falls&quot;], &quot;mouseout&quot;)">Pee Dee Game Land - Blewett Falls</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;pee-dee-national-wildlife-refuge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;pee-dee-national-wildlife-refuge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;pee-dee-national-wildlife-refuge&quot;], &quot;mouseout&quot;)">Pee Dee National Wildlife Refuge</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;town-creek-indian-mound-state-historic-site&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;town-creek-indian-mound-state-historic-site&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;town-creek-indian-mound-state-historic-site&quot;], &quot;mouseout&quot;)">Town Creek Indian Mound State Historic Site</div>
+		</div>
+		<div class="group-list" id="group-list-jordan-lake">
+			<div class="group-header" id="group-header-jordan-lake" onmouseover="highlightGroup(&quot;jordan-lake&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;jordan-lake&quot;)">Jordan Lake</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-educational-state-forest&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-educational-state-forest&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-educational-state-forest&quot;], &quot;mouseout&quot;)">Jordan Lake Educational State Forest</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-ebenezer-church&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-ebenezer-church&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-ebenezer-church&quot;], &quot;mouseout&quot;)">Jordan Lake State Recreation Area - Ebenezer Church</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-new-hope&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-new-hope&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-new-hope&quot;], &quot;mouseout&quot;)">Jordan Lake State Recreation Area - New Hope</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-parkers-creek&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-parkers-creek&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-parkers-creek&quot;], &quot;mouseout&quot;)">Jordan Lake State Recreation Area - Parkers Creek</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-seaforth&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-seaforth&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-seaforth&quot;], &quot;mouseout&quot;)">Jordan Lake State Recreation Area - Seaforth</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-vista-point&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-vista-point&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;jordan-lake-state-recreation-area-vista-point&quot;], &quot;mouseout&quot;)">Jordan Lake State Recreation Area - Vista Point</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;white-pines-nature-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;white-pines-nature-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;white-pines-nature-preserve&quot;], &quot;mouseout&quot;)">White Pines Nature Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lake-jordan-dam-and-visitor-assistance-center&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lake-jordan-dam-and-visitor-assistance-center&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lake-jordan-dam-and-visitor-assistance-center&quot;], &quot;mouseout&quot;)">Lake Jordan Dam and Visitor Assistance Center</div>
+		</div>
+		<div class="group-list" id="group-list-greater-charlotte-east">
+			<div class="group-header" id="group-header-greater-charlotte-east" onmouseover="highlightGroup(&quot;greater-charlotte-east&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;greater-charlotte-east&quot;)">Greater Charlotte East</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cane-creek-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cane-creek-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cane-creek-park&quot;], &quot;mouseout&quot;)">Cane Creek Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;frank-liske-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;frank-liske-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;frank-liske-park&quot;], &quot;mouseout&quot;)">Frank Liske Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;freedom-park-and-charlotte-nature-museum&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;freedom-park-and-charlotte-nature-museum&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;freedom-park-and-charlotte-nature-museum&quot;], &quot;mouseout&quot;)">Freedom Park and Charlotte Nature Museum</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lower-mcalpine-and-mcmullen-creek-greenway&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lower-mcalpine-and-mcmullen-creek-greenway&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lower-mcalpine-and-mcmullen-creek-greenway&quot;], &quot;mouseout&quot;)">Lower McAlpine and McMullen Creek Greenway</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mallard-and-clarks-creek-greenway&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mallard-and-clarks-creek-greenway&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mallard-and-clarks-creek-greenway&quot;], &quot;mouseout&quot;)">Mallard and Clark's Creek Greenway</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mcalpine-creek-and-campbell-creek-greenways&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mcalpine-creek-and-campbell-creek-greenways&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mcalpine-creek-and-campbell-creek-greenways&quot;], &quot;mouseout&quot;)">McAlpine Creek and Campbell Creek Greenways</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;reedy-creek-nature-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;reedy-creek-nature-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;reedy-creek-nature-preserve&quot;], &quot;mouseout&quot;)">Reedy Creek Nature Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;west-branch-wetland-nature-preserve-and-west-branch-greenway&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;west-branch-wetland-nature-preserve-and-west-branch-greenway&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;west-branch-wetland-nature-preserve-and-west-branch-greenway&quot;], &quot;mouseout&quot;)">West Branch Wetland Nature Preserve and West Branch Greenway</div>
+		</div>
+		<div class="group-list" id="group-list-northeast-piedmont">
+			<div class="group-header" id="group-header-northeast-piedmont" onmouseover="highlightGroup(&quot;northeast-piedmont&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;northeast-piedmont&quot;)">Northeast Piedmont</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;franklin-county-nature-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;franklin-county-nature-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;franklin-county-nature-preserve&quot;], &quot;mouseout&quot;)">Franklin County Nature Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-bullocksville&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-bullocksville&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-bullocksville&quot;], &quot;mouseout&quot;)">Kerr Lake State Recreation Area - Bullocksville</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-county-line&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-county-line&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-county-line&quot;], &quot;mouseout&quot;)">Kerr Lake State Recreation Area - County Line</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-henderson-point&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-henderson-point&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-henderson-point&quot;], &quot;mouseout&quot;)">Kerr Lake State Recreation Area - Henderson Point</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-hibernia&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-hibernia&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-hibernia&quot;], &quot;mouseout&quot;)">Kerr Lake State Recreation Area - Hibernia</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-kimball-point&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-kimball-point&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-kimball-point&quot;], &quot;mouseout&quot;)">Kerr Lake State Recreation Area - Kimball Point</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-nutbush&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-nutbush&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-nutbush&quot;], &quot;mouseout&quot;)">Kerr Lake State Recreation Area - Nutbush</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-satterwhite-point&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-satterwhite-point&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;kerr-lake-state-recreation-area-satterwhite-point&quot;], &quot;mouseout&quot;)">Kerr Lake State Recreation Area - Satterwhite Point</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;medoc-mountain-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;medoc-mountain-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;medoc-mountain-state-park&quot;], &quot;mouseout&quot;)">Medoc Mountain State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;newell-farms&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;newell-farms&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;newell-farms&quot;], &quot;mouseout&quot;)">Newell Farms</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;vance-game-land-crooked-run-wildlife-management-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;vance-game-land-crooked-run-wildlife-management-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;vance-game-land-crooked-run-wildlife-management-area&quot;], &quot;mouseout&quot;)">Vance Game Land - Crooked Run Wildlife Management Area</div>
+		</div>
+		<div class="group-list" id="group-list-greater-raleigh">
+			<div class="group-header" id="group-header-greater-raleigh" onmouseover="highlightGroup(&quot;greater-raleigh&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;greater-raleigh&quot;)">Greater Raleigh</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;anderson-point-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;anderson-point-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;anderson-point-park&quot;], &quot;mouseout&quot;)">Anderson Point Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;clemmons-educational-state-forest&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;clemmons-educational-state-forest&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;clemmons-educational-state-forest&quot;], &quot;mouseout&quot;)">Clemmons Educational State Forest</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;durant-nature-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;durant-nature-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;durant-nature-park&quot;], &quot;mouseout&quot;)">Durant Nature Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;harris-lake-county-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;harris-lake-county-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;harris-lake-county-park&quot;], &quot;mouseout&quot;)">Harris Lake County Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;hemlock-bluffs-nature-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;hemlock-bluffs-nature-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;hemlock-bluffs-nature-preserve&quot;], &quot;mouseout&quot;)">Hemlock Bluffs Nature Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;historic-yates-mill-county-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;historic-yates-mill-county-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;historic-yates-mill-county-park&quot;], &quot;mouseout&quot;)">Historic Yates Mill County Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lake-benson-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lake-benson-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lake-benson-park&quot;], &quot;mouseout&quot;)">Lake Benson Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lake-crabtree-county-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lake-crabtree-county-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lake-crabtree-county-park&quot;], &quot;mouseout&quot;)">Lake Crabtree County Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lake-johnson-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lake-johnson-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lake-johnson-park&quot;], &quot;mouseout&quot;)">Lake Johnson Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lake-wheeler&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lake-wheeler&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lake-wheeler&quot;], &quot;mouseout&quot;)">Lake Wheeler</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;prairie-ridge-ecostation-for-wildlife-and-learning&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;prairie-ridge-ecostation-for-wildlife-and-learning&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;prairie-ridge-ecostation-for-wildlife-and-learning&quot;], &quot;mouseout&quot;)">Prairie Ridge Ecostation for Wildlife and Learning</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;schenck-forest&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;schenck-forest&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;schenck-forest&quot;], &quot;mouseout&quot;)">Schenck Forest</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;swift-creek-bluffs&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;swift-creek-bluffs&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;swift-creek-bluffs&quot;], &quot;mouseout&quot;)">Swift Creek Bluffs</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;william-b-umstead-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;william-b-umstead-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;william-b-umstead-state-park&quot;], &quot;mouseout&quot;)">William B. Umstead State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;crowder-district-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;crowder-district-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;crowder-district-park&quot;], &quot;mouseout&quot;)">Crowder District Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;white-deer-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;white-deer-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;white-deer-park&quot;], &quot;mouseout&quot;)">White Deer Park</div>
+		</div>
+		<div class="group-list" id="group-list-lee-harnett">
+			<div class="group-header" id="group-header-lee-harnett" onmouseover="highlightGroup(&quot;lee-harnett&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;lee-harnett&quot;)">Lee-Harnett</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;dunn-erwin-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;dunn-erwin-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;dunn-erwin-trail&quot;], &quot;mouseout&quot;)">Dunn Erwin Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;raven-rock-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;raven-rock-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;raven-rock-state-park&quot;], &quot;mouseout&quot;)">Raven Rock State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;san-lee-environmental-education-and-recreation-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;san-lee-environmental-education-and-recreation-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;san-lee-environmental-education-and-recreation-park&quot;], &quot;mouseout&quot;)">San-Lee Environmental Education and Recreation Park</div>
+		</div>
+		<div class="group-list" id="group-list-high-rock">
+			<div class="group-header" id="group-header-high-rock" onmouseover="highlightGroup(&quot;high-rock&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;high-rock&quot;)">High Rock</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;alcoa-game-land-newsom-road&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;alcoa-game-land-newsom-road&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;alcoa-game-land-newsom-road&quot;], &quot;mouseout&quot;)">Alcoa Game Land - Newsom Road</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;boones-cave-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;boones-cave-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;boones-cave-park&quot;], &quot;mouseout&quot;)">Boone's Cave Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;catawba-college-ecological-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;catawba-college-ecological-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;catawba-college-ecological-preserve&quot;], &quot;mouseout&quot;)">Catawba College Ecological Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;dan-nicholas-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;dan-nicholas-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;dan-nicholas-park&quot;], &quot;mouseout&quot;)">Dan Nicholas Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;dunns-mountain-history-and-nature-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;dunns-mountain-history-and-nature-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;dunns-mountain-history-and-nature-preserve&quot;], &quot;mouseout&quot;)">Dunn's Mountain History and Nature Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;eagle-point-nature-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;eagle-point-nature-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;eagle-point-nature-preserve&quot;], &quot;mouseout&quot;)">Eagle Point Nature Preserve</div>
+		</div>
+		<div class="group-list" id="group-list-sandhills">
+			<div class="group-header" id="group-header-sandhills" onmouseover="highlightGroup(&quot;sandhills&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;sandhills&quot;)">Sandhills</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;all-american-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;all-american-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;all-american-trail&quot;], &quot;mouseout&quot;)">All American Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;calloway-forest&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;calloway-forest&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;calloway-forest&quot;], &quot;mouseout&quot;)">Calloway Forest</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cape-fear-botanical-garden&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cape-fear-botanical-garden&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cape-fear-botanical-garden&quot;], &quot;mouseout&quot;)">Cape Fear Botanical Garden</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cape-fear-river-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cape-fear-river-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cape-fear-river-trail&quot;], &quot;mouseout&quot;)">Cape Fear River Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;carvers-creek-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;carvers-creek-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;carvers-creek-state-park&quot;], &quot;mouseout&quot;)">Carvers Creek State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;j-bayard-clark-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;j-bayard-clark-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;j-bayard-clark-park&quot;], &quot;mouseout&quot;)">J. Bayard Clark Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lumber-river-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lumber-river-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lumber-river-state-park&quot;], &quot;mouseout&quot;)">Lumber River State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lumber-river-state-park-chalk-banks-and-upper-sections&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lumber-river-state-park-chalk-banks-and-upper-sections&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lumber-river-state-park-chalk-banks-and-upper-sections&quot;], &quot;mouseout&quot;)">Lumber River State Park - Chalk Banks and upper sections</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;raft-swamp-farms&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;raft-swamp-farms&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;raft-swamp-farms&quot;], &quot;mouseout&quot;)">Raft Swamp Farms</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;sandhills-game-land&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;sandhills-game-land&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;sandhills-game-land&quot;], &quot;mouseout&quot;)">Sandhills Game Land</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;weymouth-woods-sandhills-nature-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;weymouth-woods-sandhills-nature-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;weymouth-woods-sandhills-nature-preserve&quot;], &quot;mouseout&quot;)">Weymouth Woods Sandhills Nature Preserve</div>
+		</div>
+	</div>
+	<div class="region-list" id="region-list-Coastal">
+		<div class="region-header" id="region-header-Coastal" onmouseover="highlightRegion(&quot;Coastal&quot;)" onmouseout="unhighlightAll()" onclick="zoomToRegion(&quot;Coastal&quot;)">Coastal Region</div>
+		<div class="group-list" id="group-list-tri-county">
+			<div class="group-header" id="group-header-tri-county" onmouseover="highlightGroup(&quot;tri-county&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;tri-county&quot;)">Tri-County</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;bennetts-millpond&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;bennetts-millpond&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;bennetts-millpond&quot;], &quot;mouseout&quot;)">Bennett's Millpond</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;catherine-creek-warwick-creek-paddle-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;catherine-creek-warwick-creek-paddle-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;catherine-creek-warwick-creek-paddle-trail&quot;], &quot;mouseout&quot;)">Catherine Creek/Warwick Creek Paddle Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;edenton-national-fish-hatchery&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;edenton-national-fish-hatchery&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;edenton-national-fish-hatchery&quot;], &quot;mouseout&quot;)">Edenton National Fish Hatchery</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;merchants-millpond-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;merchants-millpond-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;merchants-millpond-state-park&quot;], &quot;mouseout&quot;)">Merchants Millpond State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mill-creek-paddle-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mill-creek-paddle-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mill-creek-paddle-trail&quot;], &quot;mouseout&quot;)">Mill Creek Paddle Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;upper-perquimans-river-paddle-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;upper-perquimans-river-paddle-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;upper-perquimans-river-paddle-trail&quot;], &quot;mouseout&quot;)">Upper Perquimans River Paddle Trail</div>
+		</div>
+		<div class="group-list" id="group-list-roanoke">
+			<div class="group-header" id="group-header-roanoke" onmouseover="highlightGroup(&quot;roanoke&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;roanoke&quot;)">Roanoke</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cashie-wetlands-walk&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cashie-wetlands-walk&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cashie-wetlands-walk&quot;], &quot;mouseout&quot;)">Cashie Wetlands Walk</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;historic-hope-plantation&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;historic-hope-plantation&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;historic-hope-plantation&quot;], &quot;mouseout&quot;)">Historic Hope Plantation</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;morningstar-nature-refuge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;morningstar-nature-refuge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;morningstar-nature-refuge&quot;], &quot;mouseout&quot;)">Morningstar Nature Refuge</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;rail-switch-nature-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;rail-switch-nature-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;rail-switch-nature-trail&quot;], &quot;mouseout&quot;)">Rail Switch Nature Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-national-wildlife-refuge-the-kuralt-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-national-wildlife-refuge-the-kuralt-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-national-wildlife-refuge-the-kuralt-trail&quot;], &quot;mouseout&quot;)">Roanoke River National Wildlife Refuge - The Kuralt Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-paddle-trail-cashie-river-broad-creek&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-paddle-trail-cashie-river-broad-creek&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-paddle-trail-cashie-river-broad-creek&quot;], &quot;mouseout&quot;)">Roanoke River Paddle Trail - Cashie River, Broad Creek</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-paddle-trail-conaby-creek&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-paddle-trail-conaby-creek&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-paddle-trail-conaby-creek&quot;], &quot;mouseout&quot;)">Roanoke River Paddle Trail - Conaby Creek</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-paddle-trail-mainstem-roanoke-devils-gut-gardner-creek-broad-creek-cow-creek&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-paddle-trail-mainstem-roanoke-devils-gut-gardner-creek-broad-creek-cow-creek&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-paddle-trail-mainstem-roanoke-devils-gut-gardner-creek-broad-creek-cow-creek&quot;], &quot;mouseout&quot;)">Roanoke River Paddle Trail - Mainstem Roanoke, Devil's Gut, Gardner Creek, Broad Creek, Cow Creek</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;van-swamp-game-land&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;van-swamp-game-land&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;van-swamp-game-land&quot;], &quot;mouseout&quot;)">Van Swamp Game Land</div>
+		</div>
+		<div class="group-list" id="group-list-northeast">
+			<div class="group-header" id="group-header-northeast" onmouseover="highlightGroup(&quot;northeast&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;northeast&quot;)">Northeast</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;currituck-banks-national-estuarine-research-reserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;currituck-banks-national-estuarine-research-reserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;currituck-banks-national-estuarine-research-reserve&quot;], &quot;mouseout&quot;)">Currituck Banks National Estuarine Research Reserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;currituck-national-wildlife-refuge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;currituck-national-wildlife-refuge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;currituck-national-wildlife-refuge&quot;], &quot;mouseout&quot;)">Currituck National Wildlife Refuge</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;dismal-swamp-canal-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;dismal-swamp-canal-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;dismal-swamp-canal-trail&quot;], &quot;mouseout&quot;)">Dismal Swamp Canal Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;dismal-swamp-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;dismal-swamp-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;dismal-swamp-state-park&quot;], &quot;mouseout&quot;)">Dismal Swamp State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mackay-island-national-wildlife-refuge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mackay-island-national-wildlife-refuge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mackay-island-national-wildlife-refuge&quot;], &quot;mouseout&quot;)">Mackay Island National Wildlife Refuge</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;north-river-game-land&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;north-river-game-land&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;north-river-game-land&quot;], &quot;mouseout&quot;)">North River Game Land</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;outer-banks-center-for-wildlife-education&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;outer-banks-center-for-wildlife-education&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;outer-banks-center-for-wildlife-education&quot;], &quot;mouseout&quot;)">Outer Banks Center for Wildlife Education</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;regional-fitness-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;regional-fitness-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;regional-fitness-trail&quot;], &quot;mouseout&quot;)">Regional Fitness Trail</div>
+		</div>
+		<div class="group-list" id="group-list-i-95-corridor-north">
+			<div class="group-header" id="group-header-i-95-corridor-north" onmouseover="highlightGroup(&quot;i-95-corridor-north&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;i-95-corridor-north&quot;)">I-95 Corridor North</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;northampton-county-nature-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;northampton-county-nature-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;northampton-county-nature-trail&quot;], &quot;mouseout&quot;)">Northampton County Nature Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;roanoke-canal-trail-and-museum&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;roanoke-canal-trail-and-museum&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;roanoke-canal-trail-and-museum&quot;], &quot;mouseout&quot;)">Roanoke Canal Trail and Museum</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-paddle-trail-weldon-to-us-258-bridge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-paddle-trail-weldon-to-us-258-bridge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;roanoke-river-paddle-trail-weldon-to-us-258-bridge&quot;], &quot;mouseout&quot;)">Roanoke River Paddle Trail - Weldon to US 258 Bridge</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;tar-river-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;tar-river-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;tar-river-trail&quot;], &quot;mouseout&quot;)">Tar River Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;sylvan-heights-waterfowl-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;sylvan-heights-waterfowl-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;sylvan-heights-waterfowl-park&quot;], &quot;mouseout&quot;)">Sylvan Heights Waterfowl Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;wilson-botanical-gardens&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;wilson-botanical-gardens&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;wilson-botanical-gardens&quot;], &quot;mouseout&quot;)">Wilson Botanical Gardens</div>
+		</div>
+		<div class="group-list" id="group-list-lower-neuse">
+			<div class="group-header" id="group-header-lower-neuse" onmouseover="highlightGroup(&quot;lower-neuse&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;lower-neuse&quot;)">Lower Neuse</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cherry-branch-minnesott-ferry&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cherry-branch-minnesott-ferry&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cherry-branch-minnesott-ferry&quot;], &quot;mouseout&quot;)">Cherry Branch - Minnesott Ferry</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;croatan-national-forest-island-creek-forest-walk&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;croatan-national-forest-island-creek-forest-walk&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;croatan-national-forest-island-creek-forest-walk&quot;], &quot;mouseout&quot;)">Croatan National Forest - Island Creek Forest Walk</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;croatan-national-forest-neusiok-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;croatan-national-forest-neusiok-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;croatan-national-forest-neusiok-trail&quot;], &quot;mouseout&quot;)">Croatan National Forest - Neusiok Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;goose-creek-game-land-spring-creek-impoundment-en&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;goose-creek-game-land-spring-creek-impoundment-en&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;goose-creek-game-land-spring-creek-impoundment-en&quot;], &quot;mouseout&quot;)">Goose Creek Game Land - Spring Creek Impoundment en</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;weyerhaeusers-cool-springs-environmental-education-center&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;weyerhaeusers-cool-springs-environmental-education-center&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;weyerhaeusers-cool-springs-environmental-education-center&quot;], &quot;mouseout&quot;)">Weyerhaeuser's Cool Springs Environmental Education Center</div>
+		</div>
+		<div class="group-list" id="group-list-bay-lakes">
+			<div class="group-header" id="group-header-bay-lakes" onmouseover="highlightGroup(&quot;bay-lakes&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;bay-lakes&quot;)">Bay Lakes</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;bay-tree-lake-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;bay-tree-lake-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;bay-tree-lake-state-park&quot;], &quot;mouseout&quot;)">Bay Tree Lake State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;jones-lake-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;jones-lake-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;jones-lake-state-park&quot;], &quot;mouseout&quot;)">Jones Lake State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;singletary-lake-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;singletary-lake-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;singletary-lake-state-park&quot;], &quot;mouseout&quot;)">Singletary Lake State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;suggs-mill-pond-game-land&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;suggs-mill-pond-game-land&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;suggs-mill-pond-game-land&quot;], &quot;mouseout&quot;)">Suggs Mill Pond Game Land</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;turnbull-creek-educational-state-forest&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;turnbull-creek-educational-state-forest&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;turnbull-creek-educational-state-forest&quot;], &quot;mouseout&quot;)">Turnbull Creek Educational State Forest</div>
+		</div>
+		<div class="group-list" id="group-list-western-coastal-plain">
+			<div class="group-header" id="group-header-western-coastal-plain" onmouseover="highlightGroup(&quot;western-coastal-plain&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;western-coastal-plain&quot;)">Western Coastal Plain</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cabin-lake-county-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cabin-lake-county-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cabin-lake-county-park&quot;], &quot;mouseout&quot;)">Cabin Lake County Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cliffs-of-the-neuse-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cliffs-of-the-neuse-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cliffs-of-the-neuse-state-park&quot;], &quot;mouseout&quot;)">Cliffs of the Neuse State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;howell-woods-environmental-learning-center&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;howell-woods-environmental-learning-center&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;howell-woods-environmental-learning-center&quot;], &quot;mouseout&quot;)">Howell Woods Environmental Learning Center</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;jackson-farm&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;jackson-farm&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;jackson-farm&quot;], &quot;mouseout&quot;)">Jackson Farm</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;old-waynesborough-historical-village&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;old-waynesborough-historical-village&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;old-waynesborough-historical-village&quot;], &quot;mouseout&quot;)">Old Waynesborough Historical Village</div>
+		</div>
+		<div class="group-list" id="group-list-southeast">
+			<div class="group-header" id="group-header-southeast" onmouseover="highlightGroup(&quot;southeast&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;southeast&quot;)">Southeast</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;bald-head-island&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;bald-head-island&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;bald-head-island&quot;], &quot;mouseout&quot;)">Bald Head Island</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;boiling-spring-lakes-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;boiling-spring-lakes-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;boiling-spring-lakes-preserve&quot;], &quot;mouseout&quot;)">Boiling Spring Lakes Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;brunswick-community-college&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;brunswick-community-college&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;brunswick-community-college&quot;], &quot;mouseout&quot;)">Brunswick Community College</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;brunswick-town-fort-anderson-state-historic-site&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;brunswick-town-fort-anderson-state-historic-site&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;brunswick-town-fort-anderson-state-historic-site&quot;], &quot;mouseout&quot;)">Brunswick Town - Fort Anderson State Historic Site</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;ev-henwood-nature-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;ev-henwood-nature-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;ev-henwood-nature-preserve&quot;], &quot;mouseout&quot;)">Ev-Henwood Nature Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;green-swamp-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;green-swamp-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;green-swamp-preserve&quot;], &quot;mouseout&quot;)">Green Swamp Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;lake-waccamaw-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;lake-waccamaw-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;lake-waccamaw-state-park&quot;], &quot;mouseout&quot;)">Lake Waccamaw State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;orton-plantation-gardens&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;orton-plantation-gardens&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;orton-plantation-gardens&quot;], &quot;mouseout&quot;)">Orton Plantation Gardens</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;southport-riverwalk&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;southport-riverwalk&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;southport-riverwalk&quot;], &quot;mouseout&quot;)">Southport Riverwalk</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;sunset-beach-island&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;sunset-beach-island&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;sunset-beach-island&quot;], &quot;mouseout&quot;)">Sunset Beach Island</div>
+		</div>
+		<div class="group-list" id="group-list-albemarle-peninsula">
+			<div class="group-header" id="group-header-albemarle-peninsula" onmouseover="highlightGroup(&quot;albemarle-peninsula&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;albemarle-peninsula&quot;)">Albemarle Peninsula</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;alligator-river-national-wildlife-refuge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;alligator-river-national-wildlife-refuge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;alligator-river-national-wildlife-refuge&quot;], &quot;mouseout&quot;)">Alligator River National Wildlife Refuge</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;eastern-4-h-environmental-education-conference-center&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;eastern-4-h-environmental-education-conference-center&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;eastern-4-h-environmental-education-conference-center&quot;], &quot;mouseout&quot;)">Eastern 4-H Environmental Education Conference Center</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;gull-rock-game-land&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;gull-rock-game-land&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;gull-rock-game-land&quot;], &quot;mouseout&quot;)">Gull Rock Game Land</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mattamuskeet-national-wildlife-refure&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mattamuskeet-national-wildlife-refure&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mattamuskeet-national-wildlife-refure&quot;], &quot;mouseout&quot;)">Mattamuskeet National Wildlife Refure</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;palmetto-peartree-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;palmetto-peartree-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;palmetto-peartree-preserve&quot;], &quot;mouseout&quot;)">Palmetto-Peartree Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;pettigrew-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;pettigrew-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;pettigrew-state-park&quot;], &quot;mouseout&quot;)">Pettigrew State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;pocosin-lakes-national-wildlife-refuge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;pocosin-lakes-national-wildlife-refuge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;pocosin-lakes-national-wildlife-refuge&quot;], &quot;mouseout&quot;)">Pocosin Lakes National Wildlife Refuge</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;scuppernong-river-interpretive-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;scuppernong-river-interpretive-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;scuppernong-river-interpretive-trail&quot;], &quot;mouseout&quot;)">Scuppernong River Interpretive Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;swanquarter-national-wildlife-refuge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;swanquarter-national-wildlife-refuge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;swanquarter-national-wildlife-refuge&quot;], &quot;mouseout&quot;)">Swanquarter National Wildlife Refuge</div>
+		</div>
+		<div class="group-list" id="group-list-pender">
+			<div class="group-header" id="group-header-pender" onmouseover="highlightGroup(&quot;pender&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;pender&quot;)">Pender</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;abbey-nature-preserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;abbey-nature-preserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;abbey-nature-preserve&quot;], &quot;mouseout&quot;)">Abbey Nature Preserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;holly-shelter-game-land-greentree-impoundment&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;holly-shelter-game-land-greentree-impoundment&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;holly-shelter-game-land-greentree-impoundment&quot;], &quot;mouseout&quot;)">Holly Shelter Game Land - Greentree Impoundment</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;holly-shelter-game-land-southeast-gate&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;holly-shelter-game-land-southeast-gate&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;holly-shelter-game-land-southeast-gate&quot;], &quot;mouseout&quot;)">Holly Shelter Game Land - Southeast Gate</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;moores-creek-national-battlefield&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;moores-creek-national-battlefield&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;moores-creek-national-battlefield&quot;], &quot;mouseout&quot;)">Moores Creek National Battlefield</div>
+		</div>
+		<div class="group-list" id="group-list-central-coastal-plain">
+			<div class="group-header" id="group-header-central-coastal-plain" onmouseover="highlightGroup(&quot;central-coastal-plain&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;central-coastal-plain&quot;)">Central Coastal Plain</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;contentnea-creek-paddle-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;contentnea-creek-paddle-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;contentnea-creek-paddle-trail&quot;], &quot;mouseout&quot;)">Contentnea Creek Paddle Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;css-neuse-state-historic-site&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;css-neuse-state-historic-site&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;css-neuse-state-historic-site&quot;], &quot;mouseout&quot;)">CSS Neuse State Historic Site</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;goose-creek-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;goose-creek-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;goose-creek-state-park&quot;], &quot;mouseout&quot;)">Goose Creek State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;river-park-north&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;river-park-north&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;river-park-north&quot;], &quot;mouseout&quot;)">River Park North</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;stewart-parkway-riverwalk-and-boardwalk&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;stewart-parkway-riverwalk-and-boardwalk&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;stewart-parkway-riverwalk-and-boardwalk&quot;], &quot;mouseout&quot;)">Stewart Parkway Riverwalk and Boardwalk</div>
+		</div>
+		<div class="group-list" id="group-list-southern-outer-banks">
+			<div class="group-header" id="group-header-southern-outer-banks" onmouseover="highlightGroup(&quot;southern-outer-banks&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;southern-outer-banks&quot;)">Southern Outer Banks</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cape-hatteras-national-seashore-hatteras-island&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cape-hatteras-national-seashore-hatteras-island&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cape-hatteras-national-seashore-hatteras-island&quot;], &quot;mouseout&quot;)">Cape Hatteras National Seashore - Hatteras Island</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cape-hatteras-national-seashore-ocracoke-island&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cape-hatteras-national-seashore-ocracoke-island&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cape-hatteras-national-seashore-ocracoke-island&quot;], &quot;mouseout&quot;)">Cape Hatteras National Seashore - Ocracoke Island</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;seabirding-pelagic-trips&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;seabirding-pelagic-trips&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;seabirding-pelagic-trips&quot;], &quot;mouseout&quot;)">Seabirding Pelagic Trips</div>
+		</div>
+		<div class="group-list" id="group-list-east-carteret">
+			<div class="group-header" id="group-header-east-carteret" onmouseover="highlightGroup(&quot;east-carteret&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;east-carteret&quot;)">East Carteret</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;calico-creek-boardwalk&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;calico-creek-boardwalk&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;calico-creek-boardwalk&quot;], &quot;mouseout&quot;)">Calico Creek Boardwalk</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cape-lookout-point-cape-lookout-national-seashore&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cape-lookout-point-cape-lookout-national-seashore&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cape-lookout-point-cape-lookout-national-seashore&quot;], &quot;mouseout&quot;)">Cape Lookout Point, Cape Lookout National Seashore</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cedar-island-national-wildlife-refuge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cedar-island-national-wildlife-refuge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cedar-island-national-wildlife-refuge&quot;], &quot;mouseout&quot;)">Cedar Island National Wildlife Refuge</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;fort-macon-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;fort-macon-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;fort-macon-state-park&quot;], &quot;mouseout&quot;)">Fort Macon State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;harkers-island-nature-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;harkers-island-nature-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;harkers-island-nature-trail&quot;], &quot;mouseout&quot;)">Harkers Island Nature Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;hoop-pole-creek-natural-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;hoop-pole-creek-natural-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;hoop-pole-creek-natural-area&quot;], &quot;mouseout&quot;)">Hoop Pole Creek Natural Area</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;nc-aquarium-at-pine-knoll-shores-and-t-roosevelt-state-natural-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;nc-aquarium-at-pine-knoll-shores-and-t-roosevelt-state-natural-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;nc-aquarium-at-pine-knoll-shores-and-t-roosevelt-state-natural-area&quot;], &quot;mouseout&quot;)">NC Aquarium at Pine Knoll Shores and T. Roosevelt State Natural Area</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;rachel-carson-national-estuarine-research-reserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;rachel-carson-national-estuarine-research-reserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;rachel-carson-national-estuarine-research-reserve&quot;], &quot;mouseout&quot;)">Rachel Carson National Estuarine Research Reserve</div>
+		</div>
+		<div class="group-list" id="group-list-new-hanover">
+			<div class="group-header" id="group-header-new-hanover" onmouseover="highlightGroup(&quot;new-hanover&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;new-hanover&quot;)">New Hanover</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;airlie-gardens&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;airlie-gardens&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;airlie-gardens&quot;], &quot;mouseout&quot;)">Airlie Gardens</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;carolina-beach-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;carolina-beach-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;carolina-beach-state-park&quot;], &quot;mouseout&quot;)">Carolina Beach State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;fort-fisher-state-historic-site&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;fort-fisher-state-historic-site&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;fort-fisher-state-historic-site&quot;], &quot;mouseout&quot;)">Fort Fisher State Historic Site</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;fort-fisher-state-recreation-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;fort-fisher-state-recreation-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;fort-fisher-state-recreation-area&quot;], &quot;mouseout&quot;)">Fort Fisher State Recreation Area</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;greenfield-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;greenfield-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;greenfield-park&quot;], &quot;mouseout&quot;)">Greenfield Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;mason-inlet-waterbird-management-area&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;mason-inlet-waterbird-management-area&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;mason-inlet-waterbird-management-area&quot;], &quot;mouseout&quot;)">Mason Inlet Waterbird Management Area</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;masonboro-island-national-estuarine-research-reserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;masonboro-island-national-estuarine-research-reserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;masonboro-island-national-estuarine-research-reserve&quot;], &quot;mouseout&quot;)">Masonboro Island National Estuarine Research Reserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;nc-aquarium-at-fort-fisher&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;nc-aquarium-at-fort-fisher&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;nc-aquarium-at-fort-fisher&quot;], &quot;mouseout&quot;)">NC Aquarium at Fort Fisher</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;zekes-island-national-estuarine-research-reserve&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;zekes-island-national-estuarine-research-reserve&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;zekes-island-national-estuarine-research-reserve&quot;], &quot;mouseout&quot;)">Zeke's Island National Estuarine Research Reserve</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;oakdale-cemetary&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;oakdale-cemetary&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;oakdale-cemetary&quot;], &quot;mouseout&quot;)">Oakdale Cemetary</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;smith-creek-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;smith-creek-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;smith-creek-park&quot;], &quot;mouseout&quot;)">Smith Creek Park</div>
+		</div>
+		<div class="group-list" id="group-list-outer-banks">
+			<div class="group-header" id="group-header-outer-banks" onmouseover="highlightGroup(&quot;outer-banks&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;outer-banks&quot;)">Outer Banks</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cape-hatteras-national-seashore-bodie-island&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cape-hatteras-national-seashore-bodie-island&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cape-hatteras-national-seashore-bodie-island&quot;], &quot;mouseout&quot;)">Cape Hatteras National Seashore - Bodie Island</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;jockeys-ridge-state-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;jockeys-ridge-state-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;jockeys-ridge-state-park&quot;], &quot;mouseout&quot;)">Jockey's Ridge State Park</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;pea-island-national-wildlife-refuge&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;pea-island-national-wildlife-refuge&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;pea-island-national-wildlife-refuge&quot;], &quot;mouseout&quot;)">Pea Island National Wildlife Refuge</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;roanoke-island-marsh-game-land&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;roanoke-island-marsh-game-land&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;roanoke-island-marsh-game-land&quot;], &quot;mouseout&quot;)">Roanoke Island Marsh Game Land</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;the-elizabethan-gardens&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;the-elizabethan-gardens&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;the-elizabethan-gardens&quot;], &quot;mouseout&quot;)">The Elizabethan Gardens</div>
+		</div>
+		<div class="group-list" id="group-list-onslow-bight">
+			<div class="group-header" id="group-header-onslow-bight" onmouseover="highlightGroup(&quot;onslow-bight&quot;)" onmouseout="unhighlightAll()" onclick="expandGroup(&quot;onslow-bight&quot;)">Onslow Bight</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;cedar-point-tideland-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;cedar-point-tideland-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;cedar-point-tideland-trail&quot;], &quot;mouseout&quot;)">Cedar Point Tideland Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;croatan-national-forest-millis-and-pringle-roads&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;croatan-national-forest-millis-and-pringle-roads&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;croatan-national-forest-millis-and-pringle-roads&quot;], &quot;mouseout&quot;)">Croatan National Forest - Millis and Pringle Roads</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;emerald-isle-woods&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;emerald-isle-woods&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;emerald-isle-woods&quot;], &quot;mouseout&quot;)">Emerald Isle Woods</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;hammocks-beach-state-park-bear-island-and-huggins-island&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;hammocks-beach-state-park-bear-island-and-huggins-island&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;hammocks-beach-state-park-bear-island-and-huggins-island&quot;], &quot;mouseout&quot;)">Hammocks Beach State Park - Bear Island and Huggins Island</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;onslow-county-cow-horn-new-river-paddle-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;onslow-county-cow-horn-new-river-paddle-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;onslow-county-cow-horn-new-river-paddle-trail&quot;], &quot;mouseout&quot;)">Onslow County Cow Horn - New River Paddle Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;onslow-county-public-beach-access-2&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;onslow-county-public-beach-access-2&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;onslow-county-public-beach-access-2&quot;], &quot;mouseout&quot;)">Onslow County Public Beach Access #2</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;patsy-pond-nature-trail&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;patsy-pond-nature-trail&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;patsy-pond-nature-trail&quot;], &quot;mouseout&quot;)">Patsy Pond Nature Trail</div>
+			<div class="site-item" onclick="google.maps.event.trigger(siteMarkers[&quot;stump-sound-park&quot;], &quot;click&quot;)" onmouseover="google.maps.event.trigger(siteMarkers[&quot;stump-sound-park&quot;], &quot;mouseover&quot;)" onmouseout="google.maps.event.trigger(siteMarkers[&quot;stump-sound-park&quot;], &quot;mouseout&quot;)">Stump Sound Park</div>
+		</div>
+	</div>
+</div>
+
+
+			
+			</div></div>
+			<div id="info-birds">
+				<div id="show-recent-bird-header" class="info-heading-clickable">Show Recent Sightings<img style="margin-left:0.5em;width:30px;" src="/storage/img/ebird_legend.png"/> <img id="show-recent-busy-img" style="float:right;" src="/storage/img/ajax-loader.png"/></div>
+				<p class="info-text" id="info-ebird" style="display:block">Click the header above to see recent sightings from other birders. Each icon on the map represents an observation made at their local park, on a trip to the mountains or the coast, or maybe just in their backyard. They are contributing to science while keeping track of species they've seen by logging their observations on <a href="http://www.ebird.org">eBird</a>, a free web-based application provided by the Cornell Lab of Ornithology.  Check them out and contribute!</p> 
+				<!--<div id="select-bird-header" class="info-heading">Select List of Birds</div>
+				<div class="site-item" onclick="getSppSites('accipiter-cooperii')">Cooper's Hawk</div>
+				<div class="site-item" onclick="getSppSites('branta-americanus')">Canada Goose</div>
+				<div class="site-item" onclick="getSppSites('carpodacus-mexicanus')">House Finch</div>
+				<div id="spp-results"><div class="info-heading">Sites</div></div>-->
+			</div>
+			<div id="info-business">
+				<!--<div class="info-heading">Local Businesses</div>-->
+				<div id="show-business-header" class="info-heading">Show Businesses on Map <img style="margin-left:0.5em;width:30px;" src="/storage/img/bfb_dot.png"/><img id="show-business-busy-img" style="float:right;" src="/storage/img/ajax-loader.png" ></div>
+				<p class="info-text" id="info-business" style="display:block">We encourage birders to patronize local businesses, just as we encourage local businesses to engage with birders through our <a href="/business">Birder-Friendly Business Program</a>. Birders spend over $ million a year nationally on birding excursions and equipment. If you are a business owner, <a href="mailto:info@ncbirdingtrail.org?subject=Please%20send%20me%20information%20about%20the%20NCBT%20BFB%20program">contact us</a> to find out more about opportunities to increase your visibility among birders.</p>
+			</div>
+		</div>
+	</div>
+	<!--
+	<div id="map_key">
+	  <div class="legend-text">
+		<div class='legend-item' id='bfb'>
+		  <img class="legend-img" src="/storage/img/bfb_dot.png"/>Birder-Friendly Business</div>
+		<div class='legend-item' id='ebird'>
+		  <img class="legend-img" src="/storage/img/ebird_40.png"/>Bird Sightings</div>
+	  </div>
+	</div>
+	-->
+</div>
+<!--
+<div id="splash">
+	<div id="splash-text">
+	What's a Birding Trail?
+		
+	</div>
+
+</div>
+-->

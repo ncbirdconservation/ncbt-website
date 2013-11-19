@@ -1,0 +1,55 @@
+<html>
+<head>
+	<script type="text/javascript" src="jquery.js" ></script>
+	<style type="text/css">
+		#header {
+			width:100%;
+			height:100px;
+			background:royalblue;
+		}
+		
+		#title {
+			font-family: 'Tahoma','sans-serif';
+			font-size: 2em;
+			text-align:center;
+			color:white;
+			margin:auto;
+		}
+		
+		#body {
+			margin:auto;
+		}
+		
+		#splash {
+			position:absolute;
+			cursor:pointer;
+			margin:auto;
+			padding:5em;
+			text-align: center;
+			background: #383838;
+			color: white;
+			width: 200px;
+			z-index: 5;
+		}
+		
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#splash").click(function(){
+				$(this).css({display:"none"});
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="header">
+		<div id="title">North Carolina Birding Trail</div>
+	</div>
+	<div id="body">
+		Lorum ipsum as;ldkja;lkjf;lkjads;lkjas
+		;laksjdf;lkjasdf;lkjasd;flkjasd;lkjas;dflkj
+		asdfj;asldkfja;slkdjfas;dlfkj
+	</div>
+	<div id="splash">Click here to make it go away</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"
+ xmlns:gx="http://www.google.com/kml/ext/2.2">
+  <Document>
+		<Style id="pointPSite">
+			<IconStyle>
+				<scale>0.5</scale>
+				<Icon>
+					<href>http://ncbirdingtrail.squarespace.com/storage/img/bhnu_icon_14.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Style id="pointCSite">
+			<IconStyle>
+				<scale>0.5</scale>
+				<Icon>
+					<href>http://ncbirdingtrail.squarespace.com/storage/img/blsk_icon_14.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Style id="pointMSite">
+			<IconStyle>
+				<scale>0.5</scale>
+				<Icon>
+					<href>http://ncbirdingtrail.squarespace.com/storage/img/gwwa_icon_14.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>

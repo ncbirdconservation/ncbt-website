@@ -1,0 +1,190 @@
+<script src="/storage/js/infobox.js" type="text/javascript"></script>
+<script type="application/javascript">
+$(document).ready(function() {
+    $(".legend-item").click(function() {
+        button = $(this).attr('id');
+        on = $(this).is('.highlight');
+        if (on) {
+            if(button=='site') {siteLayer.setMap(null);}
+            else if (button=='ebird') {ebirdLayer.setMap(null);}
+            else {bfbLayer.setMap(null);}
+        }
+        else{
+            if(button=='site') {siteLayer.setMap(map);}
+            else if (button=='ebird') {ebirdLayer.setMap(map);}
+            else {bfbLayer.setMap(map);}
+        }
+
+        $(this).toggleClass('highlight');
+    });
+
+	
+	//URL Parser
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+			vars[key] = value;
+		});
+		return vars;
+	};
+
+	if (getUrlVars()['x']){
+		//var zoomLevel = getUrlVars()['z'];
+		var latlng = new google.maps.LatLng(getUrlVars()["y"]+","+getUrlVars()["x"]);
+		//var latlng = new google.maps.LatLng(34.3211111,-77.76555556);
+		alert(getUrlVars()["y"]+","+getUrlVars()["x"]);
+		//alert(getUrlVars()['lat']);
+		//alert(getUrlVars()['lon']);
+		var zoomLevel=11;
+		//var latlng = new google.maps.LatLng(35.3,-80.003243);
+		}
+	else {
+		var latlng = new google.maps.LatLng(35.3,-80.003243);
+		var zoomLevel = 7;
+	};
+
+	var ncbtMapStyle = [{ featureType: "administrative", stylers: [ { visibility: "on" }, { saturation: -90 }, { lightness: 52 } ] }];
+	var myOptions = {
+	                  zoom: zoomLevel,
+                      panControl: false,
+                      streetViewControl: false,
+			  center:latlng,
+			  mapTypeId: google.maps.MapTypeId.TERRAIN,
+			  styles: ncbtMapStyle
+			};
+
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	//map dimensions
+	//$('#map_canvas').width($(document).width());
+	//$('#map_canvas').height($(document).height()-80);
+	//$('#map_canvas').css('z-index','-1');
+
+/*TESTING
+	var testMarker = new google.maps.Marker({
+		position: latlng,
+		map: map,
+		title: 'test point'
+	});
+
+	infowindow = new google.maps.InfoWindow({
+		content: 'test'
+	});
+	google.maps.event.addListener(testMarker, 'click', function() {
+		infowindow.open(map, testMarker);
+	});	
+*/
+
+	//$('test').html('testing').appendTo('#test-area');
+	//ncbtSymbol = var google.maps.Symbol({
+	//	path: var google.maps.SymbolPath.CIRCLE,
+	//	scale: 10
+	//	});
+	
+    // code to parse through kml, add markers
+	$.ajax({
+		type: "GET",
+		//url: "/storage/kml/sites_test3.kml",
+		url: "/storage/kml/sites_test3.kml",
+		dataType: "xml",
+		success: function(xml) {
+			//$('test').html().appendTo('#test-area');
+			var siteMarkers = new Array();
+			var infoWindows = new Array();
+			//var infoWindows = new Array();
+			$(xml).find('Placemark').each(function(i) {
+				var title = $(this).find('name').text();
+				var url = '';
+				var slug = '';
+				var latlong = $(this).find('coordinates').text();
+				var c = latlong.split(',');
+
+				var contentString = '<a href="/sites/'+slug+'"><div style="font-weight:bold;font-variant:small-caps;font-size:1.1em;color:white;line-height:1em">'+title+'</div></a>';
+				var boxText = '<div style="border:none;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background:#517098;color:#ffffff;padding:5px;">';
+				boxText += contentString
+				boxText +='<hr style="color:white;background-color:white;height:2px;margin:5px 0px 2px 0px;border:none;"/><ul style="list-style-type:none;display:block;margin:0px;padding:0px;"><li style="display:inline;margin-left:25px;margin-right:25px;"><a style="color:white;" href="">Directions</a></li><li style="display:inline;margin-left:25px;margin-right:25px;"><a style="color:white;" href="">Bird List</a></li></ul></div>';
+					
+				infoWindows[i] = new InfoBox({
+					content: boxText,
+					alignBottom: true,
+					pixelOffset: new google.maps.Size(5,5),
+					closeBoxMargin: "5px 5px 5px 5px",
+					closeBoxURL: "http://www.google.com/intl/en>us/mapfiles/close.gif",
+					infoBoxClearnace: new google.maps.Size(1,1),
+					pane: "floatPane",
+					boxStyle: {
+						opacity:0.9,
+						width: "250px"
+						}
+					}
+				);
+				
+				/*
+				infoWindows[i] = new google.maps.InfoWindow({
+					content: contentString
+				});
+				*/
+				siteMarkers[i] = new google.maps.Marker({
+					position: new google.maps.LatLng(c[1],c[0]),
+					//map: map,
+					title: title,
+					icon: {
+						fillColor: 'royalblue',
+						path: google.maps.SymbolPath.CIRCLE,
+						fillOpacity: 1,
+						strokeColor: 'white',
+						strokeOpacity: 0.7,
+						strokeWeight: 1.5,
+						scale: 3.6
+						}
+				});
+				siteMarkers[i].setMap(map);
+				
+				google.maps.event.addListener(siteMarkers[i], 'click', function() {
+					infoWindows[i].open(map, siteMarkers[i])
+				});
+				
+			/*
+				$('<div id="'+title+'"></div>').html('<a href="http://ncbirdingtrail.squarespace.com/map?y='+c[1]+'&x='+c[0]+'&z=11">'+i+'. '+title+'</a>').appendTo('#test-area');
+				//$('<div></div>').html(i).appendTo('#test-area');
+			*/
+			});
+		
+		}
+	});
+	
+	
+	
+	
+	//server - static bfb layer
+	bfbLayer = new google.maps.KmlLayer('http://ncbirdingtrail.squarespace.com/storage/kml/bfbs.kml', {preserveViewport:true});
+	//bfbLayer.setMap(map);
+
+	//appspot server - static
+	//var siteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml_files/sites.kml', {preserveViewport:true});
+	//var siteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.squarespace.com/kml_files/sites_test.kml', {preserveViewport:true});
+	
+        //squarespace
+	//siteLayer = new google.maps.KmlLayer('http://www.ncbirdingtrail.squarespace.com/storage/kml/sites_test3.kml', {preserveViewport:true});
+
+	//siteLayer.setMap(map);
+
+	//server - ebird layer
+	//var ebirdLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml?t=byAll&k=ebird', {preserveViewport:true});
+        ebirdLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml?t=byAll&k=ebirdwebsite', {preserveViewport:true});	
+    //    ebirdLayer.setMap(map);
+	});
+	
+</script>
+<div id="map_canvas"></div>
+<div id="map_key">
+  <div class="legend-text">
+    <!--<div class='legend-item highlight' id='site'>
+      <img class="legend-img" src="/storage/img/map_dot.png"/>Birding Trail Site</div>-->
+    <div class='legend-item' id='bfb'>
+      <img class="legend-img" src="/storage/img/bfb_dot.png"/>Birder-Friendly Business</div>
+    <div class='legend-item' id='ebird'>
+      <img class="legend-img" src="/storage/img/ebird_40.png"/>Bird Sightings</div>
+  </div>
+</div>
+<div id="test-area"></div>
+

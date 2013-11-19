@@ -1,0 +1,40 @@
+<script type="text/javascript" src="/storage/js/all_birds_sites.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+<script type="text/javascript">
+$(function() {
+$( "#project" ).autocomplete({
+minLength: 0,
+source: birds,
+focus: function( event, ui ) {
+$( "#project" ).val( ui.item.label );
+return false;
+},
+select: function( event, ui ) {
+$( "#project" ).val( ui.item.label );
+//$( "#project-id" ).val( ui.item.value );
+//$( "#project-description" ).html( ui.item.desc );
+//$( "#project-icon" ).attr( "src", "images/" + ui.item.icon );
+console.log(ui.item.value);
+return false;
+}
+})
+.data( "autocomplete" )._renderItem = function( ul, item ) {
+return $( "<li>" )
+.append( "<a>" + item.label +"</a>" )
+.appendTo( ul );
+};
+});
+</script>
+
+<div id="project-label">Select a project (type "j" for a start):</div>
+<input id="project" />
+<input type="hidden" id="project-id" />
+<!--<p id="project-description"></p>-->
+
+<!--
+"Cooper's Hawk":"accipiter-cooperii",
+"Blackpoll Warbler":"dendroica-striata",
+"Worm-Eating Warbler":"helmitheros-vermivorum",
+"Golden-winged Warbler":"vermivora-chrysoptera",
+"Prairie Warbler":"setophaga-discolor"
+-->

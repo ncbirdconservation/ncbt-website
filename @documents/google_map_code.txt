@@ -1,0 +1,196 @@
+This goes in the Custom CSS:
+#map_canvas { width: 650px; height: 400px; }
+
+----------------------------------------------
+Demo code for adding event listener to kml
+----------------------------------------------
+        var ctaLayer = new google.maps.KmlLayer('http://www.****.com/index.kml');
+        ctaLayer.setMap(map);
+        google.maps.event.addListener(ctaLayer, 'click', function (kmlEvent) {
+        var text = kmlEvent.featureData.description;
+        alert(text);
+    });
+
+This goes in Code Injection:
+----------------------------------------------
+This is the html on the map page (terrain):
+----------------------------------------------
+
+<script type="application/javascript">
+
+$(document).ready(function() {
+    $(".legend-item").click(function() {
+        button = $(this).attr('id');
+        on = $(this).is('.highlight');
+        if (on) {
+            if(button=='site') {siteLayer.setMap(null);}
+            else if (button=='ebird') {ebirdLayer.setMap(null);}
+            else {bfbLayer.setMap(null);}
+        }
+        else{
+            if(button=='site') {siteLayer.setMap(map);}
+            else if (button=='ebird') {ebirdLayer.setMap(map);}
+            else {bfbLayer.setMap(map);}
+        }
+
+        $(this).toggleClass('highlight');
+    });
+
+
+	var latlng = new google.maps.LatLng(35.3, -80.003243);
+	var ncbtMapStyle = [{ featureType: "administrative", stylers: [ { visibility: "on" }, { saturation: -90 }, { lightness: 52 } ] }];
+	var myOptions = {
+	                  zoom: 7,
+                          panControl: false,
+                          streetViewControl: false,
+			  center:latlng,
+			  mapTypeId: google.maps.MapTypeId.TERRAIN,
+			  styles: ncbtMapStyle
+			};
+
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+	//appspot server - static
+	//var siteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml_files/sites.kml', {preserveViewport:true});
+	//var siteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.squarespace.com/kml_files/sites_test.kml', {preserveViewport:true});
+	
+        //squarespace
+	siteLayer = new google.maps.KmlLayer('http://www.ncbirdingtrail.squarespace.com/storage/kml/sites_test3.kml', {preserveViewport:true});
+
+	siteLayer.setMap(map);
+
+	//server - static bfb layer
+	bfbLayer = new google.maps.KmlLayer('http://ncbirdingtrail.squarespace.com/storage/kml/bfbs.kml', {preserveViewport:true});
+	bfbLayer.setMap(map);
+
+	//server - ebird layer
+	//var ebirdLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml?t=byAll&k=ebird', {preserveViewport:true});
+        ebirdLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml?t=byAll&k=ebirdwebsite', {preserveViewport:true});	
+        ebirdLayer.setMap(map);
+	});
+
+</script>
+<div id="map_canvas"></div>
+<div id="map_key">
+  <div class="legend-text">
+    <div class='legend-item highlight' id='site'>
+      <img class="legend-img" src="/storage/img/map_dot.png"/>Birding Trail Site</div>
+    <div class='legend-item highlight' id='bfb'>
+      <img class="legend-img" src="/storage/img/bfb_dot.png"/>Birder-Friendly Business</div>
+    <div class='legend-item highlight' id='ebird')>
+      <img class="legend-img" src="/storage/img/ebird_40.png"/>Bird Sightings</div>
+  </div>
+</div>
+
+
+
+
+----------------------------------------------
+This is the html on the map page (terrain):
+----------------------------------------------
+<script type="application/javascript">
+$(document).ready(function() {
+	var latlng = new google.maps.LatLng(35.3, -80.003243);
+	var ncbtMapStyle = [{ featureType: "administrative", stylers: [ { visibility: "on" }, { saturation: -90 }, { lightness: 52 } ] }];
+	var myOptions = {
+	                  zoom: 7,
+			  center:latlng,
+			  mapTypeId: google.maps.MapTypeId.TERRAIN,
+			  styles: ncbtMapStyle
+			};
+
+	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+	//appspot server - static
+	//var siteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml_files/sites.kml', {preserveViewport:true});
+	//var siteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.squarespace.com/kml_files/sites_test.kml', {preserveViewport:true});
+	
+    //squarespace
+	var siteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.squarespace.com/storage/kml/sites_test2.kml', {preserveViewport:true});
+
+	siteLayer.setMap(map);
+
+	//server - static bfb layer
+	//var bfbLayer = new google.maps.KmlLayer('http://ncbirdingtrail.squarespace.com/storage/kml/bfb.kml', {preserveViewport:true});
+	//bfbLayer.setMap(map);
+
+	//server - ebird layer
+	var ebirdLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml?t=byAll&k=ebird', {preserveViewport:true});
+	ebirdLayer.setMap(map);
+	});
+
+</script>
+<div id="error_check"></div>
+<div id="map_canvas"></div>
+
+----------------------------------------------
+This is the html on the map page (custom):
+----------------------------------------------
+<script type="text/javascript">
+function initialize() {
+	var latlng = new google.maps.LatLng(35.693183, -78.777168);
+		var ncbtMapStyle = [
+			{
+			featureType: "landscape",
+			elementType: "geometry",
+			stylers: [
+			  { visibility: "on" },
+			  { lightness: 100 }
+			]
+			},
+			{
+			featureType: "road",
+			stylers: [
+			  { hue: "#fff700" },
+			  { visibility: "simplified" },
+			  { saturation: -99 },
+			  { lightness: 24 }
+			]
+			},{
+			featureType: "poi.park",
+			stylers: [
+			  { visibility: "simplified" },
+			  { hue: "#88ff00" },
+			  { saturation: 13 },
+			  { lightness: 42 }
+			]
+			},
+			{
+				featureType: "water",
+				elementType: "geometry",
+				stylers: [
+				  { visibility: "simplified" },
+				  { hue: "#0022ff" },
+				  { lightness: 55 }
+				]
+			}
+		];	var myOptions = {
+	  zoom: 7,
+	  center:latlng,
+	  mapTypeId: google.maps.MapTypeId.ROADMAP,
+	  styles: ncbtMapStyle
+	};
+
+	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+	//server - static
+	var siteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml_files/sites.kml', {preserveViewport:true});
+	//squarespace
+        //var siteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.squarespace.com/storage/kml/sites_test.kml', {preserveViewport:true};
+        siteLayer.setMap(map);
+	
+	//server - static bfb layer
+	//var bfbLayer = new google.maps.KmlLayer('http://ncbirdingtrail.squarespace.com/storage/kml/bfb.kml', {preserveViewport:true});
+	bfbLayer.setMap(map);
+
+	//server - ebird layer
+	var ebirdLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml?t=byAll&k=ebird', {preserveViewport:true});
+	ebirdLayer.setMap(map);
+	
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<div id="map_canvas"></div>
+<hr/>
+
+This file saved in File Storage:

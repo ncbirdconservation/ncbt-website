@@ -1,0 +1,292 @@
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBq3s5965sCxAclqaIJnvYgW80RNvuELB0&sensor=false"></script>
+<script src="/storage/js/infobox.js" type="text/javascript"></script>
+<script type="text/javascript">
+siteMarkers = {};
+infoWindows = {};
+infoText = {};
+
+/*
+//URL Parser
+function getUrlVars() {
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	});
+	return vars;
+};
+*/
+//retrieve site information from full description page
+function getSiteData(slug) {
+	$.ajax({
+		type: "GET",
+		url: "/sites/2012/8/1/" + slug + ".html",
+		dataType: "html",
+		success: function(result){
+			$("#info-species").html($(result).find("#species p").text()),
+			$("#info-habitats").html($(result).find("#habitats p").text()),
+			$("#info-directions").html($(result).find("#directions p").text())
+		}
+	});
+};
+
+
+function slugify(text) {
+	text.replace("-","");
+	return text.replace(" ","-");
+};
+
+function highlightArray(sitelist){
+	//highlights on map passed list of site slugs
+	for (var i in sitelist) {siteMarkers[sitelist[i]].setIcon(highlightIcon);}
+};
+
+function highlightGroup(group) {
+	unhighlightAll();
+	highlightArray(groupSites[group]);
+};
+function highlightRegion(region) {
+	unhighlightAll();
+	highlightArray(regionSites[region]);
+};
+
+function highlightSite(slug) {
+	unhighlightAll();
+	siteMarkers[slug].setIcon(highlightIcon);
+};
+
+function unhighlightAll(){
+	for (var i in siteMarkers) {
+		if (siteMarkers[i].getIcon() == highlightIcon) {
+			siteMarkers[i].setIcon(siteIcon);
+		}
+	}
+};
+
+$(document).ready(function() {
+/*	// check if the map is to be zoomed and centered elsewhere by uri
+	if (getUrlVars()['x'] && getUrlVars()['y']){
+		//var zoomLevel = getUrlVars()['z'];
+		var latlng = new google.maps.LatLng(getUrlVars()["y"]+","+getUrlVars()["x"]);
+		var zoomLevel=11;
+		}
+	else {
+		var latlng = new google.maps.LatLng(35.3,-80.003243);
+		var zoomLevel = 7;
+	};
+*/
+	var latlng = new google.maps.LatLng(35.3,-80.003243);
+	var zoomLevel = 7;
+	// setup map
+	
+
+	//setup marker definitions
+	siteIcon = {url: "http://ncbirdingtrail.squarespace.com/storage/img/map_dot.png"};
+	highlightIcon = {url: "http://ncbirdingtrail.squarespace.com/storage/img/map_dot_highlight.png"};
+	
+/*
+	siteIcon ={
+		fillColor: "rgb(81,112,152)",
+		path: google.maps.SymbolPath.CIRCLE,
+		fillOpacity: 1,
+		strokeColor: "white",
+		strokeOpacity: 0.7,
+		strokeWeight: 1.5,
+		scale: 3.8
+		};
+	
+	highlightIcon ={
+		fillColor: "yellow",
+		path: google.maps.SymbolPath.CIRCLE,
+		fillOpacity: 1,
+		strokeColor: "black",
+		strokeOpacity: 0.7,
+		strokeWeight: 2,
+		scale: 4.5
+		};
+*/
+	var ncbtMapStyle = [{ featureType: "administrative", stylers: [ { visibility: "on" }, { saturation: -90 }, { lightness: 52 } ] }];
+	var myOptions = {
+	                  zoom: zoomLevel,
+                      panControl: false,
+                      streetViewControl: false,
+			  center:latlng,
+			  mapTypeId: google.maps.MapTypeId.TERRAIN,
+			  styles: ncbtMapStyle
+			};
+
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	//SS server - static bfb layer
+	bfbLayer = new google.maps.KmlLayer("http://ncbirdingtrail.squarespace.com/storage/kml/bfbs.kml", {preserveViewport:true});
+	
+	//GAE server - ebird layer
+    ebirdLayer = new google.maps.KmlLayer("http://ncbirdingtrail.appspot.com/kml?t=byAll&k=ebirdwebsite", {preserveViewport:true});	
+
+	//set up blank html text for info window setup
+	var infoWindowBlank = '<div style="top: 0px; display: block;" id="info-site"><div id="info-title-section"><div id="info-title" title=""></div><div id="button-region" class="button" onclick=""></div><div id="button-group" class="button" onclick=""></div><div><a href="" style="margin-left:0.3em;" target="_blank">Full Description</a></div><hr></div><div style="overflow-y:auto;height:inherit;"><div><div class="info-heading">Species of Interest <a href="" style= "font-size:0.5em;vertical-align:bottom;float:right;">Full Bird List</a></div><p class="info-text" id="info-species"></p></div><div><div class="info-heading">Habitats</div><p class="info-text" id="info-habitats"></p></div><div><div class="info-heading">Directions</div><p class="info-text" id="info-directions"></p></div></div></div>';
+	
+	
+	
+	$(".info-tab").click(function(){
+		//loop through all tabs and turn color inactive, hide information
+		$(".info-tab").each(function(i) {
+			$(this).css({"background-color":"rgb(128,128,128)"});
+			$($(this).attr("title")).css({"display":"none"});
+		});
+
+		//activate clicked tab, make content visible
+		$(this).css({"background-color":"rgb(81,112,152)"});
+		$($(this).attr("title")).css({"display":"block"});
+	});
+	
+	// dictionary of sites by group
+	groupSites = {};
+	regionSites ={};
+
+	//connect to xml file with basic site info, create markers, populate arrays
+	$.ajax({
+		type: "GET",
+		url: "/storage/kml/ncbt_sites.xml",
+		dataType: "xml",
+		success: function(xml) {
+			siteList = $("<div/>");
+			
+			$(xml).find("Placemark").each(function(i) {
+			
+				var title = $(this).find("name").text();
+				var siteid = $(this).find("siteid").text();
+				var group = $(this).find("group").text();
+				var group_slug = slugify(group);
+				var region = $(this).find("region").text();
+				var slug = $(this).find("slug").text();
+				var latlong = $(this).find("coords").text();
+				var c = latlong.split(",");
+
+				
+				//populate site/group and region/group dictionary and
+				//build html for list of sites
+				if (regionSites[region]) {
+					// region already exists, add slug to list	
+					regionSites[region].push(slug);
+				}
+				else {
+					//region doesn't exist, create one and add slug
+					regionSites[region] = [slug];
+					
+					var rList = $("<div/>",{"class":"region-list",id:"region-list-" + region});
+					$("<div/>",{"class":"region-header",id:"region-header-" + region, onmouseover:"highlightRegion(\"" + region + "\")", onmouseout:"unhighlightAll()", onclick:"zoomToRegion(\"" + region +"\")", text:region}).appendTo(rList);
+					rList.appendTo(siteList);
+				}
+
+				var rList = siteList.find("#region-list-" + region);
+				if (groupSites[group_slug]) {
+					// group already exists, add slug to list	
+					groupSites[group_slug].push(slug);
+				}
+				else {
+					//group doesn't exist, create one and add slug
+					groupSites[group_slug] = [slug];
+					
+					var gList = $("<div/>",{"class":"group-list",id:"group-list-" + group_slug});
+					
+					$("<div/>",{"class":"group-header",id:"group-header-" + group_slug, onmouseover:"highlightRegion(\"" + region + "\")", onmouseout:"unhighlightAll()", onclick:"zoomToRegion(\"" + region +"\")", text:group}).appendTo(gList);
+					gList.appendTo(rList);
+				}
+				
+				
+				// add site to appropriate region/site in list
+				var siteListItem = $("<div/>", {"class":"site-item",onclick:"google.maps.event.trigger(siteMarkers[\""+ slug +"\"], \"click\")", onmouseover:"google.maps.event.trigger(siteMarkers[\""+ slug +"\"], \"mouseover\")", onmouseout:"google.maps.event.trigger(siteMarkers[\""+ slug +"\"], \"mouseout\")", text:title});
+				siteListItem.appendTo(siteList.find("#group-list-" + group_slug));
+				
+				
+				
+				//pre-build elements of the information window
+				boxText = $(infoWindowBlank);
+				boxText.find("#info-title").attr({title:slug, onclick:"highlightSite(\"" + slug + "\")"});
+				boxText.find("#info-title").text(title);
+				boxText.find("#button-region").text(region)
+				boxText.find("#button-region").attr({onclick:"highlightRegion(\"" + region + "\")"}); 
+				boxText.find("#button-group").text(group)
+				boxText.find("#button-group").attr({onclick:"highlightGroup(\"" + group_slug + "\")"}); 
+				
+				boxText.find("#info-title-section a").attr({href:"/sites/2012/8/1/" + slug + ".html"});
+				
+				var hoverBoxText = "<div class=\"info-title\" style=\"border:none;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background:#517098;color:#ffffff;padding:5px;font-weight:bold;font-variant:small-caps;font-size:1.1em;color:white;line-height:1em\"><div>" + title + "</div><hr/><div style=\"font-weight:normal;font-variant:normal;font-size: 1em;\">" + region + " : " + group +"</div></div>"
+				
+				infoText[slug] = boxText.html();
+				
+				
+				infoWindows[slug] = new InfoBox({
+					content: hoverBoxText,
+					alignBottom: true,
+					pixelOffset: new google.maps.Size(5,5),
+					closeBoxURL: "",
+					infoBoxClearance: new google.maps.Size(1,1),
+					pane: "floatPane",
+					boxStyle: {
+						opacity:0.9,
+						width: "250px"
+						}
+				});
+				
+				siteMarkers[slug] = new google.maps.Marker({
+					position: new google.maps.LatLng(c[0],c[1]),
+					title: title,
+					icon: siteIcon
+				});
+				siteMarkers[slug].setMap(map);
+			
+				google.maps.event.addListener(siteMarkers[slug], "click", function() {
+					$("#info-site").html(infoText[slug]),
+					highlightSite(slug),
+					$('#info-tab-site-info').trigger('click'),
+					getSiteData(slug)
+					//siteMarkers[slug].setIcon(highlightIcon);
+				});
+				
+				
+				google.maps.event.addListener(siteMarkers[slug], 'mouseover', function() {
+					infoWindows[slug].open(map, siteMarkers[slug]),
+					siteMarkers[slug].setIcon(highlightIcon)
+				});
+				google.maps.event.addListener(siteMarkers[slug], 'mouseout', function() {
+					infoWindows[slug].close(),
+					siteMarkers[slug].setIcon(siteIcon)
+				});
+				
+			});
+			
+			$("#info-list").html(siteList).end();
+			//console.log(siteList.html());
+		
+		}
+	});
+
+	});
+</script>
+<div id="map-wrapper">
+	<div id="map_canvas"></div>
+
+	<div id="info-panel">
+		<div id="tab-wrapper">
+			<div class="info-tab" id="info-tab-listing" title="#info-list">Listing</div>
+			<div class="info-tab" id="info-tab-birds" title="#info-birds">Birds</div>
+			<div class="info-tab" id="info-tab-site-info" title="#info-site">Site Info</div>
+
+		</div>
+		<div id="map-info-wrapper">
+			<div id="info-site" style="top:0px;">Click on site in the map to see more information</div>
+			<div id="info-list" style="top:60px;">Sites By Region/Group</div>
+			<div id="info-birds" style="top:120px;">Select List of Birds</div>
+		</div>
+	</div>
+	<div id="map_key">
+	  <div class="legend-text">
+		<div class='legend-item' id='bfb'>
+		  <img class="legend-img" src="/storage/img/bfb_dot.png"/>Birder-Friendly Business</div>
+		<div class='legend-item' id='ebird'>
+		  <img class="legend-img" src="/storage/img/ebird_40.png"/>Bird Sightings</div>
+	  </div>
+	</div>
+</div>
+<div id="test-area"></div>
+

@@ -1,0 +1,66 @@
+<script type="application/javascript">
+$(document).ready(function() {
+    $(".legend-item").click(function() {
+        button = $(this).attr('id');
+        on = $(this).is('.highlight');
+        if (on) {
+            if(button=='site') {siteLayer.setMap(null);}
+            else if (button=='ebird') {ebirdLayer.setMap(null);}
+            else {bfbLayer.setMap(null);}
+        }
+        else{
+            if(button=='site') {siteLayer.setMap(map);}
+            else if (button=='ebird') {ebirdLayer.setMap(map);}
+            else {bfbLayer.setMap(map);}
+        }
+
+        $(this).toggleClass('highlight');
+    });
+
+
+	var latlng = new google.maps.LatLng(35.3, -80.003243);
+	var ncbtMapStyle = [{ featureType: "administrative", stylers: [ { visibility: "on" }, { saturation: -90 }, { lightness: 52 } ] }];
+	var myOptions = {
+	                  zoom: 7,
+                          panControl: false,
+                          streetViewControl: false,
+			  center:latlng,
+			  mapTypeId: google.maps.MapTypeId.TERRAIN,
+			  styles: ncbtMapStyle
+			};
+
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+
+	//server - static bfb layer
+	bfbLayer = new google.maps.KmlLayer('http://ncbirdingtrail.squarespace.com/storage/kml/bfbs.kml', {preserveViewport:true});
+	bfbLayer.setMap(map);
+
+	//appspot server - static
+	//var siteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml_files/sites.kml', {preserveViewport:true});
+	//var siteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.squarespace.com/kml_files/sites_test.kml', {preserveViewport:true});
+	
+        //squarespace
+	siteLayer = new google.maps.KmlLayer('http://www.ncbirdingtrail.squarespace.com/storage/kml/sites_test3.kml', {preserveViewport:true});
+
+	siteLayer.setMap(map);
+
+	//server - ebird layer
+	//var ebirdLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml?t=byAll&k=ebird', {preserveViewport:true});
+        ebirdLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml?t=byAll&k=ebirdwebsite', {preserveViewport:true});	
+        ebirdLayer.setMap(map);
+	});
+
+</script>
+<div id="map_canvas"></div>
+<div id="map_key">
+  <div class="legend-text">
+    <div class='legend-item highlight' id='site'>
+      <img class="legend-img" src="/storage/img/map_dot.png"/>Birding Trail Site</div>
+    <div class='legend-item highlight' id='bfb'>
+      <img class="legend-img" src="/storage/img/bfb_dot.png"/>Birder-Friendly Business</div>
+    <div class='legend-item highlight' id='ebird')>
+      <img class="legend-img" src="/storage/img/ebird_40.png"/>Bird Sightings</div>
+  </div>
+</div>
+

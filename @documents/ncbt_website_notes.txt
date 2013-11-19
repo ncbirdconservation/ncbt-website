@@ -1,0 +1,111 @@
+--- Switch to using Fusion Tables for sitebirdlist ---
+old IP address: 70.182.181.1
+
+Google BigQuery API is another option....
+
+https://www.google.com/fusiontables/DataSource?docid=1T3WpajUsWBB-o9PjnKqV1J2KIYVDwnfwcqJ0Qiw
+https://www.googleapis.com/fusiontables/v1/tables/1T3WpajUsWBB-o9PjnKqV1J2KIYVDwnfwcqJ0Qiw/columns?key=AIzaSyBq3s5965sCxAclqaIJnvYgW80RNvuELB0 
+
+https://www.googleapis.com/fusiontables/v1/query?sql=SELECT commonName, spp_slug, site_slug, spring, summer, fall, winter FROM 1T3WpajUsWBB-o9PjnKqV1J2KIYVDwnfwcqJ0Qiw&key=AIzaSyBq3s5965sCxAclqaIJnvYgW80RNvuELB0
+
+https://www.googleapis.com/fusiontables/v1/query?sql=SELECT commonName, spp_slug, site_slug, spring, summer, fall, winter FROM 1T3WpajUsWBB-o9PjnKqV1J2KIYVDwnfwcqJ0Qiw WHERE spp_slug='accipiter-cooperii'&key=AIzaSyBq3s5965sCxAclqaIJnvYgW80RNvuELB0
+
+https://www.google.com/fusiontables/DataSource?docid=1eP6OoUbNBFKuXPknXuDp4gEepGb8Ml08F3EVQ5Q
+
+API Key: AIzaSyBq3s5965sCxAclqaIJnvYgW80RNvuELB0
+SiteBirdList:1T3WpajUsWBB-o9PjnKqV1J2KIYVDwnfwcqJ0Qiw
+BirdList: 1eP6OoUbNBFKuXPknXuDp4gEepGb8Ml08F3EVQ5Q
+
+
+Features:
+-build feature to take blog export, ingest, modify, then output modified wordpress xml import
+ 
+Issues:
+--MAP--
+-fix 6 sites not displaying on map (see console log on map load)
+	-indian-trail-park-west-ellerbe-creek-trail-17-acre-wood-preserve
+	-morningstar-nature-refuge
+	-nc-aquarium-at-pine-knoll-shores-and-t-roosevelt-state-natural-area
+	-roanoke-river-paddle-trail-mainstem-roanoke-devils-gut-gardner-creek-broad-creek-cow-creek
+	-uwharrie-national-forest-uwharrie-national-recreational-trail
+-Add search panel to map (with search box)
+-fix JSONP data display in IE
+
+FIXED-BACS icons not displaying properly
+FIXED-lists spill over right panel in bird finder
+FIXED-add search value to bird finder (top of site list)
+FIXED-modify list of birds in bird finder drop-down
+	-solution?: populate limited list, then include a link for "more species" that will display comprehensive list (in panel, not drop-down)
+		after clicking on species include back button to get back to comprehensive list
+		from comprehensive list, include back button to get back to limited species list
+	12/21 - working, but needs some troubleshooting -
+		-format ebird markers to go somewhere when clicked (popup?)
+		-clear ebird markers upon new query
+		-change behavior when no results (display "no results" message)
+		-better labeling of what is in the list below (sites or birds?)...
+	-build function to recieve uri parameters and display sites where a spp can be found
+		-link to map from any mention of the species (links throughout site - site descriptions, blog posts, species of interest, etc.)
+FIXED-eBird records - 
+	http://ebird.org/ebird/GuideMe?step=saveChoices&getLocations=hotspots&parentState=US-NC&bMonth=01&bYear=1900&eMonth=12&eYear=2013&reportType=location&continue.x=57&continue.y=8&hotspots=L112674
+
+-enable BFB display
+	
+	
+-page load - do not load infoText array, but dynamically retrieve info when requested...?
+FIXED-description text sometimes spills over right panel
+FIXED-point highlight behavior -> point does not "re-highlight" after hover
+	-solution? do not highlight on hover, but display infobox - highlight only when hover in right panel (groups, individual sites, etc.)
+FIXED-get rid of duplicate birdlist records	
+FIXED-fix birdlist query in GAE - not complete retrieval
+
+FIXED-waiting symbol
+FIXED-add info icon to explain birdlist results and ebird results (popup window)
+FIXED-click on Site title for full description!
+FIXED-position of markers shifted
+
+
+Site Descriptions
+-update/create records for new sites...
+
+--SITE DESCRIPTIONS--
+FIXED-add google directions link to directions section
+FIXED-load full birdlist on page load (loading text/wait symbol)
+	-add javascript to each page (prefill site slug)
+FIXED-change full bird list link in species of interest to move to bottom of page
+FIXED-link species to map of sites with the species
+
+-Assign eBird hotspot (LocID) to all NCBT Sites and include in xml file...
+-dynamically retrieve and display recent sightings (link through hotspot ids)
+
+FIXED-ERROR - The page /sites/2012/8/1/roanoke-river-paddle-trail-mainstem-roanoke-devils-gut-gardner-creek-broad-creek-cow-creek.html could not be located on this website.
+
+--BLOG--
+FIXED-complete transfer of blog entries - populate tags/categories
+-format/create proper rss link
+
+--MOBILE--
+- default redirect mobile devices to map
+- provide link back to full site
+
+Speeding up Map loading:
+-Standardize info panel: common header div, common content div
+	-populate these header/content areas with jquery code on-the-fly, instead of pre-populating "boxText" array elements 
+	-triggered from click on element (siteMarker "click" event)
+-create html to populate site list panel
+	-include elements with hidden data (class="hidden-data" and display:none)
+	-this can replace the ncbt.xml file
+	-eliminates the need to build this list on load
+	-can this be used/parsed using jquery to populate markers?
+	-can this be used/parsed using jquery to dynamically present infoWindows and group selections?
+	
+Site Description loading procedure - 
+There are two files that need to be created in order to properly update site descriptions: rss.xml and ncbt.xml. Site Description Pages are imported via the Blog Importer function on Squarespace. This function consumes an xml file (rss.xml) created by a python script. The ncbt.xml file contains limited information on each site, and is used on the map page to load sites and properly link to site descriptions.
+1. Create rss.xml and ncbt.xml files: Run the augment_nc_bird_list.py script with the rss and xml tags (from command line in the directory where the script is kept, type "augment_nc_bird_list.py rss xml". This will create two new files
+2. upload the ncbt.xml file to its proper location (in the /storage/kml folder)
+3. Run the Blog Importer on SquareSpace, using the rss.xml file 
+4. Configure the Journal in Squarespace.
+	a. rename or delete the old blog
+	b. rename the new blog to "Site Descriptions" with the url name of "sites"
+	c. add the following script to an html snippet in the footer (this will load the birdlist when the page is loaded)
+	d. change all categories that are not group names to tags (amenities and regions)
+	

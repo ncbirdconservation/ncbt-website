@@ -1,0 +1,20 @@
+<script type="text/javascript" src="/storage/jquery-1.7.2.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'/>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"/>
+<script type="text/javascript">
+$(document).ready(function() {
+$('#navigationTop-sectionContent5159729').append($('#moduleContent15899782'));
+document.getElementById("mc_embed_signup_field").value = "subscribe by email";});
+function clearsearch() {
+document.getElementById("mc_embed_signup_field").value = "";
+};
+</script>
+<script type="text/javascript">
+    var mobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));  
+    if (mobile) {  
+        document.location = "http://www.ncbirdingtrail.appspot.com";  
+    };  
+</script>  
+
+
+<div id="header_motto">To conserve and enhance North Carolina's bird habitat by promoting<br/>sustainable bird watching activities, economic opportunities and<br/>conservation education</div>

@@ -1,0 +1,18 @@
+
+javascript mobile example - set cookie
+<a href='http://mysite.com?fullsite=true'>Link to full site</a>
+And then in your mobile detect:
+
+;(function(a,b) {
+
+    if (document.cookie.indexOf('fullsite') > -1) {
+        return; // skip redirect
+    }
+    if (location.search.indexOf('fullsite') > -1) {
+        document.cookie = 'fullsite=true; path=/;'
+        return; // skip redirect
+    } 
+    if (/mobile regex conditional goes here/) {
+        window.location = b;
+    }
+})(navigator.userAgent || navigator.vendor || window.opera, 'http://thefullsiteURL.com/mobile/index.html')

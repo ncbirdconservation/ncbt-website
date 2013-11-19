@@ -1,0 +1,419 @@
+scientificName,commonName,spp_slug,aou,bnc
+Accipiter cooperii,Cooper's Hawk,accipiter-cooperii,279,201
+Accipiter gentilis,Northern Goshawk,accipiter-gentilis,282,202
+Accipiter striatus,Sharp-shinned Hawk,accipiter-striatus,278,200
+Actitis macularius,Spotted Sandpiper,actitis-macularius,397,244
+Aechmophorus clarkii,Clark's Grebe,aechmophorus-clarkii,141,11303
+Aechmophorus occidentalis,Western Grebe,aechmophorus-occidentalis,140,104
+Aegolius acadicus,Northern Saw-whet Owl,aegolius-acadicus,705,341
+Agelaius phoeniceus,Red-winged Blackbird,agelaius-phoeniceus,1772,529
+Peucaea aestivalis,Bachman's Sparrow,peucaea-aestivalis,1697,500
+Aix sponsa,Wood Duck,aix-sponsa,31,162
+Alca torda,Razorbill,alca-torda,516,315
+Alle alle,Dovekie,alle-alle,513,313
+Ammodramus caudacutus,Saltmarsh Sparrow,ammodramus-caudacutus,1718,513
+Ammodramus henslowii,Henslow's Sparrow,ammodramus-henslowii,1717,511
+Ammodramus leconteii,Le Conte's Sparrow,ammodramus-leconteii,2040,512
+Ammodramus maritimus,Seaside Sparrow,ammodramus-maritimus,1719,514
+Ammodramus nelsoni,Nelson's Sparrow,ammodramus-nelsoni,2041,515
+Ammodramus savannarum,Grasshopper Sparrow,ammodramus-savannarum,1716,510
+Anas acuta,Northern Pintail,anas-acuta,46,166
+Anas americana,American Wigeon,anas-americana,35,173
+Anas clypeata,Northern Shoveler,anas-clypeata,44,170
+Anas crecca,Green-winged Teal,anas-crecca,49,163
+Anas cyanoptera,Cinnamon Teal,anas-cyanoptera,43,169
+Anas discors,Blue-winged Teal,anas-discors,42,168
+Anas penelope,Eurasian Wigeon,anas-penelope,34,172
+Anas platyrhynchos,Mallard,anas-platyrhynchos,37,165
+Anas querquedula,Garganey,anas-querquedula,47,167
+Anas rubripes,American Black Duck,anas-rubripes,36,164
+Anas strepera,Gadwall,anas-strepera,32,171
+Anhinga anhinga,Anhinga,anhinga-anhinga,213,132
+Anous stolidus,Brown Noddy,anous-stolidus,482,311
+Anser albifrons,Greater White-fronted Goose,anser-albifrons,14,157
+Anthus rubescens,American Pipit,anthus-rubescens,1521,427
+Anthus spragueii,Sprague's Pipit,anthus-spragueii,1522,428
+Aquila chrysaetos,Golden Eagle,aquila-chrysaetos,310,208
+Aramus guarauna,Limpkin,aramus-guarauna,364,226
+Archilochus colubris,Ruby-throated Hummingbird,archilochus-colubris,864,349
+Ardea alba,Great Egret,ardea-alba,227,138
+Ardea herodias,Great Blue Heron,ardea-herodias,224,136
+Arenaria interpres,Ruddy Turnstone,arenaria-interpres,423,253
+Asio flammeus,Short-eared Owl,asio-flammeus,701,340
+Asio otus,Long-eared Owl,asio-otus,699,339
+Aythya affinis,Lesser Scaup,aythya-affinis,56,178
+Aythya americana,Redhead,aythya-americana,51,175
+Aythya collaris,Ring-necked Duck,aythya-collaris,53,176
+Aythya marila,Greater Scaup,aythya-marila,55,177
+Aythya valisineria,Canvasback,aythya-valisineria,50,174
+Baeolophus bicolor,Tufted Titmouse,baeolophus-bicolor,1343,397
+Bartramia longicauda,Upland Sandpiper,bartramia-longicauda,410,245
+Bombycilla cedrorum,Cedar Waxwing,bombycilla-cedrorum,1525,429
+Bonasa umbellus,Ruffed Grouse,bonasa-umbellus,98,214
+Botaurus lentiginosus,American Bittern,botaurus-lentiginosus,218,134
+Branta bernicla,Brant,branta-bernicla,19,160
+Branta canadensis,Canada Goose,branta-canadensis,22,161
+Branta hutchinsii,Cackling Goose,branta-hutchinsii,21,12179
+Branta leucopsis,Barnacle Goose,branta-leucopsis,20,12210
+Bubo scandiacus,Snowy Owl,bubo-scandiacus,682,336
+Bubo virginianus,Great Horned Owl,bubo-virginianus,681,335
+Bubulcus ibis,Cattle Egret,bubulcus-ibis,236,143
+Bucephala albeola,Bufflehead,bucephala-albeola,67,188
+Bucephala clangula,Common Goldeneye,bucephala-clangula,68,186
+Bulweria bulwerii,Bulwer's Petrel,bulweria-bulwerii,163,112
+Buteo jamaicensis,Red-tailed Hawk,buteo-jamaicensis,305,206
+Buteo lagopus,Rough-legged Hawk,buteo-lagopus,307,207
+Buteo lineatus,Red-shouldered Hawk,buteo-lineatus,296,203
+Buteo platypterus,Broad-winged Hawk,buteo-platypterus,298,204
+Buteo swainsoni,Swainson's Hawk,buteo-swainsoni,301,205
+Butorides virescens,Green Heron,butorides-virescens,238,144
+Calamospiza melanocorys,Lark Bunting,calamospiza-melanocorys,1714,507
+Calcarius lapponicus,Lapland Longspur,calcarius-lapponicus,1733,524
+Calidris alba,Sanderling,calidris-alba,428,255
+Calidris alpina,Dunlin,calidris-alpina,442,264
+Calidris bairdii,Baird's Sandpiper,calidris-bairdii,437,261
+Calidris canutus,Red Knot,calidris-canutus,427,254
+Calidris ferruginea,Curlew Sandpiper,calidris-ferruginea,443,265
+Calidris fuscicollis,White-rumped Sandpiper,calidris-fuscicollis,436,260
+Calidris himantopus,Stilt Sandpiper,calidris-himantopus,444,266
+Calidris maritima,Purple Sandpiper,calidris-maritima,440,263
+Calidris mauri,Western Sandpiper,calidris-mauri,430,257
+Calidris melanotos,Pectoral Sandpiper,calidris-melanotos,438,262
+Calidris minuta,Little Stint,calidris-minuta,432,258
+Calidris minutilla,Least Sandpiper,calidris-minutilla,435,259
+Calidris pusilla,Semipalmated Sandpiper,calidris-pusilla,429,256
+Calonectris diomedea,Cory's Shearwater,calonectris-diomedea,167,113
+Calonectris edwardsii,Cape Verde Shearwater,calonectris-edwardsii,168,11304
+Antrostomus carolinensis,Chuck-will's-widow,antrostomus-carolinensis,718,345
+Antrostomus vociferus,Eastern Whip-poor-will,antrostomus-vociferus,724,346
+Cardinalis cardinalis,Northern Cardinal,cardinalis-cardinalis,1755,488
+Acanthis flammea,Common Redpoll,acanthis-flammea,1857,548
+Spinus pinus,Pine Siskin,spinus-pinus,1860,549
+Spinus tristis,American Goldfinch,spinus-tristis,1868,551
+Haemorhous mexicanus,House Finch,haemorhous-mexicanus,10371,544
+Haemorhous purpureus,Purple Finch,haemorhous-purpureus,10351,543
+Cathartes aura,Turkey Vulture,cathartes-aura,256,153
+Catharus fuscescens,Veery,catharus-fuscescens,1450,415
+Catharus guttatus,Hermit Thrush,catharus-guttatus,1454,418
+Catharus minimus,Gray-cheeked Thrush,catharus-minimus,1451,416
+Catharus ustulatus,Swainson's Thrush,catharus-ustulatus,1453,417
+Certhia americana,Brown Creeper,certhia-americana,1351,401
+Megaceryle alcyon,Belted Kingfisher,megaceryle-alcyon,912,353
+Chaetura pelagica,Chimney Swift,chaetura-pelagica,741,347
+Charadrius nivosus,Snowy Plover,charadrius-nivosus,378,231
+Charadrius melodus,Piping Plover,charadrius-melodus,382,234
+Charadrius semipalmatus,Semipalmated Plover,charadrius-semipalmatus,381,233
+Charadrius vociferus,Killdeer,charadrius-vociferus,384,235
+Charadrius wilsonia,Wilson's Plover,charadrius-wilsonia,379,232
+Chen caerulescens,Snow Goose,chen-caerulescens,17,158
+Chen rossii,Ross's Goose,chen-rossii,18,159
+Chlidonias leucopterus,White-winged Tern,chlidonias-leucopterus,498,309
+Chlidonias niger,Black Tern,chlidonias-niger,497,310
+Chondestes grammacus,Lark Sparrow,chondestes-grammacus,1711,506
+Chordeiles gundlachii,Antillean Nighthawk,chordeiles-gundlachii,710,344
+Chordeiles minor,Common Nighthawk,chordeiles-minor,709,343
+Circus cyaneus,Northern Harrier,circus-cyaneus,274,199
+Cistothorus palustris,Marsh Wren,cistothorus-palustris,1391,408
+Cistothorus platensis,Sedge Wren,cistothorus-platensis,1390,407
+Clangula hyemalis,Long-tailed Duck,clangula-hyemalis,66,182
+Coccothraustes vespertinus,Evening Grosbeak,coccothraustes-vespertinus,1875,552
+Coccyzus americanus,Yellow-billed Cuckoo,coccyzus-americanus,644,330
+Coccyzus erythropthalmus,Black-billed Cuckoo,coccyzus-erythropthalmus,648,329
+Colaptes auratus,Northern Flicker,colaptes-auratus,979,361
+Colinus virginianus,Northern Bobwhite,colinus-virginianus,122,216
+Columba livia,Rock Pigeon,columba-livia,536,319
+Columbina passerina,Common Ground-Dove,columbina-passerina,560,325
+Contopus cooperi,Olive-sided Flycatcher,contopus-cooperi,1127,364
+Contopus virens,Eastern Wood-Pewee,contopus-virens,1132,365
+Coragyps atratus,Black Vulture,coragyps-atratus,255,152
+Corvus brachyrhynchos,American Crow,corvus-brachyrhynchos,1296,391
+Corvus corax,Common Raven,corvus-corax,1307,393
+Corvus ossifragus,Fish Crow,corvus-ossifragus,1304,392
+Coturnicops noveboracensis,Yellow Rail,coturnicops-noveboracensis,333,217
+Cyanocitta cristata,Blue Jay,cyanocitta-cristata,1270,390
+Cygnus buccinator,Trumpeter Swan,cygnus-buccinator,25,12211
+Cygnus columbianus,Tundra Swan,cygnus-columbianus,26,155
+Cygnus olor,Mute Swan,cygnus-olor,24,156
+Setophaga caerulescens,Black-throated Blue Warbler,setophaga-caerulescens,1549,454
+Setophaga castanea,Bay-breasted Warbler,setophaga-castanea,1568,466
+Setophaga cerulea,Cerulean Warbler,setophaga-cerulea,1570,468
+Setophaga coronata,Yellow-rumped Warbler,setophaga-coronata,1550,455
+Setophaga discolor,Prairie Warbler,setophaga-discolor,1565,464
+Setophaga dominica,Yellow-throated Warbler,setophaga-dominica,1557,461
+Setophaga fusca,Blackburnian Warbler,setophaga-fusca,1556,460
+Setophaga magnolia,Magnolia Warbler,setophaga-magnolia,1547,452
+Setophaga palmarum,Palm Warbler,setophaga-palmarum,1567,465
+Setophaga pensylvanica,Chestnut-sided Warbler,setophaga-pensylvanica,1546,451
+Setophaga petechia,Yellow Warbler,setophaga-petechia,1545,450
+Setophaga pinus,Pine Warbler,setophaga-pinus,1563,462
+Setophaga striata,Blackpoll Warbler,setophaga-striata,1569,467
+Setophaga tigrina,Cape May Warbler,setophaga-tigrina,1548,453
+Setophaga townsendi,Townsend's Warbler,setophaga-townsendi,1554,457
+Setophaga virens,Black-throated Green Warbler,setophaga-virens,1553,458
+Dolichonyx oryzivorus,Bobolink,dolichonyx-oryzivorus,1771,528
+Dryocopus pileatus,Pileated Woodpecker,dryocopus-pileatus,985,362
+Dumetella carolinensis,Gray Catbird,dumetella-carolinensis,1485,422
+Egretta caerulea,Little Blue Heron,egretta-caerulea,233,140
+Egretta caerulea,Little Blue Heron,egretta-caerulea,233,140
+Egretta rufescens,Reddish Egret,egretta-rufescens,235,142
+Egretta thula,Snowy Egret,egretta-thula,232,139
+Egretta tricolor,Tricolored Heron,egretta-tricolor,234,141
+Elanoides forficatus,Swallow-tailed Kite,elanoides-forficatus,262,195
+Empidonax alnorum,Alder Flycatcher,empidonax-alnorum,1140,368
+Empidonax flaviventris,Yellow-bellied Flycatcher,empidonax-flaviventris,1138,366
+Empidonax minimus,Least Flycatcher,empidonax-minimus,1143,370
+Empidonax traillii,Willow Flycatcher,empidonax-traillii,1141,369
+Empidonax virescens,Acadian Flycatcher,empidonax-virescens,1139,367
+Eremophila alpestris,Horned Lark,eremophila-alpestris,1310,382
+Eudocimus albus,White Ibis,eudocimus-albus,245,147
+Euphagus carolinus,Rusty Blackbird,euphagus-carolinus,1784,533
+Euphagus cyanocephalus,Brewer's Blackbird,euphagus-cyanocephalus,1785,534
+Falco columbarius,Merlin,falco-columbarius,325,210
+Falco peregrinus,Peregrine Falcon,falco-peregrinus,331,211
+Falco sparverius,American Kestrel,falco-sparverius,323,209
+Fratercula arctica,Atlantic Puffin,fratercula-arctica,532,318
+Fregata magnificens,Magnificent Frigatebird,fregata-magnificens,214,133
+Fregetta tropica,Black-bellied Storm-Petrel,fregetta-tropica,183,12213
+Fulica americana,American Coot,fulica-americana,360,225
+Fulmarus glacialis,Northern Fulmar,fulmarus-glacialis,1983,107
+Gallinago delicata,Wilson's Snipe,gallinago-delicata,452,271
+Gallinula galeata,Common Gallinule,gallinula-galeata,357,224
+Gavia immer,Common Loon,gavia-immer,136,98
+Gavia pacifica,Pacific Loon,gavia-pacifica,135,99
+Gavia stellata,Red-throated Loon,gavia-stellata,134,97
+Gelochelidon nilotica,Gull-billed Tern,gelochelidon-nilotica,494,298
+Geothlypis trichas,Common Yellowthroat,geothlypis-trichas,1587,480
+Grus canadensis,Sandhill Crane,grus-canadensis,365,227
+Haematopus palliatus,American Oystercatcher,haematopus-palliatus,388,236
+Haliaeetus leucocephalus,Bald Eagle,haliaeetus-leucocephalus,270,198
+Helmitheros vermivorum,Worm-eating Warbler,helmitheros-vermivorum,1578,472
+Himantopus mexicanus,Black-necked Stilt,himantopus-mexicanus,391,237
+Hirundo rustica,Barn Swallow,hirundo-rustica,1331,389
+Histrionicus histrionicus,Harlequin Duck,histrionicus-histrionicus,61,181
+Hydrobates pelagicus,European Storm-Petrel,hydrobates-pelagicus,182,12212
+Hydroprogne caspia,Caspian Tern,hydroprogne-caspia,495,299
+Hylocichla mustelina,Wood Thrush,hylocichla-mustelina,1455,420
+Icteria virens,Yellow-breasted Chat,icteria-virens,1618,484
+Icterus galbula,Baltimore Oriole,icterus-galbula,1817,540
+Icterus spurius,Orchard Oriole,icterus-spurius,1804,539
+Ictinia mississippiensis,Mississippi Kite,ictinia-mississippiensis,2038,197
+Ixobrychus exilis,Least Bittern,ixobrychus-exilis,220,135
+Junco hyemalis,Dark-eyed Junco,junco-hyemalis,1730,523
+Lanius excubitor,Northern Shrike,lanius-excubitor,1231,430
+Lanius ludovicianus,Loggerhead Shrike,lanius-ludovicianus,1230,431
+Larus argentatus,Herring Gull,larus-argentatus,467,289
+Leucophaeus atricilla,Laughing Gull,leucophaeus-atricilla,1990,281
+Larus michahellis,Yellow-legged Gull,larus-michahellis,468,290
+Larus californicus,California Gull,larus-californicus,466,288
+Larus canus,Mew Gull,larus-canus,464,286
+Larus crassirostris,Black-tailed Gull,larus-crassirostris,463,12216
+Larus delawarensis,Ring-billed Gull,larus-delawarensis,465,287
+Larus fuscus,Lesser Black-backed Gull,larus-fuscus,471,293
+Larus glaucoides,Iceland Gull,larus-glaucoides,470,292
+Larus hyperboreus,Glaucous Gull,larus-hyperboreus,476,294
+Larus marinus,Great Black-backed Gull,larus-marinus,477,295
+Hydrocoloeus minutus,Little Gull,hydrocoloeus-minutus,461,283
+Chroicocephalus philadelphia,Bonaparte's Gull,chroicocephalus-philadelphia,1993,285
+Leucophaeus pipixcan,Franklin's Gull,leucophaeus-pipixcan,479,282
+Chroicocephalus ridibundus,Black-headed Gull,chroicocephalus-ridibundus,1994,284
+Larus schistisagus,Slaty-backed Gull,larus-schistisagus,472,12217
+Larus thayeri,Thayer's Gull,larus-thayeri,469,291
+Laterallus jamaicensis,Black Rail,laterallus-jamaicensis,338,218
+Limnodromus griseus,Short-billed Dowitcher,limnodromus-griseus,449,269
+Limnodromus scolopaceus,Long-billed Dowitcher,limnodromus-scolopaceus,450,270
+Limnothlypis swainsonii,Swainson's Warbler,limnothlypis-swainsonii,1579,473
+Limosa fedoa,Marbled Godwit,limosa-fedoa,422,252
+Limosa haemastica,Hudsonian Godwit,limosa-haemastica,420,250
+Limosa lapponica,Bar-tailed Godwit,limosa-lapponica,421,251
+Limosa limosa,Black-tailed Godwit,limosa-limosa,419,249
+Lophodytes cucullatus,Hooded Merganser,lophodytes-cucullatus,71,189
+Loxia curvirostra,Red Crossbill,loxia-curvirostra,1854,545
+Loxia leucoptera,White-winged Crossbill,loxia-leucoptera,1856,547
+Megascops asio,Eastern Screech-Owl,megascops-asio,669,334
+Melanerpes carolinus,Red-bellied Woodpecker,melanerpes-carolinus,953,355
+Melanerpes erythrocephalus,Red-headed Woodpecker,melanerpes-erythrocephalus,940,354
+Melanitta fusca,White-winged Scoter,melanitta-fusca,64,185
+Melanitta americana,Black Scoter,melanitta-americana,65,183
+Melanitta perspicillata,Surf Scoter,melanitta-perspicillata,63,184
+Meleagris gallopavo,Wild Turkey,meleagris-gallopavo,110,215
+Melospiza georgiana,Swamp Sparrow,melospiza-georgiana,1724,519
+Melospiza lincolnii,Lincoln's Sparrow,melospiza-lincolnii,1723,518
+Melospiza melodia,Song Sparrow,melospiza-melodia,1722,517
+Mergus merganser,Common Merganser,mergus-merganser,72,190
+Mergus serrator,Red-breasted Merganser,mergus-serrator,73,191
+Mergus serrator,White Ibis,mergus-serrator,73,191
+Mimus polyglottos,Northern Mockingbird,mimus-polyglottos,1487,423
+Mniotilta varia,Black-and-white Warbler,mniotilta-varia,1575,469
+Molothrus ater,Brown-headed Cowbird,molothrus-ater,1795,538
+Molothrus bonariensis,Shiny Cowbird,molothrus-bonariensis,1793,537
+Morus bassanus,Northern Gannet,morus-bassanus,204,127
+Mycteria americana,Wood Stork,mycteria-americana,253,151
+Myiarchus cinerascens,Ash-throated Flycatcher,myiarchus-cinerascens,1167,374
+Myiarchus crinitus,Great Crested Flycatcher,myiarchus-crinitus,1169,375
+Numenius americanus,Long-billed Curlew,numenius-americanus,418,248
+Numenius phaeopus,Whimbrel,numenius-phaeopus,413,247
+Nyctanassa violacea,Yellow-crowned Night-Heron,nyctanassa-violacea,243,146
+Nycticorax nycticorax,Black-crowned Night-Heron,nycticorax-nycticorax,242,145
+Oceanites oceanicus,Wilson's Storm-Petrel,oceanites-oceanicus,181,119
+Oceanodroma castro,Band-rumped Storm-Petrel,oceanodroma-castro,188,122
+Oceanodroma leucorhoa,Leach's Storm-Petrel,oceanodroma-leucorhoa,186,121
+Oceanodroma monorhis,Swinhoe's Storm-Petrel,oceanodroma-monorhis,2056,12214
+Oenanthe oenanthe,Northern Wheatear,oenanthe-oenanthe,1426,412
+Onychoprion anaethetus,Bridled Tern,onychoprion-anaethetus,488,307
+Onychoprion fuscatus,Sooty Tern,onychoprion-fuscatus,486,308
+Oporornis agilis,Connecticut Warbler,oporornis-agilis,1584,478
+Geothlypis formosa,Kentucky Warbler,geothlypis-formosa,1583,477
+Geothlypis philadelphia,Mourning Warbler,geothlypis-philadelphia,1585,479
+Geothlypis tolmiei,MacGillivray's Warbler,geothlypis-tolmiei,1586,12228
+Oreoscoptes montanus,Sage Thrasher,oreoscoptes-montanus,1491,424
+Oxyura jamaicensis,Ruddy Duck,oxyura-jamaicensis,75,192
+Pandion haliaetus,Osprey,pandion-haliaetus,2005,194
+Setophaga americana,Northern Parula,setophaga-americana,1543,449
+Passer domesticus,House Sparrow,passer-domesticus,1907,553
+Passerculus sandwichensis,Savannah Sparrow,passerculus-sandwichensis,1715,508
+Passerella iliaca,Fox Sparrow,passerella-iliaca,1721,516
+Passerina caerulea,Blue Grosbeak,passerina-caerulea,1763,491
+Passerina ciris,Painted Bunting,passerina-ciris,1769,495
+Passerina cyanea,Indigo Bunting,passerina-cyanea,1765,493
+Pelagodroma marina,White-faced Storm-Petrel,pelagodroma-marina,1995,120
+Pelecanus erythrorhynchos,American White Pelican,pelecanus-erythrorhynchos,205,128
+Pelecanus occidentalis,Brown Pelican,pelecanus-occidentalis,206,129
+Petrochelidon fulva,Cave Swallow,petrochelidon-fulva,1330,388
+Petrochelidon pyrrhonota,Cliff Swallow,petrochelidon-pyrrhonota,1329,387
+Phaethon aethereus,Red-billed Tropicbird,phaethon-aethereus,196,124
+Phaethon lepturus,White-tailed Tropicbird,phaethon-lepturus,195,123
+Phalacrocorax auritus,Double-crested Cormorant,phalacrocorax-auritus,209,131
+Phalacrocorax carbo,Great Cormorant,phalacrocorax-carbo,210,130
+Phalaropus fulicarius,Red Phalarope,phalaropus-fulicarius,459,275
+Phalaropus lobatus,Red-necked Phalarope,phalaropus-lobatus,458,274
+Phalaropus tricolor,Wilson's Phalarope,phalaropus-tricolor,457,273
+Pheucticus ludovicianus,Rose-breasted Grosbeak,pheucticus-ludovicianus,1759,489
+Philomachus pugnax,Ruff,philomachus-pugnax,448,268
+Picoides borealis,Red-cockaded Woodpecker,picoides-borealis,967,360
+Picoides pubescens,Downy Woodpecker,picoides-pubescens,963,358
+Picoides villosus,Hairy Woodpecker,picoides-villosus,964,359
+Pipilo erythrophthalmus,Eastern Towhee,pipilo-erythrophthalmus,1689,498
+Piranga ludoviciana,Western Tanager,piranga-ludoviciana,1957,487
+Piranga olivacea,Scarlet Tanager,piranga-olivacea,1956,486
+Piranga rubra,Summer Tanager,piranga-rubra,1955,485
+Platalea ajaja,Roseate Spoonbill,platalea-ajaja,251,150
+Plectrophenax nivalis,Snow Bunting,plectrophenax-nivalis,1744,527
+Eudocimus falcinellus,Glossy Ibis,eudocimus-falcinellus,247,148
+Pluvialis dominica,American Golden-Plover,pluvialis-dominica,373,230
+Pluvialis squatarola,Black-bellied Plover,pluvialis-squatarola,371,229
+Podiceps auritus,Horned Grebe,podiceps-auritus,1986,101
+Podiceps grisegena,Red-necked Grebe,podiceps-grisegena,1987,102
+Podiceps nigricollis,Eared Grebe,podiceps-nigricollis,1985,103
+Podilymbus podiceps,Pied-billed Grebe,podilymbus-podiceps,138,100
+Poecile atricapillus,Black-capped Chickadee,poecile-atricapillus,1334,394
+Poecile carolinensis,Carolina Chickadee,poecile-carolinensis,1333,396
+Polioptila caerulea,Blue-gray Gnatcatcher,polioptila-caerulea,2010,411
+Pooecetes gramineus,Vesper Sparrow,pooecetes-gramineus,1710,505
+Porphyrio martinicus,Purple Gallinule,porphyrio-martinicus,9871,223
+Porzana carolina,Sora,porzana-carolina,348,222
+Progne subis,Purple Martin,progne-subis,1311,383
+Protonotaria citrea,Prothonotary Warbler,protonotaria-citrea,1577,471
+Pterodroma arminjoniana,Herald Petrel,pterodroma-arminjoniana,151,110
+Pterodroma cahow,Bermuda Petrel,pterodroma-cahow,154,109
+Pterodroma feae,Fea's Petrel,pterodroma-feae,0,111
+Pterodroma hasitata,Black-capped Petrel,pterodroma-hasitata,1981,108
+Puffinus gravis,Great Shearwater,puffinus-gravis,171,114
+Puffinus griseus,Sooty Shearwater,puffinus-griseus,174,115
+Puffinus lherminieri,Audubon's Shearwater,puffinus-lherminieri,180,118
+Puffinus puffinus,Manx Shearwater,puffinus-puffinus,177,116
+Pyrocephalus rubinus,Vermilion Flycatcher,pyrocephalus-rubinus,1156,373
+Quiscalus major,Boat-tailed Grackle,quiscalus-major,1787,535
+Quiscalus quiscula,Common Grackle,quiscalus-quiscula,1786,536
+Rallus elegans,King Rail,rallus-elegans,341,220
+Rallus limicola,Virginia Rail,rallus-limicola,342,221
+Rallus longirostris,Clapper Rail,rallus-longirostris,340,219
+Recurvirostra americana,American Avocet,recurvirostra-americana,392,238
+Regulus calendula,Ruby-crowned Kinglet,regulus-calendula,1403,410
+Regulus satrapa,Golden-crowned Kinglet,regulus-satrapa,1402,409
+Riparia riparia,Bank Swallow,riparia-riparia,1328,386
+Rissa tridactyla,Black-legged Kittiwake,rissa-tridactyla,1925,296
+Rynchops niger,Black Skimmer,rynchops-niger,1937,312
+Sayornis phoebe,Eastern Phoebe,sayornis-phoebe,1154,371
+Scolopax minor,American Woodcock,scolopax-minor,456,272
+Seiurus aurocapilla,Ovenbird,seiurus-aurocapilla,1580,474
+Parkesia motacilla,Louisiana Waterthrush,parkesia-motacilla,1582,476
+Parkesia noveboracensis,Northern Waterthrush,parkesia-noveboracensis,1581,475
+Setophaga ruticilla,American Redstart,setophaga-ruticilla,1576,470
+Sialia sialis,Eastern Bluebird,sialia-sialis,1428,413
+Sitta canadensis,Red-breasted Nuthatch,sitta-canadensis,1347,398
+Sitta carolinensis,White-breasted Nuthatch,sitta-carolinensis,1348,399
+Sitta pusilla,Brown-headed Nuthatch,sitta-pusilla,1350,400
+Somateria mollissima,Common Eider,somateria-mollissima,60,179
+Somateria spectabilis,King Eider,somateria-spectabilis,59,180
+Sphyrapicus varius,Yellow-bellied Sapsucker,sphyrapicus-varius,956,356
+Spiza americana,Dickcissel,spiza-americana,1770,496
+Spizella arborea,American Tree Sparrow,spizella-arborea,1704,501
+Spizella pallida,Clay-colored Sparrow,spizella-pallida,2048,503
+Spizella passerina,Chipping Sparrow,spizella-passerina,1705,502
+Spizella pusilla,Field Sparrow,spizella-pusilla,1707,504
+Stelgidopteryx serripennis,Northern Rough-winged Swallow,stelgidopteryx-serripennis,1326,385
+Stercorarius longicaudus,Long-tailed Jaeger,stercorarius-longicaudus,512,278
+Stercorarius maccormicki,South Polar Skua,stercorarius-maccormicki,509,280
+Stercorarius parasiticus,Parasitic Jaeger,stercorarius-parasiticus,511,277
+Stercorarius pomarinus,Pomarine Jaeger,stercorarius-pomarinus,510,276
+Stercorarius skua,Great Skua,stercorarius-skua,508,279
+Sterna dougallii,Roseate Tern,sterna-dougallii,500,302
+Sterna forsteri,Forster's Tern,sterna-forsteri,503,305
+Sterna hirundo,Common Tern,sterna-hirundo,501,303
+Sterna paradisaea,Arctic Tern,sterna-paradisaea,502,304
+Sternula antillarum,Least Tern,sternula-antillarum,491,306
+Streptopelia decaocto,Eurasian Collared-Dove,streptopelia-decaocto,550,323
+Strix varia,Barred Owl,strix-varia,696,338
+Sturnella magna,Eastern Meadowlark,sturnella-magna,1779,530
+Sturnella neglecta,Western Meadowlark,sturnella-neglecta,1780,531
+Sturnus vulgaris,European Starling,sturnus-vulgaris,1509,434
+Sula dactylatra,Masked Booby,sula-dactylatra,198,125
+Sula leucogaster,Brown Booby,sula-leucogaster,202,126
+Tachycineta bicolor,Tree Swallow,tachycineta-bicolor,1318,384
+Thalassarche chlororhynchos,Yellow-nosed Albatross,thalassarche-chlororhynchos,142,106
+Thalasseus maximus,Royal Tern,thalasseus-maximus,504,300
+Thalasseus sandvicensis,Sandwich Tern,thalasseus-sandvicensis,506,301
+Thryomanes bewickii,Bewick's Wren,thryomanes-bewickii,1382,403
+Thryothorus ludovicianus,Carolina Wren,thryothorus-ludovicianus,1378,402
+Toxostoma rufum,Brown Thrasher,toxostoma-rufum,1492,425
+Tringa erythropus,Spotted Redshank,tringa-erythropus,402,241
+Tringa flavipes,Lesser Yellowlegs,tringa-flavipes,406,240
+Tringa melanoleuca,Greater Yellowlegs,tringa-melanoleuca,403,239
+Tringa semipalmata,Willet,tringa-semipalmata,405,243
+Tringa solitaria,Solitary Sandpiper,tringa-solitaria,399,242
+Troglodytes aedon,House Wren,troglodytes-aedon,1384,405
+Troglodytes hiemalis,Winter Wren,troglodytes-hiemalis,2066,406
+Tryngites subruficollis,Buff-breasted Sandpiper,tryngites-subruficollis,447,267
+Turdus migratorius,American Robin,turdus-migratorius,1472,421
+Tyrannus dominicensis,Gray Kingbird,tyrannus-dominicensis,1197,379
+Tyrannus forficatus,Scissor-tailed Flycatcher,tyrannus-forficatus,1200,380
+Tyrannus melancholicus,Tropical Kingbird,tyrannus-melancholicus,1191,376
+Tyrannus savana,Fork-tailed Flycatcher,tyrannus-savana,1201,381
+Tyrannus tyrannus,Eastern Kingbird,tyrannus-tyrannus,1196,378
+Tyrannus verticalis,Western Kingbird,tyrannus-verticalis,1195,377
+Tyto alba,Barn Owl,tyto-alba,664,333
+Uria aalge,Common Murre,uria-aalge,514,12218
+Uria lomvia,Thick-billed Murre,uria-lomvia,515,314
+Vanellus vanellus,Northern Lapwing,vanellus-vanellus,369,228
+Oreothlypis celata,Orange-crowned Warbler,oreothlypis-celata,1536,447
+Vermivora chrysoptera,Golden-winged Warbler,vermivora-chrysoptera,1534,445
+Oreothlypis peregrina,Tennessee Warbler,oreothlypis-peregrina,1535,446
+Vermivora cyanoptera,Blue-winged Warbler,vermivora-cyanoptera,1533,444
+Oreothlypis ruficapilla,Nashville Warbler,oreothlypis-ruficapilla,1537,448
+Vireo altiloquus,Black-whiskered Vireo,vireo-altiloquus,1259,442
+Vireo flavifrons,Yellow-throated Vireo,vireo-flavifrons,1247,438
+Vireo gilvus,Warbling Vireo,vireo-gilvus,1254,439
+Vireo griseus,White-eyed Vireo,vireo-griseus,1233,435
+Vireo olivaceus,Red-eyed Vireo,vireo-olivaceus,1257,441
+Vireo philadelphicus,Philadelphia Vireo,vireo-philadelphicus,1256,440
+Vireo solitarius,Blue-headed Vireo,vireo-solitarius,1250,437
+Cardellina canadensis,Canada Warbler,cardellina-canadensis,1602,483
+Setophaga citrina,Hooded Warbler,setophaga-citrina,1600,481
+Cardellina pusilla,Wilson's Warbler,cardellina-pusilla,1601,482
+Xanthocephalus xanthocephalus,Yellow-headed Blackbird,xanthocephalus-xanthocephalus,1781,532
+Xema sabini,Sabine's Gull,xema-sabini,1988,297
+Zenaida asiatica,White-winged Dove,zenaida-asiatica,553,321
+Zenaida macroura,Mourning Dove,zenaida-macroura,556,322
+Zonotrichia albicollis,White-throated Sparrow,zonotrichia-albicollis,1726,520
+Zonotrichia leucophrys,White-crowned Sparrow,zonotrichia-leucophrys,1728,521
+Zonotrichia querula,Harris's Sparrow,zonotrichia-querula,1727,522

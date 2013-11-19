@@ -1,0 +1,11 @@
+How to update a Site Description:
+
+- if title changes, url to site changes
+	-must change in map's site list
+	-must change in sitebirdlist fusion table
+	-In Site Description - change links back to map (i.e., with the url parameter "site=")
+	
+Sites to Check
+-Currituck Banks National Estuarine Research Reserve
+-Check 17 Acre Nature Preserve in Durham
+-Dupont State Recreational Forest

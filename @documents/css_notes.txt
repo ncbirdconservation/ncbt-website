@@ -1,0 +1,65 @@
+css notes
+---------------------------------------------------------
+ncbt_blue_light: 637fa3
+ncbt_blue_dark: 517098
+ncbt_yellow: ebca43
+old nav bar color: 90B32F
+nav button hover: 383838
+
+new link color blue: 536987
+
+google fonts
+---------------------------------------------------------
+Questrial
+<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+Henny Penny
+<link href='http://fonts.googleapis.com/css?family=Henny+Penny' rel='stylesheet' type='text/css'>
+
+
+front page
+---------------------------------------------------------
+
+
+/* front page elements */
+
+.frontpage_tile {
+  border: 3px solid #f5f5f5;
+  border-top: 2px solid #ebca43;
+  box-shadow: 1px 1px 5px rgba(169, 169, 169, 0.3);
+  -webkit-transition-property: box-shadow, opacity; 
+  -webkit-transition-duration: 1s; 
+  -webkit-transition-timing-function: ease-in;
+}
+	
+.frontpage_tile:hover {
+  box-shadow: 1px 1px 25px rgba(169, 169, 169, 0.8);
+  -webkit-transition-property: opacity, box-shadow; 
+  -webkit-transition-duration: 1s; 
+  -webkit-transition-timing-function: ease-in;
+}
+
+
+subscribe element
+---------------------------------------------------------
+<div id="moduleContentWrapper15899782" class="widget-wrapper  widget-type-page"><div id="moduleContent15899782">
+
+
+
+
+
+  <!-- Begin MailChimp Signup Form -->
+  <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+  <style type="text/css">
+  #mc_embed_signup{background:#fff; clear:left; font:10px Josefin-Sans,Arial,sans-serif;width:200px; }
+  #mce-EMAIL{height:20px; width:inherit;}
+  /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+    We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+  </style>
+  <div id="mc_embed_signup">
+  <form action="http://ncwildlife.us2.list-manage.com/subscribe/post?u=94d0dc95c6684b5ae89a2b3f7&amp;id=00ddbbd986" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+  <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="subscribe by email" required="">
+  </form>
+  </div>
+  <!--End mc_embed_signup-->
+
+</div></div>

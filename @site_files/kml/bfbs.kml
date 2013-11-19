@@ -1,0 +1,1198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"
+ xmlns:gx="http://www.google.com/kml/ext/2.2">
+  <Document>
+
+	<Style id="pointBFB">
+		<IconStyle>
+			<scale>1</scale>
+			<Icon><href>http://ncbirdingtrail.squarespace.com/storage/img/bfb_dot.png</href></Icon>
+		</IconStyle>
+	</Style>	
+	
+    <Placemark>
+      <name>Poplar Grove Plantation</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.poplargrove.com'>Poplar Grove Plantation</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Jordan Lake Educational State Forest</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ncesf.org'>Jordan Lake Educational State Forest</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Morganton Parks and Recreation </name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ci.morganton.nc.us'>Morganton Parks and Recreation </a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>NC Coastal Federation</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.nccoast.org'>NC Coastal Federation</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Sobotta Manor Bed and Breakfast</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.sobottamanor.com'>Sobotta Manor Bed and Breakfast</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Tanglewood Park</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.tanglewoodpark.org'>Tanglewood Park</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>United Beach Vacations</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.unitedbeachvacations.com'>United Beach Vacations</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Pettigrew State Park</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://ils.unc.edu/parkproject/visit/pett/home.html'>Pettigrew State Park</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Chimney Rock Park</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.chimneyrockpark.com'>Chimney Rock Park</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Blue Ridge Bed and Breakfast</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.blueridgebandb.net'>Blue Ridge Bed and Breakfast</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Cape Fear Botanical Garden</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.capefearbg.org'>Cape Fear Botanical Garden</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Chadwick Brothers Marine Inc.</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>Chadwick Brothers Marine Inc.</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Cottages at Spring House Farm</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.springhousefarm.com'>Cottages at Spring House Farm</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Greater Topsail Area Chamber of Commerce and Tourism</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.topsailcoc.com'>Greater Topsail Area Chamber of Commerce and Tourism</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Jackson Macon Conservation Alliance</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.j-mca.org'>Jackson Macon Conservation Alliance</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Jordan Lake Educational State Forest</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ncesf.org'>Jordan Lake Educational State Forest</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>McAllister? Academy Inn BandB</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='None'>McAllister? Academy Inn BandB</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Sunset Properties</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.sunsetbeachnc.com'>Sunset Properties</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Big Mill Bed and Breakfast</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.bigmill.com/'>Big Mill Bed and Breakfast</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Yadkin River Greenway Council Inc.</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.yadkinrivergreenway.com'>Yadkin River Greenway Council Inc.</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Catawba County Parks</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.catawbacountync.gov/depts/parks/'>Catawba County Parks</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Eastern 4H Education and Conference Center</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.eastern4hcenter.org'>Eastern 4H Education and Conference Center</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Elliott Consulting</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.kenobx.com'>Elliott Consulting</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Kerr and Associates</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>Kerr and Associates</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Polestar Studios</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.polestarstudios.com'>Polestar Studios</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>River Mist</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.rivermist.us'>River Mist</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Robins Nest Bed and Breakfast</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.robinsnestbb.com/'>Robins Nest Bed and Breakfast</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Sally Dixon BandB</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>Sally Dixon BandB</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Bed and Bike Inn</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.bedandbikeinn.com'>The Bed and Bike Inn</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>City of Marion</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.marionnc.org'>City of Marion</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Catawba County</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.catawbacountync.gov'>Catawba County</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>City of Morganton</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ci.morganton.nc.us'>City of Morganton</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Hickory Metro Convention and Visitors Bureau</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.hickorymetro.com  '>Hickory Metro Convention and Visitors Bureau</a></div></p>]]></description>
+      <Point><coordinates>28.0156811,-26.5591438, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Pinehurst Southern Pines Aberdeen Area Convention and Visitors Bureau</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.homeofgolf.com'>Pinehurst Southern Pines Aberdeen Area Convention and Visitors Bureau</a></div></p>]]></description>
+      <Point><coordinates>-81.7572495,30.4282299, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Moe Joe Tours</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>Moe Joe Tours</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>NC Cooperative Extension</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://rockingham.ces.ncsu.edu'>NC Cooperative Extension</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Plymouth Municipal Airport</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.airnav.com/airport/KPMZ'>Plymouth Municipal Airport</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>SeaTree Gallery</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.seatreegallery.com'>SeaTree Gallery</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Sheltons Herb Farm</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.localharvest.org/farms/M9889'>Sheltons Herb Farm</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Tanglewood Park</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.tanglewoodpark.org'>Tanglewood Park</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Forever Inn Bed and Breakfast</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.theforeverinn.com'>The Forever Inn Bed and Breakfast</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Thompson House</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.bbonline.com/nc/thompsonhouse'>Thompson House</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Wilkesboro Tourism Development Authority</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.wilkescountytourism.com'>Wilkesboro Tourism Development Authority</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Blue Ridge Mountain House</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://sparta-nc.com/mountainhouse/'>Blue Ridge Mountain House</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Coastal Canvas Manufacturing Inc.</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.coastalcanvasmfg.com/'>Coastal Canvas Manufacturing Inc.</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Mount Airy Visitor Center</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.visitmayberry.com'>Mount Airy Visitor Center</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>NC State Parks</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ncsparks.net'>NC State Parks</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Sandhills Area Land Trust</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.sandhillslandtrust.org'>Sandhills Area Land Trust</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Tarkil Branch Farms Homestead Museum</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.tarkilfarmsmuseum.com'>Tarkil Branch Farms Homestead Museum</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Adventure Company</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.theadventurecompany.net'>The Adventure Company</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Nature Corner</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://just list business name no contact info'>The Nature Corner</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Roanoke Canal Museum and Halifax County TDA</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.roanokecanal.com/'>Roanoke Canal Museum and Halifax County TDA</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Camp Lake James</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.CampLakeJames.com'>Camp Lake James</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>NC Division of Tourism</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.nccommerce.com'>NC Division of Tourism</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Wilkes County Schools</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.wilkes.k12.nc.us'>Wilkes County Schools</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Alley Farm</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='None'>Alley Farm</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Art Skipper Realty</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.artskipper.com'>Art Skipper Realty</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>B and B on the Sound at Lasseters Landing</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>B and B on the Sound at Lasseters Landing</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Bed and Breakfast at Laurel Ridge</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.laurel-ridge.com'>Bed and Breakfast at Laurel Ridge</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Best Western Coastline Inn</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.coastlineinn.com'>Best Western Coastline Inn</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Dismal Swamp Canal Welcome Center</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.DismalSwamp.com'>Dismal Swamp Canal Welcome Center</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Eastern Bluebird Rescue Group and Newell Farms</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.easternbluebirdrescue.org'>Eastern Bluebird Rescue Group and Newell Farms</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>NC Arboretum</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http:// www.ncarboretum.org'>NC Arboretum</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Wolf Creek Farm</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.wolfcreekfarmva.com'>Wolf Creek Farm</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Cape Fear Naturalist </name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.capefearnaturalist.com/'>Cape Fear Naturalist </a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Cleveland County Chamber of Commerce</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.clevelandchamber.org'>Cleveland County Chamber of Commerce</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Golden Skillet Restaurant</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>Golden Skillet Restaurant</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Sunset Inn</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.thesunsetinn.net'>The Sunset Inn</a></div></p>]]></description>
+      <Point><coordinates>-78.507447,33.872056, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Oak Island </name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>Oak Island </a></div></p>]]></description>
+      <Point><coordinates>-78.180008,33.915111, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Oak Island Beach Preservation Trust</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.oakislandbeachpreservation.org'>Oak Island Beach Preservation Trust</a></div></p>]]></description>
+      <Point><coordinates>-78.144051,33.917323, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Harbor Tours on the SOLOMON T</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.visitnc.com/tools_search_detail.asp?Propertyid=38903'>Harbor Tours on the SOLOMON T</a></div></p>]]></description>
+      <Point><coordinates>-78.022052,33.919838, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Harbor Tours on the SOLOMON T</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.visitnc.com/tools_search_detail.asp?Propertyid=38903'>Harbor Tours on the SOLOMON T</a></div></p>]]></description>
+      <Point><coordinates>-78.022052,33.919838, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Priority Sailing Academy</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.prioritysailing.org'>Priority Sailing Academy</a></div></p>]]></description>
+      <Point><coordinates>-78.043586,33.9245159, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>NC Aquarium at Fort Fisher</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ncaquariums.com'>NC Aquarium at Fort Fisher</a></div></p>]]></description>
+      <Point><coordinates>-77.9271602,33.9628742, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Carolina Bird Club</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.carolinabirdclub.org'>Carolina Bird Club</a></div></p>]]></description>
+      <Point><coordinates>-78.035087,34.214261, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Wild Bird and Garden</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.wildbirdgardeninc.com'>Wild Bird and Garden</a></div></p>]]></description>
+      <Point><coordinates>-77.9039338,34.2173744, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Cape Fear Convention and Visitors Bureau</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.cape-fear.nc.us'>Cape Fear Convention and Visitors Bureau</a></div></p>]]></description>
+      <Point><coordinates>-77.945847,34.23588, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Poplar Grove Plantation</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.poplargrove.com'>Poplar Grove Plantation</a></div></p>]]></description>
+      <Point><coordinates>-77.7656959,34.3212121, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Red Dog Inn</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.thereddoginnbb.com'>The Red Dog Inn</a></div></p>]]></description>
+      <Point><coordinates>-76.6622958,34.7152982, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Sharpies Grill and Bar</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.sharpiesgrill.com/'>Sharpies Grill and Bar</a></div></p>]]></description>
+      <Point><coordinates>-76.6619337,34.7168886, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>NC Coastal Federation</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.nccoast.org'>NC Coastal Federation</a></div></p>]]></description>
+      <Point><coordinates>-76.9636433,34.7187183, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Core Sound Kayaks and Touring Company</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.capelookoutadventures.com'>Core Sound Kayaks and Touring Company</a></div></p>]]></description>
+      <Point><coordinates>-76.5728059,34.7263558, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Core Sound Kayaks and Touring Company</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.capelookoutadventures.com'>Core Sound Kayaks and Touring Company</a></div></p>]]></description>
+      <Point><coordinates>-76.5728059,34.7263558, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Kindred Spirit and Green Gables Tea Room</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>The Kindred Spirit and Green Gables Tea Room</a></div></p>]]></description>
+      <Point><coordinates>-76.5583703,34.7414267, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Vision Realty of Scotland County LLC</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.womanwithvision.com'>Vision Realty of Scotland County LLC</a></div></p>]]></description>
+      <Point><coordinates>-79.47289,34.775505, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Onslow County Tourism</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.jacksonvilleonline.org'>Onslow County Tourism</a></div></p>]]></description>
+      <Point><coordinates>-77.413147,34.775729, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Onslow County Tourism</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.jacksonvilleonline.org'>Onslow County Tourism</a></div></p>]]></description>
+      <Point><coordinates>-77.413147,34.775729, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Raft Swamp Farms</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.raftswampfarms.org'>Raft Swamp Farms</a></div></p>]]></description>
+      <Point><coordinates>-79.215394,34.903705, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Graham House Inn B and B</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.grahamhouseinn.com'>Graham House Inn B and B</a></div></p>]]></description>
+      <Point><coordinates>-77.966142,34.960576, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Anson County Tourism Development Authority</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.discoveranson.com'>Anson County Tourism Development Authority</a></div></p>]]></description>
+      <Point><coordinates>-80.077629,34.964137, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Monroe Tourism and Visitors Bureau</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.visitmonroenc.org'>Monroe Tourism and Visitors Bureau</a></div></p>]]></description>
+      <Point><coordinates>-80.549678,34.983558, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Fayetteville Area Convention and Visitors Bureau</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.visitfayettevillenc.com'>Fayetteville Area Convention and Visitors Bureau</a></div></p>]]></description>
+      <Point><coordinates>-78.934566,34.9980199, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>John C. Campbell Folk School</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.folkschool.org'>John C. Campbell Folk School</a></div></p>]]></description>
+      <Point><coordinates>-83.963807,35.039115, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>4 1/2 Street Inn</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.4andahalfstinn.com'>4 1/2 Street Inn</a></div></p>]]></description>
+      <Point><coordinates>-83.2007616,35.0539277, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Whiteside Cove Cottage</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.wcove.com/'>Whiteside Cove Cottage</a></div></p>]]></description>
+      <Point><coordinates>-83.13454,35.059525, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Land Trust for the Little Tennessee</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ltlt.org'>Land Trust for the Little Tennessee</a></div></p>]]></description>
+      <Point><coordinates>-83.381331,35.06959, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Jackson Farm</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.jacksonfarm.com'>Jackson Farm</a></div></p>]]></description>
+      <Point><coordinates>-78.5368489,35.1422281, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Birdie? on Broad Street</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>Birdie? on Broad Street</a></div></p>]]></description>
+      <Point><coordinates>-79.390626,35.175072, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Pacolet Area Conservancy</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.pacolet.org'>Pacolet Area Conservancy</a></div></p>]]></description>
+      <Point><coordinates>-82.2384479,35.2081694, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Crowders Mountain State Park</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ncparks.gov'>Crowders Mountain State Park</a></div></p>]]></description>
+      <Point><coordinates>-81.2929472,35.2122837, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Pacolet Area Conservancy</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.pacolet.org'>Pacolet Area Conservancy</a></div></p>]]></description>
+      <Point><coordinates>-82.24559,35.218273, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Cleveland County Tourism</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.tourclevelandcounty.com/'>Cleveland County Tourism</a></div></p>]]></description>
+      <Point><coordinates>-81.482746,35.269515, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Taylors Greenhouse</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ncfarmfresh.com/FarmMarketDisplay.asp?FarmID=2026'>Taylors Greenhouse</a></div></p>]]></description>
+      <Point><coordinates>-83.770916,35.289203, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Gods Gardens</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>Gods Gardens</a></div></p>]]></description>
+      <Point><coordinates>-83.721448,35.3258165, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Nantahala Outdoor Center</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.noc.com'>Nantahala Outdoor Center</a></div></p>]]></description>
+      <Point><coordinates>-83.5913018,35.3313868, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Nantahala National Forest</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.cs.unca.edu/nfsnc/'>Nantahala National Forest</a></div></p>]]></description>
+      <Point><coordinates>-83.827072,35.335639, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Smoky Mountain Jet Boats</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.needmore.com'>Smoky Mountain Jet Boats</a></div></p>]]></description>
+      <Point><coordinates>-83.549496,35.364422, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Stecoah Valley Cultural Arts Center</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.StecoahValleyCenter.com'>Stecoah Valley Cultural Arts Center</a></div></p>]]></description>
+      <Point><coordinates>-83.692598,35.368299, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Cherokee Chamber of Commerce</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.StecoahValleyCenter.com'>Cherokee Chamber of Commerce</a></div></p>]]></description>
+      <Point><coordinates>-83.692598,35.368299, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Appalachian Inn Bed and Breakfast</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.appalachianinn.com'>Appalachian Inn Bed and Breakfast</a></div></p>]]></description>
+      <Point><coordinates>-83.7046853,35.370453, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Artists House Studio and Gallery</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.theartistshousegallery.com'>The Artists House Studio and Gallery</a></div></p>]]></description>
+      <Point><coordinates>-83.443303,35.434357, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Fontana Village</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.fontanavillage.com/thisdamlife'>Fontana Village</a></div></p>]]></description>
+      <Point><coordinates>-83.7994111,35.4426199, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Mountain Creek Bed and Breakfast</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>Mountain Creek Bed and Breakfast</a></div></p>]]></description>
+      <Point><coordinates>-80.162892,35.450202, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>HEART REALTY</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.merchantcircle.com/business/Heart.Realty.252-925-7200'>HEART REALTY</a></div></p>]]></description>
+      <Point><coordinates>-76.073746,35.470421, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>NC Paddle Trails Association</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ncpaddletrails.org/'>NC Paddle Trails Association</a></div></p>]]></description>
+      <Point><coordinates>-77.930539,35.483689, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Wild Birds Unlimited</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.asheville.wbu.com'>Wild Birds Unlimited</a></div></p>]]></description>
+      <Point><coordinates>-82.525189,35.4871989, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Compleat Naturalist</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.compleatnaturalist.com'>The Compleat Naturalist</a></div></p>]]></description>
+      <Point><coordinates>-82.542007,35.567486, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Catawba County Parks</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.catawbacountync.gov/depts/parks/'>Catawba County Parks</a></div></p>]]></description>
+      <Point><coordinates>-81.1139917,35.6059612, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Bees Knees </name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.beeskneescountrystore.com'>The Bees Knees </a></div></p>]]></description>
+      <Point><coordinates>-92.1275869,35.613022, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>East Carolina University Center for Sustainable Tourism and the Office of Economic Development</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.sustainabletourism.org'>East Carolina University Center for Sustainable Tourism and the Office of Economic Development</a></div></p>]]></description>
+      <Point><coordinates>-77.369058,35.613672, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Rowan County Parks and Recreation Department</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.co.rowan.nc.us/parks'>Rowan County Parks and Recreation Department</a></div></p>]]></description>
+      <Point><coordinates>-80.3542389,35.6321145, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>North Carolina Railroad Museum</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.nhvry.org'>North Carolina Railroad Museum</a></div></p>]]></description>
+      <Point><coordinates>-78.777168,35.693183, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Burke County Tourism Development Authority</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.discoverburkecounty.com'>Burke County Tourism Development Authority</a></div></p>]]></description>
+      <Point><coordinates>-81.6880246,35.7456254, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Toms Creek Nursery</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.tomscreeknursery.com'>Toms Creek Nursery</a></div></p>]]></description>
+      <Point><coordinates>-79.83757,35.746479, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Burke County </name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.co.burke.nc.us'>Burke County </a></div></p>]]></description>
+      <Point><coordinates>-81.68788,35.747319, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Johnson? Milling and Feed Inc. </name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.johnsonsmillingandfeed.com'>Johnson? Milling and Feed Inc. </a></div></p>]]></description>
+      <Point><coordinates>-80.0286563,35.7523901, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Wilson Visitors Bureau</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.wilson-nc.com'>Wilson Visitors Bureau</a></div></p>]]></description>
+      <Point><coordinates>-78.0076321,35.7625274, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Media Relations</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ncseagrant.org'>Media Relations</a></div></p>]]></description>
+      <Point><coordinates>-78.662635,35.784773, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Pettigrew State Park</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://ils.unc.edu/parkproject/visit/pett/home.html'>Pettigrew State Park</a></div></p>]]></description>
+      <Point><coordinates>-76.4034669,35.7894202, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Triangle Land Conservancy</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.tlc-nc.org'>Triangle Land Conservancy</a></div></p>]]></description>
+      <Point><coordinates>-78.638345,35.7950512, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Washington County Travel and Tourism</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.visitwashingtoncountync.com/'>Washington County Travel and Tourism</a></div></p>]]></description>
+      <Point><coordinates>-76.7429417,35.8542947, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Haughton Hall B and B</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.haughtonhallnc.com'>Haughton Hall B and B</a></div></p>]]></description>
+      <Point><coordinates>-77.058942,35.854949, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Enterprise Newspaper</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>The Enterprise Newspaper</a></div></p>]]></description>
+      <Point><coordinates>-77.054078,35.857021, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Martin County Tourism Development Authority</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.visitmartincounty.com'>Martin County Tourism Development Authority</a></div></p>]]></description>
+      <Point><coordinates>-77.054078,35.857021, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Town of Plymouth</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.visitplymouthnc.com/'>Town of Plymouth</a></div></p>]]></description>
+      <Point><coordinates>-76.7498668,35.8624591, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Plymouth Town Council</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.visitplymouthnc.com/TownGovernment/Default.asp'>Plymouth Town Council</a></div></p>]]></description>
+      <Point><coordinates>-76.7498668,35.8624591, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Blue Ridge Soap Shed</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.soapshed.com'>The Blue Ridge Soap Shed</a></div></p>]]></description>
+      <Point><coordinates>-82.0497539,35.8628969, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Holiday Inn Express</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>Holiday Inn Express</a></div></p>]]></description>
+      <Point><coordinates>-76.723903,35.8695068, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Washington County Board of Education and Pettigrew Regional Library Board</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.washingtonco.k12.nc.us/index.html'>Washington County Board of Education and Pettigrew Regional Library Board</a></div></p>]]></description>
+      <Point><coordinates>-76.7369571,35.8697607, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Historic Orchard at Altapass</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.altapassorchard.com'>The Historic Orchard at Altapass</a></div></p>]]></description>
+      <Point><coordinates>-82.0247461,35.8750424, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Caldwell County</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.visitcaldwell.com'>Caldwell County</a></div></p>]]></description>
+      <Point><coordinates>-81.510938,35.881565, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Broad River Greenway</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.broadrivergreenway.com'>Broad River Greenway</a></div></p>]]></description>
+      <Point><coordinates>None,None, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Alexander County Chamber of Commerce Alexander Co Tourism</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.alexandercountychamber.com  www.visitalexandercounty.com'>Alexander County Chamber of Commerce Alexander Co Tourism</a></div></p>]]></description>
+      <Point><coordinates>-81.1756429,35.922849, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Mackey Ferry Peanuts</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://shop.mfpnuts.com/index.php'>Mackey Ferry Peanuts</a></div></p>]]></description>
+      <Point><coordinates>-76.5599467,35.9376613, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Morehead Manor Bed and Breakfast</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.moreheadmanor.com/'>Morehead Manor Bed and Breakfast</a></div></p>]]></description>
+      <Point><coordinates>-78.9122602,35.9918596, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>NC Dept of Commerce  Division of Tourism Film and Sports Development/ Historic Hope Foundation</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.hopeplantation.org'>NC Dept of Commerce  Division of Tourism Film and Sports Development/ Historic Hope Foundation</a></div></p>]]></description>
+      <Point><coordinates>-77.0174254,36.0334315, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>NorthEast Commission</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ncnortheast.com/'>NorthEast Commission</a></div></p>]]></description>
+      <Point><coordinates>-76.6114703,36.0573771, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Whippoorwill Academy and Village Inc.</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>Whippoorwill Academy and Village Inc.</a></div></p>]]></description>
+      <Point><coordinates>-81.3567636,36.0837785, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Overlook Chair</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.overlookchair.com'>Overlook Chair</a></div></p>]]></description>
+      <Point><coordinates>-81.2739938,36.1120926, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Avery County Chamber of Commerce</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.averycounty.com'>Avery County Chamber of Commerce</a></div></p>]]></description>
+      <Point><coordinates>-81.839932,36.119387, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>US Army Corps of Engineers</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.saw.usace.army.mil/wkscott/index.htm'>US Army Corps of Engineers</a></div></p>]]></description>
+      <Point><coordinates>-81.2240329,36.1285359, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Piedmont Area BandB</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.rockworthhouse.com'>Piedmont Area BandB</a></div></p>]]></description>
+      <Point><coordinates>-79.427777,36.14017, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Lodge House</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.thelodgehouse.net'>The Lodge House</a></div></p>]]></description>
+      <Point><coordinates>-79.426792,36.140941, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Farm Bureau</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ncfb.com'>Farm Bureau</a></div></p>]]></description>
+      <Point><coordinates>-77.4227213,36.1416811, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Wilkes Cooperative Extension</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://0'>Wilkes Cooperative Extension</a></div></p>]]></description>
+      <Point><coordinates>-81.153878,36.148922, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Wilkes Chamber of Commerce and The Wood Doctor</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.wilkesnc.org'>Wilkes Chamber of Commerce and The Wood Doctor</a></div></p>]]></description>
+      <Point><coordinates>-81.0701013,36.1505042, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Addison Inn Wilkesboro</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.addisoninn.com/'>Addison Inn Wilkesboro</a></div></p>]]></description>
+      <Point><coordinates>-81.1889133,36.1526457, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Friends of W. Kerr Scott Lake</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.friendsoflake.org/'>Friends of W. Kerr Scott Lake</a></div></p>]]></description>
+      <Point><coordinates>-81.229003,36.164558, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Sanders Ridge Organic Farm Vineyard and Winery</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.sandersridge.com'>Sanders Ridge Organic Farm Vineyard and Winery</a></div></p>]]></description>
+      <Point><coordinates>-80.670698,36.201274, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Riverbirch Vineyards</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.riverbirchvineyards.com'>Riverbirch Vineyards</a></div></p>]]></description>
+      <Point><coordinates>-79.8467133,36.3104427, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Rockingham County Tourism Development Authority</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.ncnorthstar.com'>Rockingham County Tourism Development Authority</a></div></p>]]></description>
+      <Point><coordinates>-79.750866,36.391705, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Shady Grove Gardens and Nursery</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.shady-grove-gardens.com'>Shady Grove Gardens and Nursery</a></div></p>]]></description>
+      <Point><coordinates>-81.6808833,36.4074553, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>The Lamplight Inn</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.lamplightbandb.com'>The Lamplight Inn</a></div></p>]]></description>
+      <Point><coordinates>-78.3472988,36.4186005, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>NC Division of Tourism Film and Sports Development</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.nccommerce.com'>NC Division of Tourism Film and Sports Development</a></div></p>]]></description>
+      <Point><coordinates>-81.458993,36.41878, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Mount Airy Chamber of Commerce</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.mtairyncchamber.org/'>Mount Airy Chamber of Commerce</a></div></p>]]></description>
+      <Point><coordinates>-80.607891,36.501012, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Old North State Winery</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.oldnorthstatewinery.com/'>Old North State Winery</a></div></p>]]></description>
+      <Point><coordinates>-80.608282,36.501921, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Dan River Basin Association</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.danriver.org'>Dan River Basin Association</a></div></p>]]></description>
+      <Point><coordinates>-79.758882,36.504819, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>GilmerSmith Foundation</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.visitmountairy.com'>GilmerSmith Foundation</a></div></p>]]></description>
+      <Point><coordinates>-80.609386,36.505082, 0</coordinates></Point>
+    </Placemark>
+	
+    <Placemark>
+      <name>Maxwell House B and B</name>
+      <styleUrl>#pointBFB</styleUrl>
+	  <description><![CDATA[<p><div style='font-weight:bold'><a href='http://www.maxwellhousebb.com'>Maxwell House B and B</a></div></p>]]></description>
+      <Point><coordinates>-80.608712,36.505192, 0</coordinates></Point>
+    </Placemark>
+	
+	
+  </Document>
+</kml>

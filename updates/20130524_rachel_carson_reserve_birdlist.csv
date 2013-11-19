@@ -1,0 +1,198 @@
+site_spp_slug,site_slug,commonName,scientificName,spp_slug,spring,summer,fall,winter,season
+rachel-carson-reserve-gavia-stellata,rachel-carson-reserve,Red-throated Loon,Gavia stellata,gavia-stellata,2,0,3,3,2033
+rachel-carson-reserve-gavia-stellata,rachel-carson-reserve,Red-throated Loon,Gavia stellata,gavia-stellata,2,0,0,3,2003
+rachel-carson-reserve-gavia-immer,rachel-carson-reserve,Common Loon,Gavia immer,gavia-immer,4,2,3,5,4235
+rachel-carson-reserve-podilymbus-podiceps,rachel-carson-reserve,Pied-billed Grebe,Podilymbus podiceps,podilymbus-podiceps,2,0,3,3,2033
+rachel-carson-reserve-podiceps-auritus,rachel-carson-reserve,Horned Grebe,Podiceps auritus,podiceps-auritus,3,0,2,3,3023
+rachel-carson-reserve-porzana-carolina,rachel-carson-reserve,Sora,Porzana carolina,porzana-carolina,2,2,0,0,2200
+rachel-carson-reserve-puffinus-lherminieri,rachel-carson-reserve,Audubon's Shearwater,Puffinus lherminieri,puffinus-lherminieri,0,2,0,0,0200
+rachel-carson-reserve-gallinago-delicata,rachel-carson-reserve,Wilson's Snipe,Gallinago delicata,gallinago-delicata,2,2,0,0,2200
+rachel-carson-reserve-morus-bassanus,rachel-carson-reserve,Northern Gannet,Morus bassanus,morus-bassanus,4,0,2,4,4024
+rachel-carson-reserve-pelecanus-occidentalis,rachel-carson-reserve,Brown Pelican,Pelecanus occidentalis,pelecanus-occidentalis,5,5,5,5,5555
+rachel-carson-reserve-pelecanus-erythrorhynchos,rachel-carson-reserve,American White Pelican,Pelecanus erythrorhynchos,pelecanus-erythrorhynchos,1,1,1,1,1111
+rachel-carson-reserve-phalacrocorax-carbo,rachel-carson-reserve,Great Cormorant,Phalacrocorax carbo,phalacrocorax-carbo,0,0,1,1,0011
+rachel-carson-reserve-phalacrocorax-auritus,rachel-carson-reserve,Double-crested Cormorant,Phalacrocorax auritus,phalacrocorax-auritus,5,2,5,5,5255
+rachel-carson-reserve-botaurus-lentiginosus,rachel-carson-reserve,American Bittern,Botaurus lentiginosus,botaurus-lentiginosus,2,0,2,1,2021
+rachel-carson-reserve-ixobrychus-exilis,rachel-carson-reserve,Least Bittern,Ixobrychus exilis,ixobrychus-exilis,2,2,2,0,2220
+rachel-carson-reserve-ardea-herodias,rachel-carson-reserve,Great Blue Heron,Ardea herodias,ardea-herodias,4,3,4,5,4345
+rachel-carson-reserve-ardea-alba,rachel-carson-reserve,Great Egret,Ardea alba,ardea-alba,5,5,5,4,5554
+rachel-carson-reserve-egretta-thula,rachel-carson-reserve,Snowy Egret,Egretta thula,egretta-thula,5,5,5,4,5554
+rachel-carson-reserve-egretta-caerulea,rachel-carson-reserve,Little Blue Heron,Egretta caerulea,egretta-caerulea,4,4,4,3,4443
+rachel-carson-reserve-egretta-tricolor,rachel-carson-reserve,Tricolored Heron,Egretta tricolor,egretta-tricolor,5,5,5,4,5554
+rachel-carson-reserve-egretta-rufescens,rachel-carson-reserve,Reddish Egret,Egretta rufescens,egretta-rufescens,1,2,2,0,1220
+rachel-carson-reserve-bubulcus-ibis,rachel-carson-reserve,Cattle Egret,Bubulcus ibis,bubulcus-ibis,3,3,2,0,3320
+rachel-carson-reserve-butorides-virescens,rachel-carson-reserve,Green Heron,Butorides virescens,butorides-virescens,4,4,3,0,4430
+rachel-carson-reserve-nycticorax-nycticorax,rachel-carson-reserve,Black-crowned Night-Heron,Nycticorax nycticorax,nycticorax-nycticorax,4,4,5,5,4455
+rachel-carson-reserve-nyctanassa-violacea,rachel-carson-reserve,Yellow-crowned Night-Heron,Nyctanassa violacea,nyctanassa-violacea,2,3,2,0,2320
+rachel-carson-reserve-eudocimus-albus,rachel-carson-reserve,White Ibis,Eudocimus albus,eudocimus-albus,5,5,5,5,5555
+rachel-carson-reserve-plegadis-falcinellus,rachel-carson-reserve,Glossy Ibis,Plegadis falcinellus,plegadis-falcinellus,2,3,2,0,2320
+rachel-carson-reserve-branta-bernicla,rachel-carson-reserve,Brant,Branta bernicla,branta-bernicla,0,0,0,1,0001
+rachel-carson-reserve-branta-canadensis,rachel-carson-reserve,Canada Goose,Branta canadensis,branta-canadensis,2,2,2,2,2222
+rachel-carson-reserve-anas-crecca,rachel-carson-reserve,Green-winged Teal,Anas crecca,anas-crecca,2,0,2,3,2023
+rachel-carson-reserve-anas-rubripes,rachel-carson-reserve,American Black Duck,Anas rubripes,anas-rubripes,1,0,2,3,1023
+rachel-carson-reserve-anas-platyrhynchos,rachel-carson-reserve,Mallard,Anas platyrhynchos,anas-platyrhynchos,3,3,3,3,3333
+rachel-carson-reserve-anas-acuta,rachel-carson-reserve,Northern Pintail,Anas acuta,anas-acuta,1,0,1,1,1011
+rachel-carson-reserve-anas-discors,rachel-carson-reserve,Blue-winged Teal,Anas discors,anas-discors,3,2,3,0,3230
+rachel-carson-reserve-anas-clypeata,rachel-carson-reserve,Northern Shoveler,Anas clypeata,anas-clypeata,2,0,1,0,2010
+rachel-carson-reserve-anas-strepera,rachel-carson-reserve,Gadwall,Anas strepera,anas-strepera,1,0,1,1,1011
+rachel-carson-reserve-anas-americana,rachel-carson-reserve,American Wigeon,Anas americana,anas-americana,2,0,2,2,2022
+rachel-carson-reserve-aythya-americana,rachel-carson-reserve,Redhead,Aythya americana,aythya-americana,1,0,0,1,1001
+rachel-carson-reserve-aythya-marila,rachel-carson-reserve,Greater Scaup,Aythya marila,aythya-marila,2,0,0,2,2002
+rachel-carson-reserve-aythya-affinis,rachel-carson-reserve,Lesser Scaup,Aythya affinis,aythya-affinis,2,0,2,3,2023
+rachel-carson-reserve-clangula-hyemalis,rachel-carson-reserve,Long-tailed Duck,Clangula hyemalis,clangula-hyemalis,0,0,0,1,0001
+rachel-carson-reserve-melanitta-nigra,rachel-carson-reserve,Black Scoter,Melanitta nigra,melanitta-nigra,3,1,2,2,3122
+rachel-carson-reserve-melanitta-perspicillata,rachel-carson-reserve,Surf Scoter,Melanitta perspicillata,melanitta-perspicillata,2,0,2,2,2022
+rachel-carson-reserve-melanitta-fusca,rachel-carson-reserve,White-winged Scoter,Melanitta fusca,melanitta-fusca,1,1,0,1,1101
+rachel-carson-reserve-bucephala-clangula,rachel-carson-reserve,Common Goldeneye,Bucephala clangula,bucephala-clangula,2,0,0,2,2002
+rachel-carson-reserve-bucephala-albeola,rachel-carson-reserve,Bufflehead,Bucephala albeola,bucephala-albeola,3,0,2,5,3025
+rachel-carson-reserve-lophodytes-cucullatus,rachel-carson-reserve,Hooded Merganser,Lophodytes cucullatus,lophodytes-cucullatus,2,0,2,4,2024
+rachel-carson-reserve-mergus-serrator,rachel-carson-reserve,Red-breasted Merganser,Mergus serrator,mergus-serrator,5,2,3,5,5235
+rachel-carson-reserve-oxyura-jamaicensis,rachel-carson-reserve,Ruddy Duck,Oxyura jamaicensis,oxyura-jamaicensis,0,0,0,2,0002
+rachel-carson-reserve-cathartes-aura,rachel-carson-reserve,Turkey Vulture,Cathartes aura,cathartes-aura,5,5,5,5,5555
+rachel-carson-reserve-pandion-haliaetus,rachel-carson-reserve,Osprey,Pandion haliaetus,pandion-haliaetus,4,5,4,2,4542
+rachel-carson-reserve-haliaeetus-leucocephalus,rachel-carson-reserve,Bald Eagle,Haliaeetus leucocephalus,haliaeetus-leucocephalus,2,2,2,2,2222
+rachel-carson-reserve-circus-cyaneus,rachel-carson-reserve,Northern Harrier,Circus cyaneus,circus-cyaneus,3,1,4,4,3144
+rachel-carson-reserve-accipiter-striatus,rachel-carson-reserve,Sharp-shinned Hawk,Accipiter striatus,accipiter-striatus,2,0,4,4,2044
+rachel-carson-reserve-accipiter-cooperii,rachel-carson-reserve,Cooper's Hawk,Accipiter cooperii,accipiter-cooperii,2,0,3,4,2034
+rachel-carson-reserve-buteo-jamaicensis,rachel-carson-reserve,Red-tailed Hawk,Buteo jamaicensis,buteo-jamaicensis,2,0,3,4,2034
+rachel-carson-reserve-falco-sparverius,rachel-carson-reserve,American Kestrel,Falco sparverius,falco-sparverius,2,0,3,3,2033
+rachel-carson-reserve-falco-columbarius,rachel-carson-reserve,Merlin,Falco columbarius,falco-columbarius,2,0,3,3,2033
+rachel-carson-reserve-falco-peregrinus,rachel-carson-reserve,Peregrine Falcon,Falco peregrinus,falco-peregrinus,2,0,3,3,2033
+rachel-carson-reserve-rallus-longirostris,rachel-carson-reserve,Clapper Rail,Rallus longirostris,rallus-longirostris,5,5,5,4,5554
+rachel-carson-reserve-rallus-limicola,rachel-carson-reserve,Virginia Rail,Rallus limicola,rallus-limicola,2,0,3,1,2031
+rachel-carson-reserve-porzana-carolina,rachel-carson-reserve,Sora,Porzana carolina,porzana-carolina,3,0,3,1,3031
+rachel-carson-reserve-fulica-americana,rachel-carson-reserve,American Coot,Fulica americana,fulica-americana,0,0,2,2,0022
+rachel-carson-reserve-pluvialis-squatarola,rachel-carson-reserve,Black-bellied Plover,Pluvialis squatarola,pluvialis-squatarola,5,4,5,5,5455
+rachel-carson-reserve-pluvialis-dominica,rachel-carson-reserve,American Golden-Plover,Pluvialis dominica,pluvialis-dominica,0,0,2,2,0022
+rachel-carson-reserve-charadrius-wilsonia,rachel-carson-reserve,Wilson's Plover,Charadrius wilsonia,charadrius-wilsonia,4,5,3,2,4532
+rachel-carson-reserve-charadrius-semipalmatus,rachel-carson-reserve,Semipalmated Plover,Charadrius semipalmatus,charadrius-semipalmatus,5,4,5,5,5455
+rachel-carson-reserve-charadrius-melodus,rachel-carson-reserve,Piping Plover,Charadrius melodus,charadrius-melodus,3,2,4,4,3244
+rachel-carson-reserve-charadrius-vociferus,rachel-carson-reserve,Killdeer,Charadrius vociferus,charadrius-vociferus,4,4,4,4,4444
+rachel-carson-reserve-haematopus-palliatus,rachel-carson-reserve,American Oystercatcher,Haematopus palliatus,haematopus-palliatus,5,5,5,5,5555
+rachel-carson-reserve-recurvirostra-americana,rachel-carson-reserve,American Avocet,Recurvirostra americana,recurvirostra-americana,0,0,1,1,0011
+rachel-carson-reserve-tringa-melanoleuca,rachel-carson-reserve,Greater Yellowlegs,Tringa melanoleuca,tringa-melanoleuca,4,4,5,5,4455
+rachel-carson-reserve-tringa-flavipes,rachel-carson-reserve,Lesser Yellowlegs,Tringa flavipes,tringa-flavipes,2,2,2,0,2220
+rachel-carson-reserve-tringa-solitaria,rachel-carson-reserve,Solitary Sandpiper,Tringa solitaria,tringa-solitaria,2,2,2,0,2220
+rachel-carson-reserve-tringa-semipalmata,rachel-carson-reserve,Willet,Tringa semipalmata,tringa-semipalmata,5,5,5,5,5555
+rachel-carson-reserve-actitis-macularius,rachel-carson-reserve,Spotted Sandpiper,Actitis macularius,actitis-macularius,3,3,2,0,3320
+rachel-carson-reserve-numenius-phaeopus,rachel-carson-reserve,Whimbrel,Numenius phaeopus,numenius-phaeopus,5,4,3,2,5432
+rachel-carson-reserve-numenius-americanus,rachel-carson-reserve,Long-billed Curlew,Numenius americanus,numenius-americanus,1,1,1,1,1111
+rachel-carson-reserve-limosa-fedoa,rachel-carson-reserve,Marbled Godwit,Limosa fedoa,limosa-fedoa,4,2,5,5,4255
+rachel-carson-reserve-arenaria-interpres,rachel-carson-reserve,Ruddy Turnstone,Arenaria interpres,arenaria-interpres,5,4,5,5,5455
+rachel-carson-reserve-calidris-canutus,rachel-carson-reserve,Red Knot,Calidris canutus,calidris-canutus,3,3,3,3,3333
+rachel-carson-reserve-calidris-alba,rachel-carson-reserve,Sanderling,Calidris alba,calidris-alba,5,3,5,5,5355
+rachel-carson-reserve-calidris-pusilla,rachel-carson-reserve,Semipalmated Sandpiper,Calidris pusilla,calidris-pusilla,4,3,3,0,4330
+rachel-carson-reserve-calidris-mauri,rachel-carson-reserve,Western Sandpiper,Calidris mauri,calidris-mauri,4,4,5,5,4455
+rachel-carson-reserve-calidris-minutilla,rachel-carson-reserve,Least Sandpiper,Calidris minutilla,calidris-minutilla,4,4,4,3,4443
+rachel-carson-reserve-calidris-fuscicollis,rachel-carson-reserve,White-rumped Sandpiper,Calidris fuscicollis,calidris-fuscicollis,2,2,1,0,2210
+rachel-carson-reserve-calidris-melanotos,rachel-carson-reserve,Pectoral Sandpiper,Calidris melanotos,calidris-melanotos,2,2,2,0,2220
+rachel-carson-reserve-calidris-alpina,rachel-carson-reserve,Dunlin,Calidris alpina,calidris-alpina,5,2,4,5,5245
+rachel-carson-reserve-calidris-himantopus,rachel-carson-reserve,Stilt Sandpiper,Calidris himantopus,calidris-himantopus,1,2,1,0,1210
+rachel-carson-reserve-limnodromus-griseus,rachel-carson-reserve,Short-billed Dowitcher,Limnodromus griseus,limnodromus-griseus,5,5,5,5,5555
+rachel-carson-reserve-limnodromus-scolopaceus,rachel-carson-reserve,Long-billed Dowitcher,Limnodromus scolopaceus,limnodromus-scolopaceus,0,0,1,1,0011
+rachel-carson-reserve-gallinago-delicata,rachel-carson-reserve,Wilson's Snipe,Gallinago delicata,gallinago-delicata,2,0,2,2,2022
+rachel-carson-reserve-scolopax-minor,rachel-carson-reserve,American Woodcock,Scolopax minor,scolopax-minor,0,0,2,2,0022
+rachel-carson-reserve-phalaropus-lobatus,rachel-carson-reserve,Red-necked Phalarope,Phalaropus lobatus,phalaropus-lobatus,1,1,0,0,1100
+rachel-carson-reserve-stercorarius-pomarinus,rachel-carson-reserve,Pomarine Jaeger,Stercorarius pomarinus,stercorarius-pomarinus,1,0,1,0,1010
+rachel-carson-reserve-stercorarius-parasiticus,rachel-carson-reserve,Parasitic Jaeger,Stercorarius parasiticus,stercorarius-parasiticus,1,0,1,0,1010
+rachel-carson-reserve-larus-atricilla,rachel-carson-reserve,Laughing Gull,Larus atricilla,larus-atricilla,5,5,5,3,5553
+rachel-carson-reserve-larus-philadelphia,rachel-carson-reserve,Bonaparte's Gull,Larus philadelphia,larus-philadelphia,4,0,2,4,4024
+rachel-carson-reserve-agelaius-phoeniceus,rachel-carson-reserve,Red-winged Blackbird,Agelaius phoeniceus,agelaius-phoeniceus,5,4,5,5,5455
+rachel-carson-reserve-larus-argentatus,rachel-carson-reserve,Herring Gull,Larus argentatus,larus-argentatus,5,4,5,5,5455
+rachel-carson-reserve-larus-glaucoides,rachel-carson-reserve,Iceland Gull,Larus glaucoides,larus-glaucoides,0,0,0,1,0001
+rachel-carson-reserve-larus-fuscus,rachel-carson-reserve,Lesser Black-backed Gull,Larus fuscus,larus-fuscus,2,0,3,3,2033
+rachel-carson-reserve-larus-hyperboreus,rachel-carson-reserve,Glaucous Gull,Larus hyperboreus,larus-hyperboreus,0,0,0,1,0001
+rachel-carson-reserve-larus-marinus,rachel-carson-reserve,Great Black-backed Gull,Larus marinus,larus-marinus,5,4,5,5,5455
+rachel-carson-reserve-gelochelidon-nilotica,rachel-carson-reserve,Gull-billed Tern,Gelochelidon nilotica,gelochelidon-nilotica,3,3,2,0,3320
+rachel-carson-reserve-hydroprogne-caspia,rachel-carson-reserve,Caspian Tern,Hydroprogne caspia,hydroprogne-caspia,1,3,4,0,1340
+rachel-carson-reserve-thalasseus-maximus,rachel-carson-reserve,Royal Tern,Thalasseus maximus,thalasseus-maximus,5,5,5,3,5553
+rachel-carson-reserve-thalasseus-sandvicensis,rachel-carson-reserve,Sandwich Tern,Thalasseus sandvicensis,thalasseus-sandvicensis,5,5,5,0,5550
+rachel-carson-reserve-sterna-hirundo,rachel-carson-reserve,Common Tern,Sterna hirundo,sterna-hirundo,3,4,2,0,3420
+rachel-carson-reserve-sterna-forsteri,rachel-carson-reserve,Forster's Tern,Sterna forsteri,sterna-forsteri,5,5,5,5,5555
+rachel-carson-reserve-sternula-antillarum,rachel-carson-reserve,Least Tern,Sternula antillarum,sternula-antillarum,4,5,2,0,4520
+rachel-carson-reserve-chlidonias-niger,rachel-carson-reserve,Black Tern,Chlidonias niger,chlidonias-niger,1,3,2,0,1320
+rachel-carson-reserve-rynchops-niger,rachel-carson-reserve,Black Skimmer,Rynchops niger,rynchops-niger,4,5,5,2,4552
+rachel-carson-reserve-aythya-collaris,rachel-carson-reserve,Ring-necked Duck,Aythya collaris,aythya-collaris,4,4,4,4,4444
+rachel-carson-reserve-zenaida-macroura,rachel-carson-reserve,Mourning Dove,Zenaida macroura,zenaida-macroura,5,5,5,3,5553
+rachel-carson-reserve-streptopelia-decaocto,rachel-carson-reserve,Eurasian Collared-Dove,Streptopelia decaocto,streptopelia-decaocto,4,4,4,4,4444
+rachel-carson-reserve-coccyzus-erythropthalmus,rachel-carson-reserve,Black-billed Cuckoo,Coccyzus erythropthalmus,coccyzus-erythropthalmus,0,0,1,0,0010
+rachel-carson-reserve-coccyzus-americanus,rachel-carson-reserve,Yellow-billed Cuckoo,Coccyzus americanus,coccyzus-americanus,2,2,2,0,2220
+rachel-carson-reserve-tyto-alba,rachel-carson-reserve,Barn Owl,Tyto alba,tyto-alba,1,0,1,1,1011
+rachel-carson-reserve-bubo-virginianus,rachel-carson-reserve,Great Horned Owl,Bubo virginianus,bubo-virginianus,3,3,3,3,3333
+rachel-carson-reserve-asio-flammeus,rachel-carson-reserve,Short-eared Owl,Asio flammeus,asio-flammeus,1,0,1,1,1011
+rachel-carson-reserve-chordeiles-minor,rachel-carson-reserve,Common Nighthawk,Chordeiles minor,chordeiles-minor,3,3,2,0,3320
+rachel-carson-reserve-caprimulgus-carolinensis,rachel-carson-reserve,Chuck-will's-widow,Caprimulgus carolinensis,caprimulgus-carolinensis,2,2,0,0,2200
+rachel-carson-reserve-chaetura-pelagica,rachel-carson-reserve,Chimney Swift,Chaetura pelagica,chaetura-pelagica,5,5,3,0,5530
+rachel-carson-reserve-archilochus-colubris,rachel-carson-reserve,Ruby-throated Hummingbird,Archilochus colubris,archilochus-colubris,2,2,2,0,2220
+rachel-carson-reserve-ceryle-alcyon,rachel-carson-reserve,Belted Kingfisher,Ceryle alcyon,ceryle-alcyon,2,2,3,4,2234
+rachel-carson-reserve-loxia-curvirostra,rachel-carson-reserve,Red Crossbill,Loxia curvirostra,loxia-curvirostra,2,0,2,0,2020
+rachel-carson-reserve-melanerpes-carolinus,rachel-carson-reserve,Red-bellied Woodpecker,Melanerpes carolinus,melanerpes-carolinus,3,2,3,3,3233
+rachel-carson-reserve-sphyrapicus-varius,rachel-carson-reserve,Yellow-bellied Sapsucker,Sphyrapicus varius,sphyrapicus-varius,2,0,3,3,2033
+rachel-carson-reserve-picoides-pubescens,rachel-carson-reserve,Downy Woodpecker,Picoides pubescens,picoides-pubescens,2,2,3,3,2233
+rachel-carson-reserve-colaptes-auratus,rachel-carson-reserve,Northern Flicker,Colaptes auratus,colaptes-auratus,3,2,4,5,3245
+rachel-carson-reserve-sayornis-phoebe,rachel-carson-reserve,Eastern Phoebe,Sayornis phoebe,sayornis-phoebe,0,0,3,2,0032
+rachel-carson-reserve-myiarchus-crinitus,rachel-carson-reserve,Great Crested Flycatcher,Myiarchus crinitus,myiarchus-crinitus,4,3,0,0,4300
+rachel-carson-reserve-tyrannus-tyrannus,rachel-carson-reserve,Eastern Kingbird,Tyrannus tyrannus,tyrannus-tyrannus,2,2,3,0,2230
+rachel-carson-reserve-progne-subis,rachel-carson-reserve,Purple Martin,Progne subis,progne-subis,5,5,2,0,5520
+rachel-carson-reserve-tachycineta-bicolor,rachel-carson-reserve,Tree Swallow,Tachycineta bicolor,tachycineta-bicolor,2,0,4,3,2043
+rachel-carson-reserve-cygnus-olor,rachel-carson-reserve,Mute Swan,Cygnus olor,cygnus-olor,3,2,0,0,3200
+rachel-carson-reserve-riparia-riparia,rachel-carson-reserve,Bank Swallow,Riparia riparia,riparia-riparia,2,2,2,0,2220
+rachel-carson-reserve-hirundo-rustica,rachel-carson-reserve,Barn Swallow,Hirundo rustica,hirundo-rustica,5,5,4,0,5540
+rachel-carson-reserve-cyanocitta-cristata,rachel-carson-reserve,Blue Jay,Cyanocitta cristata,cyanocitta-cristata,5,5,5,5,5555
+rachel-carson-reserve-corvus-ossifragus,rachel-carson-reserve,Fish Crow,Corvus ossifragus,corvus-ossifragus,5,5,3,3,5533
+rachel-carson-reserve-poecile-carolinensis,rachel-carson-reserve,Carolina Chickadee,Poecile carolinensis,poecile-carolinensis,5,5,5,5,5555
+rachel-carson-reserve-baeolophus-bicolor,rachel-carson-reserve,Tufted Titmouse,Baeolophus bicolor,baeolophus-bicolor,3,3,3,3,3333
+rachel-carson-reserve-sitta-canadensis,rachel-carson-reserve,Red-breasted Nuthatch,Sitta canadensis,sitta-canadensis,0,0,1,0,0010
+rachel-carson-reserve-thryothorus-ludovicianus,rachel-carson-reserve,Carolina Wren,Thryothorus ludovicianus,thryothorus-ludovicianus,5,5,5,5,5555
+rachel-carson-reserve-troglodytes-aedon,rachel-carson-reserve,House Wren,Troglodytes aedon,troglodytes-aedon,3,0,4,5,3045
+rachel-carson-reserve-troglodytes-troglodytes,rachel-carson-reserve,Winter Wren,Troglodytes troglodytes,troglodytes-troglodytes,0,0,2,2,0022
+rachel-carson-reserve-cistothorus-platensis,rachel-carson-reserve,Sedge Wren,Cistothorus platensis,cistothorus-platensis,3,0,4,5,3045
+rachel-carson-reserve-cistothorus-palustris,rachel-carson-reserve,Marsh Wren,Cistothorus palustris,cistothorus-palustris,3,0,4,4,3044
+rachel-carson-reserve-regulus-satrapa,rachel-carson-reserve,Golden-crowned Kinglet,Regulus satrapa,regulus-satrapa,0,0,2,2,0022
+rachel-carson-reserve-regulus-calendula,rachel-carson-reserve,Ruby-crowned Kinglet,Regulus calendula,regulus-calendula,2,0,4,4,2044
+rachel-carson-reserve-polioptila-caerulea,rachel-carson-reserve,Blue-gray Gnatcatcher,Polioptila caerulea,polioptila-caerulea,2,0,2,0,2020
+rachel-carson-reserve-catharus-guttatus,rachel-carson-reserve,Hermit Thrush,Catharus guttatus,catharus-guttatus,2,0,2,3,2023
+rachel-carson-reserve-turdus-migratorius,rachel-carson-reserve,American Robin,Turdus migratorius,turdus-migratorius,3,0,2,4,3024
+rachel-carson-reserve-dumetella-carolinensis,rachel-carson-reserve,Gray Catbird,Dumetella carolinensis,dumetella-carolinensis,5,5,5,5,5555
+rachel-carson-reserve-mimus-polyglottos,rachel-carson-reserve,Northern Mockingbird,Mimus polyglottos,mimus-polyglottos,5,5,5,5,5555
+rachel-carson-reserve-toxostoma-rufum,rachel-carson-reserve,Brown Thrasher,Toxostoma rufum,toxostoma-rufum,5,5,5,5,5555
+rachel-carson-reserve-anthus-rubescens,rachel-carson-reserve,American Pipit,Anthus rubescens,anthus-rubescens,0,0,2,2,0022
+rachel-carson-reserve-bombycilla-cedrorum,rachel-carson-reserve,Cedar Waxwing,Bombycilla cedrorum,bombycilla-cedrorum,3,0,2,3,3023
+rachel-carson-reserve-sturnus-vulgaris,rachel-carson-reserve,European Starling,Sturnus vulgaris,sturnus-vulgaris,5,5,5,5,5555
+rachel-carson-reserve-vireo-griseus,rachel-carson-reserve,White-eyed Vireo,Vireo griseus,vireo-griseus,2,2,2,0,2220
+rachel-carson-reserve-vireo-olivaceus,rachel-carson-reserve,Red-eyed Vireo,Vireo olivaceus,vireo-olivaceus,0,0,2,0,0020
+rachel-carson-reserve-vermivora-celata,rachel-carson-reserve,Orange-crowned Warbler,Vermivora celata,vermivora-celata,2,0,2,4,2024
+rachel-carson-reserve-parula-americana,rachel-carson-reserve,Northern Parula,Parula americana,parula-americana,0,0,2,0,0020
+rachel-carson-reserve-dendroica-petechia,rachel-carson-reserve,Yellow Warbler,Dendroica petechia,dendroica-petechia,2,2,2,0,2220
+rachel-carson-reserve-dendroica-magnolia,rachel-carson-reserve,Magnolia Warbler,Dendroica magnolia,dendroica-magnolia,0,0,2,0,0020
+rachel-carson-reserve-dendroica-tigrina,rachel-carson-reserve,Cape May Warbler,Dendroica tigrina,dendroica-tigrina,0,0,2,0,0020
+rachel-carson-reserve-dendroica-caerulescens,rachel-carson-reserve,Black-throated Blue Warbler,Dendroica caerulescens,dendroica-caerulescens,0,0,2,0,0020
+rachel-carson-reserve-dendroica-coronata,rachel-carson-reserve,Yellow-rumped Warbler,Dendroica coronata,dendroica-coronata,4,0,4,5,4045
+rachel-carson-reserve-dendroica-pinus,rachel-carson-reserve,Pine Warbler,Dendroica pinus,dendroica-pinus,0,0,2,2,0022
+rachel-carson-reserve-dendroica-discolor,rachel-carson-reserve,Prairie Warbler,Dendroica discolor,dendroica-discolor,2,2,3,0,2230
+rachel-carson-reserve-dendroica-palmarum,rachel-carson-reserve,Palm Warbler,Dendroica palmarum,dendroica-palmarum,2,0,4,3,2043
+rachel-carson-reserve-dendroica-striata,rachel-carson-reserve,Blackpoll Warbler,Dendroica striata,dendroica-striata,2,0,2,0,2020
+rachel-carson-reserve-mniotilta-varia,rachel-carson-reserve,Black-and-white Warbler,Mniotilta varia,mniotilta-varia,0,0,2,0,0020
+rachel-carson-reserve-setophaga-ruticilla,rachel-carson-reserve,American Redstart,Setophaga ruticilla,setophaga-ruticilla,0,2,3,0,0230
+rachel-carson-reserve-protonotaria-citrea,rachel-carson-reserve,Prothonotary Warbler,Protonotaria citrea,protonotaria-citrea,0,1,0,0,0100
+rachel-carson-reserve-seiurus-noveboracensis,rachel-carson-reserve,Northern Waterthrush,Seiurus noveboracensis,seiurus-noveboracensis,0,2,2,0,0220
+rachel-carson-reserve-geothlypis-trichas,rachel-carson-reserve,Common Yellowthroat,Geothlypis trichas,geothlypis-trichas,2,2,4,3,2243
+rachel-carson-reserve-icteria-virens,rachel-carson-reserve,Yellow-breasted Chat,Icteria virens,icteria-virens,2,2,2,0,2220
+rachel-carson-reserve-cardinalis-cardinalis,rachel-carson-reserve,Northern Cardinal,Cardinalis cardinalis,cardinalis-cardinalis,5,5,5,5,5555
+rachel-carson-reserve-passerina-caerulea,rachel-carson-reserve,Blue Grosbeak,Passerina caerulea,passerina-caerulea,2,2,2,0,2220
+rachel-carson-reserve-passerina-cyanea,rachel-carson-reserve,Indigo Bunting,Passerina cyanea,passerina-cyanea,2,2,3,0,2230
+rachel-carson-reserve-passerina-ciris,rachel-carson-reserve,Painted Bunting,Passerina ciris,passerina-ciris,4,3,2,0,4320
+rachel-carson-reserve-bonasa-umbellus,rachel-carson-reserve,Ruffed Grouse,Bonasa umbellus,bonasa-umbellus,5,5,5,5,5555
+rachel-carson-reserve-spizella-passerina,rachel-carson-reserve,Chipping Sparrow,Spizella passerina,spizella-passerina,0,0,2,2,0022
+rachel-carson-reserve-spizella-pusilla,rachel-carson-reserve,Field Sparrow,Spizella pusilla,spizella-pusilla,0,0,2,2,0022
+rachel-carson-reserve-passerina-cyanea,rachel-carson-reserve,Indigo Bunting,Passerina cyanea,passerina-cyanea,2,0,3,3,2033
+rachel-carson-reserve-passerculus-sandwichensis,rachel-carson-reserve,Savannah Sparrow,Passerculus sandwichensis,passerculus-sandwichensis,4,0,4,5,4045
+rachel-carson-reserve-ammodramus-caudacutus,rachel-carson-reserve,Saltmarsh Sharp-tailed Sparrow,Ammodramus caudacutus,ammodramus-caudacutus,4,0,4,5,4045
+rachel-carson-reserve-ammodramus-nelsoni,rachel-carson-reserve,Nelson's Sharp-tailed Sparrow,Ammodramus nelsoni,ammodramus-nelsoni,4,0,5,5,4055
+rachel-carson-reserve-ammodramus-maritimus,rachel-carson-reserve,Seaside Sparrow,Ammodramus maritimus,ammodramus-maritimus,2,2,4,3,2243
+rachel-carson-reserve-passerella-iliaca,rachel-carson-reserve,Fox Sparrow,Passerella iliaca,passerella-iliaca,0,0,0,2,0002
+rachel-carson-reserve-melospiza-melodia,rachel-carson-reserve,Song Sparrow,Melospiza melodia,melospiza-melodia,3,0,4,5,3045
+rachel-carson-reserve-melospiza-georgiana,rachel-carson-reserve,Swamp Sparrow,Melospiza georgiana,melospiza-georgiana,4,0,4,5,4045
+rachel-carson-reserve-zonotrichia-albicollis,rachel-carson-reserve,White-throated Sparrow,Zonotrichia albicollis,zonotrichia-albicollis,4,0,3,4,4034
+rachel-carson-reserve-zonotrichia-leucophrys,rachel-carson-reserve,White-crowned Sparrow,Zonotrichia leucophrys,zonotrichia-leucophrys,0,0,2,0,0020
+rachel-carson-reserve-junco-hyemalis,rachel-carson-reserve,Dark-eyed Junco,Junco hyemalis,junco-hyemalis,0,0,2,2,0022

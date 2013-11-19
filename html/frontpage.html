@@ -1,0 +1,61 @@
+<script type="text/javascript">
+		//detect mobile browser
+	$(document).ready(function() {
+ 		//if (document.cookie.indexOf('fullsite') > -1) {
+		//	return; // skip redirect
+		//}
+		//if (location.search.indexOf('fullsite') > -1) {
+		//	document.cookie = 'fullsite=true; path=/;'
+		//	return; // skip redirect
+		//}
+		//if it is mobile-map, don't redirect!
+		var mobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|opera|smartphone|iemobile|palm/i.test(navigator.userAgent.toLowerCase()));  
+		if (mobile) {
+			//document.location = "/mobile-map";
+			document.location = "http://ncbirdingtrail.appspot.com";
+			//document.cookie = 'fullsite=false; path=
+		};
+	});
+</script>
+<div id="front-page-content">
+<div id="intro" style="display:none;">
+<p>The North Carolina Birding Trail links 300+ bird watching sites and birders with communities, businesses and other local historical and educational attractions.  But it is more than lines on a <a href="/map/">map</a>, and birders do more than <a href="http://www.youtube.com/watch?v=JCBAP2wId5M" target="_blank">seek out rare birds</a>. They help others learn about birds. They help <a href="http://www.ebird.org">scientists collect data</a>. They can have a <a href="/storage/files/EconomicImpactsOfBirdingFactSheet.pdf" target="_blank">positive impact on local economies</a>.  The North Carolina Birding Trail is a network in many ways, for the benefit of all.</p>
+</div>
+<div class="tile-container">
+
+	<div class="frontpage-tile"><h2>Regional Guides</h2>
+
+		<div class="tile-section">
+			<a href="http://www.ncwildstore.com/nbitrgu.html" target="_blank">
+			<div id="guide-container">
+			<img class="book-cover" style="float:left;" src="/storage/img/ncbt_guide_mountains.png" alt="Mountain Guide" title="Mountain Guide"/>
+			<img class="book-cover" style="left:-50px;top:30px;" src="/storage/img/ncbt_guide_piedmont.png" alt="Piedmont Guide" title="Piedmont Guide"/>
+			<img class="book-cover" style="left:80px;top:-135px;" src="/storage/img/ncbt_guide_coast.png" alt="Coastal Guide" title="Coastal Guide"/>
+			</div>
+			</a>
+			<p>Spiral-bound regional <span class="trail-section-highlight">Trail Guides</span></p>
+		</div>
+	</div>
+	<div class="frontpage-tile">
+		<h2>Map</h2>
+		<div class="tile-section">
+			<a href="/map"><img id="map_img" style="text-align:center;" src="/storage/img/map.png" alt="North Carolina Map" title="North Carolina Map"/></a>
+			<p><span class="trail-section-highlight">Map</span> of sites and recent <a href="http://www.ebird.org" target="_blank">eBird</a> sightings</p>
+		</div>
+	</div>
+
+	<div class="frontpage-tile">
+	<h2>Birding and the Local Economy</h2>
+		<div class="tile-section" style="position:relative;float:left;width:130px;">
+			<a href="/business"><img class="tile-img" style="padding-top:30px;height:110px" src="/storage/img/birderfriendlybusiness.png"/></a>
+			<p style="position:relative;top:20px;">Birder-Friendly Business</p>
+		</div>
+		<div class="tile-section" style="position:relative;float:right;width:130px;">
+			<a href="http://nc.audubon.org" target="_blank"><img class="tile-img" style=""src="/storage/img/audubon_nc_60.png" alt="North Carolina Audubon Society" title="North Carolina Audubon Society"/></a>
+			<a href="http://www.carolinabirdclub.org" target="_blank"><img class="tile-img" style="" src="/storage/img/CBCLogo.png" alt="Carolina Bird Club" title="Carolina Bird Club"/></a>
+			<p>Birding & Conservation</p>
+		</div>
+	</div>
+
+</div>
+</div>

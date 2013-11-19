@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"
+ xmlns:gx="http://www.google.com/kml/ext/2.2">
+  <Document>
+		<Style id="pointPSite">
+			<IconStyle>
+				<scale>0.5</scale>
+				<Icon>
+					<href>http://ncbirdingtrail.squarespace.com/storage/img/bhnu_icon_14.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Style id="pointCSite">
+			<IconStyle>
+				<scale>0.5</scale>
+				<Icon>
+					<href>http://ncbirdingtrail.squarespace.com/storage/img/blsk_icon_14.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Style id="pointMSite">
+			<IconStyle>
+				<scale>0.5</scale>
+				<Icon>
+					<href>http://ncbirdingtrail.squarespace.com/storage/img/gwwa_icon_14.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+
+<Placemark><name>Abbey Nature Preserve</name><description>testing</description><Point><coordinates>-77.76555556,34.3211111,0</coordinates></Point></Placemark>
+<Placemark><name>Airlie Gardens</name><description>testing</description><Point><coordinates>-77.82944444,34.215,0</coordinates></Point></Placemark>
+<Placemark><name>Alcoa Game Land and#x2013; Newsom Road</name><description>testing</description><Point><coordinates>-80.19138889,35.53694444,0</coordinates></Point></Placemark>
+<Placemark><name>All American Trail</name><description>testing</description><Point><coordinates>-79.23277778,35.04111111,0</coordinates></Point></Placemark>
+<Placemark><name>Alligator River National Wildlife Refuge</name><description>testing</description><Point><coordinates>-75.86055556,35.86388889,0</coordinates></Point></Placemark>
+<Placemark><name>Anderson Point Park</name><description>testing</description><Point><coordinates>-78.54222222,35.77472222,0</coordinates></Point></Placemark>
+<Placemark><name>Bakers Mountain Park</name><description>testing</description><Point><coordinates>-81.41527778,35.65583333,0</coordinates></Point></Placemark>
+<Placemark><name>Bakersville Creek Walk</name><description>testing</description><Point><coordinates>-82.15777778,36.015,0</coordinates></Point></Placemark>
+<Placemark><name>Bald Head Island</name><description>testing</description><Point><coordinates>-78.00111111,33.87638889,0</coordinates></Point></Placemark>
+<Placemark><name>Bay Tree Lake State Park</name><description>testing</description><Point><coordinates>-78.42916667,34.68388888,0</coordinates></Point></Placemark>
+<Placemark><name>Beaver Lake Bird Sanctuary</name><description>testing</description><Point><coordinates>-82.55666667,35.63361111,0</coordinates></Point></Placemark>
+<Placemark><name>Bennettand#8216;s Millpond</name><description>testing</description><Point><coordinates>-76.66527778,36.13888889,0</coordinates></Point></Placemark>
+<Placemark><name>Big Creek</name><description>testing</description><Point><coordinates>-83.10555556,35.76,0</coordinates></Point></Placemark>
+<Placemark><name>Biltmore Estate</name><description>testing</description><Point><coordinates>-82.55277778,35.56166667,0</coordinates></Point></Placemark>
+<Placemark><name>Black Mountains</name><description>testing</description><Point><coordinates>-82.34416667,35.73444444,0</coordinates></Point></Placemark>
+<Placemark><name>Blue Jay Point County Park</name><description>testing</description><Point><coordinates>-78.64361111,35.96833333,0</coordinates></Point></Placemark>
+<Placemark><name>Boiling Spring Lakes Preserve</name><description>testing</description><Point><coordinates>-78.06388889,34.02277778,0</coordinates></Point></Placemark>
+<Placemark><name>Boone Greenway</name><description>testing</description><Point><coordinates>-81.6525,36.20305556,0</coordinates></Point></Placemark>
+<Placemark><name>Booneand#8216;s Cave Park</name><description>testing</description><Point><coordinates>-80.4675,35.79888889,0</coordinates></Point></Placemark>
+<Placemark><name>Broad River Greenway</name><description>testing</description><Point><coordinates>-81.66083333,35.20527778,0</coordinates></Point></Placemark>
+<Placemark><name>Brunswick Community College</name><description>testing</description><Point><coordinates>-78.22972223,34.03805556,0</coordinates></Point></Placemark>
+<Placemark><name>Brunswick Town and#x2013; Fort Anderson State Historic Site</name><description>testing</description><Point><coordinates>-77.94694443,34.04000001,0</coordinates></Point></Placemark>
+<Placemark><name>Buckeye Lake Recreation Area</name><description>testing</description><Point><coordinates>-81.90472222,36.22,0</coordinates></Point></Placemark>
+<Placemark><name>Bull Creek</name><description>testing</description><Point><coordinates>-82.49083333,35.64805556,0</coordinates></Point></Placemark>
+<Placemark><name>Bur&#45;Mil Park</name><description>testing</description><Point><coordinates>-79.8675,36.16972222,0</coordinates></Point></Placemark>
+<Placemark><name>Cabin Lake County Park</name><description>testing</description><Point><coordinates>-77.78555556,34.98083333,0</coordinates></Point></Placemark>
+<Placemark><name>Calico Creek Boardwalk</name><description>testing</description><Point><coordinates>-76.72916668,34.72666666,0</coordinates></Point></Placemark>
+<Placemark><name>Calloway Forest</name><description>testing</description><Point><coordinates>-79.30972222,35.01222222,0</coordinates></Point></Placemark>
+<Placemark><name>Cane Creek Park</name><description>testing</description><Point><coordinates>-80.68388889,34.84194444,0</coordinates></Point></Placemark>
+<Placemark><name>Cape Fear Botanical Garden</name><description>testing</description><Point><coordinates>-78.85916667,35.05583333,0</coordinates></Point></Placemark>
+<Placemark><name>Cape Fear River Trail</name><description>testing</description><Point><coordinates>-78.87083333,35.08777778,0</coordinates></Point></Placemark>
+<Placemark><name>Cape Hatteras National Seashore and#x2013; Bodie Island</name><description>testing</description><Point><coordinates>-75.56416668,35.81777778,0</coordinates></Point></Placemark>
+<Placemark><name>Cape Hatteras National Seashore and#x2013; Hatteras Island</name><description>testing</description><Point><coordinates>-75.52722223,35.25138889,0</coordinates></Point></Placemark>
+<Placemark><name>Cape Hatteras National Seashore and#x2013; Ocracoke Island</name><description>testing</description><Point><coordinates>-75.90555555,35.13444445,0</coordinates></Point></Placemark>
+<Placemark><name>"Cape Lookout Point, Cape Lookout National Seashore"</name><description>testing</description><Point><coordinates>-76.52444445,34.62277778,0</coordinates></Point></Placemark>
+<Placemark><name>Carl Sandburg Home National Historic Site</name><description>testing</description><Point><coordinates>-82.45277778,35.27277778,0</coordinates></Point></Placemark>
+<Placemark><name>Carolina Beach State Park</name><description>testing</description><Point><coordinates>-77.90694445,34.04694443,0</coordinates></Point></Placemark>
+<Placemark><name>Carolina Raptor Center</name><description>testing</description><Point><coordinates>-80.91777778,35.35083333,0</coordinates></Point></Placemark>
+<Placemark><name>Carvers Creek State Park</name><description>testing</description><Point><coordinates>-78.88666667,35.17305556,0</coordinates></Point></Placemark>
+<Placemark><name>Cashie Wetlands Walk</name><description>testing</description><Point><coordinates>-76.94527779,35.99972222,0</coordinates></Point></Placemark>
+<Placemark><name>Caswell Game Land</name><description>testing</description><Point><coordinates>-79.34361111,36.3575,0</coordinates></Point></Placemark>
+<Placemark><name>Catawba College Ecological Preserve</name><description>testing</description><Point><coordinates>-80.48055556,35.68944444,0</coordinates></Point></Placemark>
+<Placemark><name>Catawba River and Freedom Trail Greenways</name><description>testing</description><Point><coordinates>-81.71805556,35.74027778,0</coordinates></Point></Placemark>
+<Placemark><name>Catherine Creek/Warwick Creek Paddle Trail</name><description>testing</description><Point><coordinates>-76.65666666,36.31388889,0</coordinates></Point></Placemark>
+<Placemark><name>Cedar Island National Wildlife Refuge</name><description>testing</description><Point><coordinates>-76.2775,34.95499999,0</coordinates></Point></Placemark>
+<Placemark><name>Cedar Point Tideland Trail</name><description>testing</description><Point><coordinates>-77.0863889,34.69166667,0</coordinates></Point></Placemark>
+<Placemark><name>Cedarock Park</name><description>testing</description><Point><coordinates>-79.44638889,35.98388889,0</coordinates></Point></Placemark>
+<Placemark><name>Charles D. Owen Park</name><description>testing</description><Point><coordinates>-82.42944444,35.61,0</coordinates></Point></Placemark>
+<Placemark><name>Cherohala Skyway</name><description>testing</description><Point><coordinates>-83.89333333,35.345,0</coordinates></Point></Placemark>
+<Placemark><name>Cherry Branch and#x2013; Minnesott Ferry</name><description>testing</description><Point><coordinates>-76.81111111,34.93499999,0</coordinates></Point></Placemark>
+<Placemark><name>Chimney Rock State Park</name><description>testing</description><Point><coordinates>-82.24944444,35.43222222,0</coordinates></Point></Placemark>
+<Placemark><name>Chinqua&#45;Penn Walking Trail</name><description>testing</description><Point><coordinates>-79.70083333,36.38277778,0</coordinates></Point></Placemark>
+<Placemark><name>Clemmons Educational State Forest</name><description>testing</description><Point><coordinates>-78.48722222,35.67944444,0</coordinates></Point></Placemark>
+<Placemark><name>Cliffs of the Neuse State Park</name><description>testing</description><Point><coordinates>-77.88472223,35.23972222,0</coordinates></Point></Placemark>
+<Placemark><name>Contentnea Creek Paddle Trail</name><description>testing</description><Point><coordinates>-77.49777777,35.41277777,0</coordinates></Point></Placemark>
+<Placemark><name>Cottages at Spring House Farm</name><description>testing</description><Point><coordinates>-82.08916667,35.54194444,0</coordinates></Point></Placemark>
+<Placemark><name>Cowanand#8216;s Ford Wildlife Refuge</name><description>testing</description><Point><coordinates>-80.96138889,35.38138889,0</coordinates></Point></Placemark>
+<Placemark><name>Crabtree Meadows</name><description>testing</description><Point><coordinates>-82.14277778,35.81222222,0</coordinates></Point></Placemark>
+<Placemark><name>Craggy Gardens</name><description>testing</description><Point><coordinates>-82.39861111,35.69805556,0</coordinates></Point></Placemark>
+<Placemark><name>Croatan National Forest and#x2013; Island Creek Forest Walk</name><description>testing</description><Point><coordinates>-77.13555557,35.02694444,0</coordinates></Point></Placemark>
+<Placemark><name>Croatan National Forest and#x2013; Millis and Pringle Roads</name><description>testing</description><Point><coordinates>-76.93055556,34.77111111,0</coordinates></Point></Placemark>
+<Placemark><name>Croatan National Forest and#x2013; Neusiok Trail</name><description>testing</description><Point><coordinates>-76.82166666,34.93861111,0</coordinates></Point></Placemark>
+<Placemark><name>Crowders Mountain State Park</name><description>testing</description><Point><coordinates>-81.29361111,35.21333333,0</coordinates></Point></Placemark>
+<Placemark><name>CSS Neuse State Historic Site</name><description>testing</description><Point><coordinates>-77.62138889,35.26666667,0</coordinates></Point></Placemark>
+<Placemark><name>Cumberland Knob</name><description>testing</description><Point><coordinates>-80.90861111,36.55305556,0</coordinates></Point></Placemark>
+<Placemark><name>Currituck Banks National Estuarine Research Reserve</name><description>testing</description><Point><coordinates>-75.83055556,36.38888888,0</coordinates></Point></Placemark>
+<Placemark><name>Currituck National Wildlife Refuge</name><description>testing</description><Point><coordinates>-75.83055556,36.38888888,0</coordinates></Point></Placemark>
+<Placemark><name>Dan Nicholas Park</name><description>testing</description><Point><coordinates>-80.35638889,35.63222222,0</coordinates></Point></Placemark>
+<Placemark><name>Dan River</name><description>testing</description><Point><coordinates>-79.75,36.47472222,0</coordinates></Point></Placemark>
+<Placemark><name>Davidson River</name><description>testing</description><Point><coordinates>-82.72722222,35.28472222,0</coordinates></Point></Placemark>
+<Placemark><name>Deviland#8216;s Courthouse</name><description>testing</description><Point><coordinates>-82.89944444,35.305,0</coordinates></Point></Placemark>
+<Placemark><name>Dismal Swamp Canal Trail</name><description>testing</description><Point><coordinates>-76.35472222,36.50694445,0</coordinates></Point></Placemark>
+<Placemark><name>Dismal Swamp State Park</name><description>testing</description><Point><coordinates>-76.35472222,36.50694445,0</coordinates></Point></Placemark>
+<Placemark><name>Doughton Park</name><description>testing</description><Point><coordinates>-81.17722222,36.43361111,0</coordinates></Point></Placemark>
+<Placemark><name>Duke Forest</name><description>testing</description><Point><coordinates>-79.02888889,35.97777778,0</coordinates></Point></Placemark>
+<Placemark><name>Dunn Erwin Trail</name><description>testing</description><Point><coordinates>-78.63055556,35.32638889,0</coordinates></Point></Placemark>
+<Placemark><name>Dunnand#8216;s Mountain History and Nature Preserve</name><description>testing</description><Point><coordinates>-80.42527778,35.62555556,0</coordinates></Point></Placemark>
+<Placemark><name>DuPont State Forest</name><description>testing</description><Point><coordinates>-82.62277778,35.19111111,0</coordinates></Point></Placemark>
+<Placemark><name>Durant Nature Park</name><description>testing</description><Point><coordinates>-78.57861111,35.89472222,0</coordinates></Point></Placemark>
+<Placemark><name>E.B. Jeffress Park</name><description>testing</description><Point><coordinates>-81.45805556,36.24611111,0</coordinates></Point></Placemark>
+<Placemark><name>Eagle Point Nature Preserve</name><description>testing</description><Point><coordinates>-80.26666667,35.60388889,0</coordinates></Point></Placemark>
+<Placemark><name>Eastern 4&#45;H Environmental Education Conference Center</name><description>testing</description><Point><coordinates>-76.35666666,35.93555556,0</coordinates></Point></Placemark>
+<Placemark><name>Eastern 4&#45;H Environmental Education Conference Center</name><description>testing</description><Point><coordinates>-76.35666666,35.93555556,0</coordinates></Point></Placemark>
+<Placemark><name>Edenton National Fish Hatchery</name><description>testing</description><Point><coordinates>-76.63694443,36.05694444,0</coordinates></Point></Placemark>
+<Placemark><name>Elk Knob State Park</name><description>testing</description><Point><coordinates>-81.68944444,36.3325,0</coordinates></Point></Placemark>
+<Placemark><name>Emerald Isle Woods</name><description>testing</description><Point><coordinates>-77.06805557,34.65861112,0</coordinates></Point></Placemark>
+<Placemark><name>Eno River State Park</name><description>testing</description><Point><coordinates>-79.00694444,36.078,0</coordinates></Point></Placemark>
+<Placemark><name>Ev&#45;Henwood Nature Preserve</name><description>testing</description><Point><coordinates>-78.11555556,34.16916666,0</coordinates></Point></Placemark>
+<Placemark><name>Falls Lake State Recreation Area and#x2013; Beaverdam Reservoir</name><description>testing</description><Point><coordinates>-78.68361111,36.04222222,0</coordinates></Point></Placemark>
+<Placemark><name>Falls Lake State Recreation Area and#x2013; Holly Point / Shinleaf</name><description>testing</description><Point><coordinates>-78.65555556,35.99472222,0</coordinates></Point></Placemark>
+<Placemark><name>Falls Lake State Recreation Area &#45; Rollingview</name><description>testing</description><Point><coordinates>-78.72777778,36.02277778,0</coordinates></Point></Placemark>
+<Placemark><name>Falls Lake State Recreation Area and#x2013; Sandling Beach</name><description>testing</description><Point><coordinates>-78.71083333,36.03916667,0</coordinates></Point></Placemark>
+<Placemark><name>Falls Lake State Recreation Area and#x2013; Woodpecker Ridge</name><description>testing</description><Point><coordinates>-78.69527778,36.02333333,0</coordinates></Point></Placemark>
+<Placemark><name>Falls Lake Trail</name><description>testing</description><Point><coordinates>-78.582,35.942,0</coordinates></Point></Placemark>
+<Placemark><name>Ferguson Fields (Kituwah Farm)</name><description>testing</description><Point><coordinates>-83.4025,35.43888889,0</coordinates></Point></Placemark>
+<Placemark><name>Fires Creek Picnic Area</name><description>testing</description><Point><coordinates>-83.85861111,35.09583333,0</coordinates></Point></Placemark>
+<Placemark><name>Fontana Village</name><description>testing</description><Point><coordinates>-83.82194444,35.43277778,0</coordinates></Point></Placemark>
+<Placemark><name>Foothills Equestrian Nature Center</name><description>testing</description><Point><coordinates>-82.17472222,35.20055556,0</coordinates></Point></Placemark>
+<Placemark><name>Fort Fisher State Historic Site</name><description>testing</description><Point><coordinates>-77.9175,33.97166668,0</coordinates></Point></Placemark>
+<Placemark><name>Fort Fisher State Recreation Area</name><description>testing</description><Point><coordinates>-77.9225,33.96444444,0</coordinates></Point></Placemark>
+<Placemark><name>Fort Macon State Park</name><description>testing</description><Point><coordinates>-76.67777778,34.69694444,0</coordinates></Point></Placemark>
+<Placemark><name>Frank Liske Park</name><description>testing</description><Point><coordinates>-80.6225,35.36305556,0</coordinates></Point></Placemark>
+<Placemark><name>Franklin County Nature Preserve</name><description>testing</description><Point><coordinates>-78.35388889,36.02388889,0</coordinates></Point></Placemark>
+<Placemark><name>Freedom Park and Charlotte Nature Museum</name><description>testing</description><Point><coordinates>-80.8425,35.1925,0</coordinates></Point></Placemark>
+<Placemark><name>French Broad River Greenway</name><description>testing</description><Point><coordinates>-82.56416667,35.56916667,0</coordinates></Point></Placemark>
+<Placemark><name>"Glenn C. Hilton, Jr. Memorial Park"</name><description>testing</description><Point><coordinates>-81.35555556,35.76194444,0</coordinates></Point></Placemark>
+<Placemark><name>Goose Creek Game Land and#x2013; Spring Creek Impoundment en</name><description>testing</description><Point><coordinates>-76.61722001,35.26722001,0</coordinates></Point></Placemark>
+<Placemark><name>Goose Creek State Park</name><description>testing</description><Point><coordinates>-76.90249999,35.47833334,0</coordinates></Point></Placemark>
+<Placemark><name>Gorges State Park</name><description>testing</description><Point><coordinates>-82.95916667,35.10083333,0</coordinates></Point></Placemark>
+<Placemark><name>Grandfather Mountain</name><description>testing</description><Point><coordinates>-81.83166667,36.09583333,0</coordinates></Point></Placemark>
+<Placemark><name>Green River Game Land</name><description>testing</description><Point><coordinates>-82.32472222,35.29111111,0</coordinates></Point></Placemark>
+<Placemark><name>Green Swamp Preserve</name><description>testing</description><Point><coordinates>-78.29916666,34.09277778,0</coordinates></Point></Placemark>
+<Placemark><name>Green Valley Park</name><description>testing</description><Point><coordinates>-81.61138889,36.28777778,0</coordinates></Point></Placemark>
+<Placemark><name>Greenfield Park</name><description>testing</description><Point><coordinates>-77.9438889,34.21416666,0</coordinates></Point></Placemark>
+<Placemark><name>Guilford Courthouse National Military Park</name><description>testing</description><Point><coordinates>-79.84638889,36.13111111,0</coordinates></Point></Placemark>
+<Placemark><name>Gull Rock Game Land</name><description>testing</description><Point><coordinates>-76.11222222,35.37805556,0</coordinates></Point></Placemark>
+<Placemark><name>Hammocks Beach State Park and#x2013; Bear Island and Huggins Island</name><description>testing</description><Point><coordinates>-77.14305557,34.67083333,0</coordinates></Point></Placemark>
+<Placemark><name>Hanging Rock State Park</name><description>testing</description><Point><coordinates>-80.26638889,36.395,0</coordinates></Point></Placemark>
+<Placemark><name>Harkers Island Nature Trail</name><description>testing</description><Point><coordinates>-76.52722222,34.68527779,0</coordinates></Point></Placemark>
+<Placemark><name>Harris Lake County Park</name><description>testing</description><Point><coordinates>-78.92583333,35.62138889,0</coordinates></Point></Placemark>
+<Placemark><name>Haw River State Park</name><description>testing</description><Point><coordinates>-79.75666667,36.25,0</coordinates></Point></Placemark>
+<Placemark><name>Haw River Trail and#x2013; Glencoe Access</name><description>testing</description><Point><coordinates>-79.42694444,36.13666667,0</coordinates></Point></Placemark>
+<Placemark><name>Heintooga Spur Road</name><description>testing</description><Point><coordinates>-83.17944444,35.5725,0</coordinates></Point></Placemark>
+<Placemark><name>Hemlock Bluffs Nature Preserve</name><description>testing</description><Point><coordinates>-78.78333333,35.73333333,0</coordinates></Point></Placemark>
+<Placemark><name>Hickory City Park&#45;Geitner Park Greenway</name><description>testing</description><Point><coordinates>-81.36861111,35.75722222,0</coordinates></Point></Placemark>
+<Placemark><name>High Ridge Gardens</name><description>testing</description><Point><coordinates>-80.30694444,34.93388889,0</coordinates></Point></Placemark>
+<Placemark><name>Highlands Nature Center</name><description>testing</description><Point><coordinates>-83.18805556,35.05222222,0</coordinates></Point></Placemark>
+<Placemark><name>Hill Forest</name><description>testing</description><Point><coordinates>-78.89527778,36.19916667,0</coordinates></Point></Placemark>
+<Placemark><name>Hinson Lake</name><description>testing</description><Point><coordinates>-79.75027778,34.93861111,0</coordinates></Point></Placemark>
+<Placemark><name>Historic Bethabara Park</name><description>testing</description><Point><coordinates>-80.29611111,36.15472222,0</coordinates></Point></Placemark>
+<Placemark><name>Historic Hope Plantation</name><description>testing</description><Point><coordinates>-77.01750001,36.03333333,0</coordinates></Point></Placemark>
+<Placemark><name>Historic Orchard at Altapass</name><description>testing</description><Point><coordinates>-82.02444444,35.87861111,0</coordinates></Point></Placemark>
+<Placemark><name>Historic Yates Mill County Park</name><description>testing</description><Point><coordinates>-78.68722222,35.72027778,0</coordinates></Point></Placemark>
+<Placemark><name>Holly Shelter Game Land and#x2013; Greentree Impoundment</name><description>testing</description><Point><coordinates>-77.81611112,34.54861112,0</coordinates></Point></Placemark>
+<Placemark><name>Holly Shelter Game Land and#x2013; Southeast Gate</name><description>testing</description><Point><coordinates>-77.65722222,34.40944443,0</coordinates></Point></Placemark>
+<Placemark><name>Hoop Pole Creek Natural Area</name><description>testing</description><Point><coordinates>-76.75194443,34.70111111,0</coordinates></Point></Placemark>
+<Placemark><name>Howell Woods Environmental Learning Center</name><description>testing</description><Point><coordinates>-78.30583001,35.37056,0</coordinates></Point></Placemark>
+<Placemark><name>Indian Trail Park &#45; West Ellerbe Creek Trail/17 Acre Wood Preserve</name><description>testing</description><Point><coordinates>-78.92916667,36.02444444,0</coordinates></Point></Placemark>
+<Placemark><name>Inn on Mill Creek</name><description>testing</description><Point><coordinates>-82.25583333,35.64277778,0</coordinates></Point></Placemark>
+<Placemark><name>J. Bayard Clark Park</name><description>testing</description><Point><coordinates>-78.87083333,35.08777778,0</coordinates></Point></Placemark>
+<Placemark><name>Jackson Farm</name><description>testing</description><Point><coordinates>-78.53416668,35.1463889,0</coordinates></Point></Placemark>
+<Placemark><name>Jackson Park</name><description>testing</description><Point><coordinates>-82.44638889,35.31833333,0</coordinates></Point></Placemark>
+<Placemark><name>Jockeyand#8216;s Ridge State Park</name><description>testing</description><Point><coordinates>-75.6325,35.96416667,0</coordinates></Point></Placemark>
+<Placemark><name>John C. Campbell Folk School</name><description>testing</description><Point><coordinates>-83.96361111,35.03916667,0</coordinates></Point></Placemark>
+<Placemark><name>Johnston Mill Nature Preserve</name><description>testing</description><Point><coordinates>-79.05416667,35.99527778,0</coordinates></Point></Placemark>
+<Placemark><name>Jones Lake State Park</name><description>testing</description><Point><coordinates>-78.59555557,34.68166667,0</coordinates></Point></Placemark>
+<Placemark><name>Jordan Lake Educational State Forest</name><description>testing</description><Point><coordinates>-79.04166667,35.77388889,0</coordinates></Point></Placemark>
+<Placemark><name>Jordan Lake State Recreation Area and#x2013; Ebenezer Church</name><description>testing</description><Point><coordinates>-79.02638889,35.70777778,0</coordinates></Point></Placemark>
+<Placemark><name>Jordan Lake State Recreation Area and#x2013; New Hope</name><description>testing</description><Point><coordinates>-79.04777778,35.68222222,0</coordinates></Point></Placemark>
+<Placemark><name>Jordan Lake State Recreation Area and#x2013; Parkers Creek</name><description>testing</description><Point><coordinates>-79.04194444,35.74416667,0</coordinates></Point></Placemark>
+<Placemark><name>Jordan Lake State Recreation Area and#x2013; Seaforth</name><description>testing</description><Point><coordinates>-79.035,35.72611111,0</coordinates></Point></Placemark>
+<Placemark><name>Jordan Lake State Recreation Area and#x2013; Vista Point</name><description>testing</description><Point><coordinates>-79.04833333,35.70388889,0</coordinates></Point></Placemark>
+<Placemark><name>Joyce Kilmer Memorial Forest</name><description>testing</description><Point><coordinates>-83.92888889,35.35916667,0</coordinates></Point></Placemark>
+<Placemark><name>Julian Price Memorial Park</name><description>testing</description><Point><coordinates>-81.73638889,36.13861111,0</coordinates></Point></Placemark>
+<Placemark><name>Kerr Lake State Recreation Area &#45; Bullocksville</name><description>testing</description><Point><coordinates>-78.36472222,36.45833333,0</coordinates></Point></Placemark>
+<Placemark><name>Kerr Lake State Recreation Area and#x2013; County Line</name><description>testing</description><Point><coordinates>-78.32027778,36.51944444,0</coordinates></Point></Placemark>
+<Placemark><name>Kerr Lake State Recreation Area and#x2013; Henderson Point</name><description>testing</description><Point><coordinates>-78.34555556,36.53472222,0</coordinates></Point></Placemark>
+<Placemark><name>Kerr Lake State Recreation Area &#45; Hibernia</name><description>testing</description><Point><coordinates>-78.37472222,36.51055556,0</coordinates></Point></Placemark>
+<Placemark><name>Kerr Lake State Recreation Area and#x2013; Kimball Point</name><description>testing</description><Point><coordinates>-78.31666667,36.53888889,0</coordinates></Point></Placemark>
+<Placemark><name>Kerr Lake State Recreation Area &#45; Nutbush</name><description>testing</description><Point><coordinates>-78.395,36.41277778,0</coordinates></Point></Placemark>
+<Placemark><name>Kerr Lake State Recreation Area and#x2013; Satterwhite Point</name><description>testing</description><Point><coordinates>-78.37166667,36.44694444,0</coordinates></Point></Placemark>
+<Placemark><name>Lake Benson Park</name><description>testing</description><Point><coordinates>-78.62861111,35.67138889,0</coordinates></Point></Placemark>
+<Placemark><name>Lake Crabtree County Park</name><description>testing</description><Point><coordinates>-78.79527778,35.84166667,0</coordinates></Point></Placemark>
+<Placemark><name>Lake James State Park</name><description>testing</description><Point><coordinates>-81.90305556,35.73166667,0</coordinates></Point></Placemark>
+<Placemark><name>Lake Johnson Park</name><description>testing</description><Point><coordinates>-78.71555556,35.76222222,0</coordinates></Point></Placemark>
+<Placemark><name>Lake Junaluska</name><description>testing</description><Point><coordinates>-82.98166667,35.52361111,0</coordinates></Point></Placemark>
+<Placemark><name>Lake Norman State Park</name><description>testing</description><Point><coordinates>-80.94611111,35.65,0</coordinates></Point></Placemark>
+<Placemark><name>Lake Reidsville Recreational Park</name><description>testing</description><Point><coordinates>-79.68194444,36.29277778,0</coordinates></Point></Placemark>
+<Placemark><name>Lake Waccamaw State Park</name><description>testing</description><Point><coordinates>-78.46555557,34.27805556,0</coordinates></Point></Placemark>
+<Placemark><name>Lake Wheeler</name><description>testing</description><Point><coordinates>-78.69277778,35.69611111,0</coordinates></Point></Placemark>
+<Placemark><name>Lakeside Park</name><description>testing</description><Point><coordinates>-81.44055556,35.78638889,0</coordinates></Point></Placemark>
+<Placemark><name>Latta Plantation Nature Preserve</name><description>testing</description><Point><coordinates>-80.90888889,35.35583333,0</coordinates></Point></Placemark>
+<Placemark><name>Lenoir Greenway</name><description>testing</description><Point><coordinates>-81.5225,35.92194444,0</coordinates></Point></Placemark>
+<Placemark><name>Lewis Fork Overlook</name><description>testing</description><Point><coordinates>-81.44055556,36.26194444,0</coordinates></Point></Placemark>
+<Placemark><name>Linville Falls</name><description>testing</description><Point><coordinates>-81.92805556,35.95527778,0</coordinates></Point></Placemark>
+<Placemark><name>Little River Regional Park and Natural Area</name><description>testing</description><Point><coordinates>-78.975,36.16166667,0</coordinates></Point></Placemark>
+<Placemark><name>Little Tennessee River Greenway</name><description>testing</description><Point><coordinates>-83.37083333,35.18388889,0</coordinates></Point></Placemark>
+<Placemark><name>Lower McAlpine and McMullen Creek Greenway</name><description>testing</description><Point><coordinates>-80.85694445,35.08722222,0</coordinates></Point></Placemark>
+<Placemark><name>Lumber River State Park</name><description>testing</description><Point><coordinates>-79.35444444,34.92611111,0</coordinates></Point></Placemark>
+<Placemark><name>Lumber River State Park and#x2013; Chalk Banks and upper sections</name><description>testing</description><Point><coordinates>-79.35444444,34.92611111,0</coordinates></Point></Placemark>
+<Placemark><name>Mackay Island National Wildlife Refuge</name><description>testing</description><Point><coordinates>-75.99027779,36.52777779,0</coordinates></Point></Placemark>
+<Placemark><name>Mahogany Rock</name><description>testing</description><Point><coordinates>-81.09527778,36.44111111,0</coordinates></Point></Placemark>
+<Placemark><name>Mallard and Clarkand#8216;s Creek Greenway</name><description>testing</description><Point><coordinates>-80.77333333,35.33472222,0</coordinates></Point></Placemark>
+<Placemark><name>Mason Farm Biological Reserve</name><description>testing</description><Point><coordinates>-79.01638889,35.89222222,0</coordinates></Point></Placemark>
+<Placemark><name>Mason Inlet Waterbird Management Area</name><description>testing</description><Point><coordinates>-77.7761111,34.23472223,0</coordinates></Point></Placemark>
+<Placemark><name>Masonboro Island National Estuarine Research Reserve</name><description>testing</description><Point><coordinates>-77.84305557,34.16583333,0</coordinates></Point></Placemark>
+<Placemark><name>Mattamuskeet National Wildlife Refure</name><description>testing</description><Point><coordinates>-76.17722222,35.45194444,0</coordinates></Point></Placemark>
+<Placemark><name>Max Patch</name><description>testing</description><Point><coordinates>-82.9625,35.79388889,0</coordinates></Point></Placemark>
+<Placemark><name>Mayo Park</name><description>testing</description><Point><coordinates>-78.86777778,36.48138889,0</coordinates></Point></Placemark>
+<Placemark><name>McAlpine Creek and Campbell Creek Greenways</name><description>testing</description><Point><coordinates>-80.74444444,35.15055556,0</coordinates></Point></Placemark>
+<Placemark><name>McDowell Nature Preserve</name><description>testing</description><Point><coordinates>-81.02388889,35.09444444,0</coordinates></Point></Placemark>
+<Placemark><name>Meat Camp Creek Environmental Studies Area</name><description>testing</description><Point><coordinates>-81.62861111,36.26388889,0</coordinates></Point></Placemark>
+<Placemark><name>Medoc Mountain State Park</name><description>testing</description><Point><coordinates>-77.8875,36.26472222,0</coordinates></Point></Placemark>
+<Placemark><name>Merchants Millpond State Park</name><description>testing</description><Point><coordinates>-76.69805555,36.41694444,0</coordinates></Point></Placemark>
+<Placemark><name>Mill Creek Paddle Trail</name><description>testing</description><Point><coordinates>-76.47083333,36.19,0</coordinates></Point></Placemark>
+<Placemark><name>Miller Park</name><description>testing</description><Point><coordinates>-80.28444444,36.08694444,0</coordinates></Point></Placemark>
+<Placemark><name>Mingo Falls</name><description>testing</description><Point><coordinates>-83.27638889,35.53416667,0</coordinates></Point></Placemark>
+<Placemark><name>Moores Creek National Battlefield</name><description>testing</description><Point><coordinates>-78.10944443,34.4575,0</coordinates></Point></Placemark>
+<Placemark><name>Morningstar Nature Refuge</name><description>testing</description><Point><coordinates>-77.02361111,35.75166667,0</coordinates></Point></Placemark>
+<Placemark><name>Morrow Mountain State Park</name><description>testing</description><Point><coordinates>-80.07305556,35.37333333,0</coordinates></Point></Placemark>
+<Placemark><name>Moses H. Cone Memorial Park</name><description>testing</description><Point><coordinates>-81.69166667,36.15111111,0</coordinates></Point></Placemark>
+<Placemark><name>Mount Ida Nature Preserve</name><description>testing</description><Point><coordinates>-81.98916667,35.67138889,0</coordinates></Point></Placemark>
+<Placemark><name>Mount Jefferson State Natural Area</name><description>testing</description><Point><coordinates>-81.48138889,36.39777778,0</coordinates></Point></Placemark>
+<Placemark><name>Mount Mitchell State Park</name><description>testing</description><Point><coordinates>-82.26472222,35.76666667,0</coordinates></Point></Placemark>
+<Placemark><name>Mountain Gateway Museum</name><description>testing</description><Point><coordinates>-82.18055556,35.62777778,0</coordinates></Point></Placemark>
+<Placemark><name>NC Aquarium at Fort Fisher</name><description>testing</description><Point><coordinates>-77.92694444,33.96277777,0</coordinates></Point></Placemark>
+<Placemark><name>NC Aquarium at Pine Knoll Shores and T. Roosevelt State Natural Area</name><description>testing</description><Point><coordinates>-76.82888888,34.69916667,0</coordinates></Point></Placemark>
+<Placemark><name>NC Zoological Park</name><description>testing</description><Point><coordinates>-79.76611111,35.63027778,0</coordinates></Point></Placemark>
+<Placemark><name>Needmore Game Land</name><description>testing</description><Point><coordinates>-83.5225,35.32583333,0</coordinates></Point></Placemark>
+<Placemark><name>New River State Park</name><description>testing</description><Point><coordinates>-81.33694444,36.45611111,0</coordinates></Point></Placemark>
+<Placemark><name>Newell Farms</name><description>testing</description><Point><coordinates>-78.17277778,36.38472222,0</coordinates></Point></Placemark>
+<Placemark><name>Norman Wilder Forest</name><description>testing</description><Point><coordinates>-82.27388889,35.22444444,0</coordinates></Point></Placemark>
+<Placemark><name>North Carolina Arboretum</name><description>testing</description><Point><coordinates>-82.60888889,35.49805556,0</coordinates></Point></Placemark>
+<Placemark><name>North Mills River</name><description>testing</description><Point><coordinates>-82.64194444,35.40555556,0</coordinates></Point></Placemark>
+<Placemark><name>North River Game Land</name><description>testing</description><Point><coordinates>-76.02944001,36.26972,0</coordinates></Point></Placemark>
+<Placemark><name>Northampton County Nature Trail</name><description>testing</description><Point><coordinates>-77.43583334,36.41388888,0</coordinates></Point></Placemark>
+<Placemark><name>Occoneechee Mountain State Natural Area</name><description>testing</description><Point><coordinates>-79.11694444,36.06055556,0</coordinates></Point></Placemark>
+<Placemark><name>Oconaluftee Indian Village Botanical Garden</name><description>testing</description><Point><coordinates>-83.32305556,35.48722222,0</coordinates></Point></Placemark>
+<Placemark><name>Oconaluftee Island Park</name><description>testing</description><Point><coordinates>-83.32027778,35.47916667,0</coordinates></Point></Placemark>
+<Placemark><name>Oconaluftee Visitor Center</name><description>testing</description><Point><coordinates>-83.30611111,35.51388889,0</coordinates></Point></Placemark>
+<Placemark><name>Onslow County Cow Horn and#x2013; New River Paddle Trail</name><description>testing</description><Point><coordinates>-77.5125,34.89416667,0</coordinates></Point></Placemark>
+<Placemark><name>Onslow County Public Beach Access #2</name><description>testing</description><Point><coordinates>-77.485,34.46083333,0</coordinates></Point></Placemark>
+<Placemark><name>Orton Plantation Gardens</name><description>testing</description><Point><coordinates>-77.94888888,34.04527779,0</coordinates></Point></Placemark>
+<Placemark><name>Outer Banks Center for Wildlife Education</name><description>testing</description><Point><coordinates>-75.83055556,36.37472222,0</coordinates></Point></Placemark>
+<Placemark><name>Padgett Poplar Tree Trail</name><description>testing</description><Point><coordinates>-83.17583333,35.04472222,0</coordinates></Point></Placemark>
+<Placemark><name>Palmetto&#45;Peartree Preserve</name><description>testing</description><Point><coordinates>-76.13416666,35.98805555,0</coordinates></Point></Placemark>
+<Placemark><name>Patsy Pond Nature Trail</name><description>testing</description><Point><coordinates>-76.96361111,34.71861111,0</coordinates></Point></Placemark>
+<Placemark><name>Pea Island National Wildlife Refuge</name><description>testing</description><Point><coordinates>-75.49361112,35.7161111,0</coordinates></Point></Placemark>
+<Placemark><name>Pearsonand#8216;s Falls</name><description>testing</description><Point><coordinates>-82.33583333,35.215,0</coordinates></Point></Placemark>
+<Placemark><name>Pee Dee Game Land and#x2013; Blewett Falls</name><description>testing</description><Point><coordinates>-79.87666667,34.99083333,0</coordinates></Point></Placemark>
+<Placemark><name>Pee Dee National Wildlife Refuge</name><description>testing</description><Point><coordinates>-80.09361111,35.0575,0</coordinates></Point></Placemark>
+<Placemark><name>Pettigrew State Park</name><description>testing</description><Point><coordinates>-76.40638889,35.79055555,0</coordinates></Point></Placemark>
+<Placemark><name>Pettigrew State Park</name><description>testing</description><Point><coordinates>-76.40638889,35.79055555,0</coordinates></Point></Placemark>
+<Placemark><name>Piedmont Environmental Centerl of High Point</name><description>testing</description><Point><coordinates>-79.95416667,36.00388889,0</coordinates></Point></Placemark>
+<Placemark><name>Pilot Mountain State Park</name><description>testing</description><Point><coordinates>-80.48,36.34027778,0</coordinates></Point></Placemark>
+<Placemark><name>Pink Beds</name><description>testing</description><Point><coordinates>-82.77944444,35.35305556,0</coordinates></Point></Placemark>
+<Placemark><name>Pisgah Center for Wildlife Education</name><description>testing</description><Point><coordinates>-82.79166667,35.28416667,0</coordinates></Point></Placemark>
+<Placemark><name>Pisgah Ridge</name><description>testing</description><Point><coordinates>-82.75416667,35.40083333,0</coordinates></Point></Placemark>
+<Placemark><name>Pocosin Lakes National Wildlife Refuge</name><description>testing</description><Point><coordinates>-76.52666667,35.77305556,0</coordinates></Point></Placemark>
+<Placemark><name>Pocosin Lakes National Wildlife Refuge</name><description>testing</description><Point><coordinates>-76.52666667,35.77305556,0</coordinates></Point></Placemark>
+<Placemark><name>Prairie Ridge Ecostation for Wildlife and Learning</name><description>testing</description><Point><coordinates>-78.71333333,35.81166667,0</coordinates></Point></Placemark>
+<Placemark><name>Queen Branch</name><description>testing</description><Point><coordinates>-83.46694444,35.28361111,0</coordinates></Point></Placemark>
+<Placemark><name>Rachel Carson National Estuarine Research Reserve</name><description>testing</description><Point><coordinates>-76.66777778,34.71472223,0</coordinates></Point></Placemark>
+<Placemark><name>Raft Swamp Farms</name><description>testing</description><Point><coordinates>-79.21166667,34.90388889,0</coordinates></Point></Placemark>
+<Placemark><name>Rail Switch Nature Trail</name><description>testing</description><Point><coordinates>-76.74416666,35.86916666,0</coordinates></Point></Placemark>
+<Placemark><name>Ranger Falls Trail</name><description>testing</description><Point><coordinates>-83.2175,35.08583333,0</coordinates></Point></Placemark>
+<Placemark><name>Raven Rock State Park</name><description>testing</description><Point><coordinates>-78.91305556,35.46027778,0</coordinates></Point></Placemark>
+<Placemark><name>Reedy Creek Nature Preserve</name><description>testing</description><Point><coordinates>-80.72,35.26222222,0</coordinates></Point></Placemark>
+<Placemark><name>Regional Fitness Trail</name><description>testing</description><Point><coordinates>-76.21805557,36.32555556,0</coordinates></Point></Placemark>
+<Placemark><name>Reynolda Gardens of Wake Forest University</name><description>testing</description><Point><coordinates>-80.28444444,36.12722222,0</coordinates></Point></Placemark>
+<Placemark><name>Ridge Junction Overlook</name><description>testing</description><Point><coordinates>-82.27861111,35.71722222,0</coordinates></Point></Placemark>
+<Placemark><name>River Park North</name><description>testing</description><Point><coordinates>-77.36027777,35.62861111,0</coordinates></Point></Placemark>
+<Placemark><name>Riverbend Park</name><description>testing</description><Point><coordinates>-81.1875,35.82,0</coordinates></Point></Placemark>
+<Placemark><name>Riverwalk at Riverbend</name><description>testing</description><Point><coordinates>-83.31916667,35.47555556,0</coordinates></Point></Placemark>
+<Placemark><name>Roanoke Canal Trail and Museum</name><description>testing</description><Point><coordinates>-77.64805557,36.47444445,0</coordinates></Point></Placemark>
+<Placemark><name>Roanoke Island Marsh Game Land</name><description>testing</description><Point><coordinates>-75.65833334,35.88388889,0</coordinates></Point></Placemark>
+<Placemark><name>Roanoke River National Wildlife Refuge and#x2013; The Kuralt Trail</name><description>testing</description><Point><coordinates>-77.03583334,35.86500001,0</coordinates></Point></Placemark>
+<Placemark><name>"Roanoke River Paddle Trail and#x2013; Cashie River, Broad Creek"</name><description>testing</description><Point><coordinates>-76.94305556,35.99194445,0</coordinates></Point></Placemark>
+<Placemark><name>Roanoke River Paddle Trail and#x2013; Conaby Creek</name><description>testing</description><Point><coordinates>-76.705,35.89555555,0</coordinates></Point></Placemark>
+<Placemark><name>"Roanoke River Paddle Trail and#x2013; Mainstem Roanoke, Deviland#8216;s Gut, Gardner Creek, Broad Creek, Cow Creek"</name><description>testing</description><Point><coordinates>-77.03916668,35.85916667,0</coordinates></Point></Placemark>
+<Placemark><name>Roanoke River Paddle Trail and#x2013; Weldon to US 258 Bridge</name><description>testing</description><Point><coordinates>-77.59111111,36.42722222,0</coordinates></Point></Placemark>
+<Placemark><name>"Salem Lake, Salem Lake Greenway, and Civitan Park"</name><description>testing</description><Point><coordinates>-80.19305556,36.09472222,0</coordinates></Point></Placemark>
+<Placemark><name>Sandhills Game Land</name><description>testing</description><Point><coordinates>-79.62472222,35.00805556,0</coordinates></Point></Placemark>
+<Placemark><name>Sandy Mush Game Land</name><description>testing</description><Point><coordinates>-82.67111111,35.71916667,0</coordinates></Point></Placemark>
+<Placemark><name>San&#45;Lee Environmental Education and Recreation Park</name><description>testing</description><Point><coordinates>-79.12638889,35.48277778,0</coordinates></Point></Placemark>
+<Placemark><name>Schenck Forest</name><description>testing</description><Point><coordinates>-78.72027778,35.81611111,0</coordinates></Point></Placemark>
+<Placemark><name>Scuppernong River Interpretive Trail</name><description>testing</description><Point><coordinates>-76.25333334,35.91527778,0</coordinates></Point></Placemark>
+<Placemark><name>Seabirding Pelagic Trips</name><description>testing</description><Point><coordinates>-75.70166666,35.20916667,0</coordinates></Point></Placemark>
+<Placemark><name>Shady Grove Gardens at the Peak</name><description>testing</description><Point><coordinates>-81.65194444,36.41027778,0</coordinates></Point></Placemark>
+<Placemark><name>Singletary Lake State Park</name><description>testing</description><Point><coordinates>-78.44750001,34.58722223,0</coordinates></Point></Placemark>
+<Placemark><name>Snowbird Mountain Lodge</name><description>testing</description><Point><coordinates>-83.86222222,35.31916667,0</coordinates></Point></Placemark>
+<Placemark><name>South Mountains Game Land</name><description>testing</description><Point><coordinates>-81.72222222,35.56583333,0</coordinates></Point></Placemark>
+<Placemark><name>South Mountains State Park</name><description>testing</description><Point><coordinates>-81.62833333,35.6025,0</coordinates></Point></Placemark>
+<Placemark><name>Southern Great Balsam Mountains</name><description>testing</description><Point><coordinates>-82.98666667,35.35972222,0</coordinates></Point></Placemark>
+<Placemark><name>Southport Riverwalk</name><description>testing</description><Point><coordinates>-78.01777778,33.91722222,0</coordinates></Point></Placemark>
+<Placemark><name>Spruce Pine Riverside Park</name><description>testing</description><Point><coordinates>-82.07,35.91388889,0</coordinates></Point></Placemark>
+<Placemark><name>Stecoah Gap</name><description>testing</description><Point><coordinates>-83.71861111,35.35777778,0</coordinates></Point></Placemark>
+<Placemark><name>Stewart Parkway Riverwalk and Boardwalk</name><description>testing</description><Point><coordinates>-77.05388889,35.53972222,0</coordinates></Point></Placemark>
+<Placemark><name>Stone Mountain State Park</name><description>testing</description><Point><coordinates>-81.02555556,36.37944444,0</coordinates></Point></Placemark>
+<Placemark><name>Stump Sound Park</name><description>testing</description><Point><coordinates>-77.44999999,34.54916668,0</coordinates></Point></Placemark>
+<Placemark><name>Suggs Mill Pond Game Land</name><description>testing</description><Point><coordinates>-78.65138889,34.80722223,0</coordinates></Point></Placemark>
+<Placemark><name>Sunset Beach Island</name><description>testing</description><Point><coordinates>-78.50694444,33.86833333,0</coordinates></Point></Placemark>
+<Placemark><name>Sunset Rock Trail</name><description>testing</description><Point><coordinates>-83.18805556,35.05194444,0</coordinates></Point></Placemark>
+<Placemark><name>Swanquarter National Wildlife Refuge</name><description>testing</description><Point><coordinates>-76.37638889,35.44305556,0</coordinates></Point></Placemark>
+<Placemark><name>Swift Creek Bluffs</name><description>testing</description><Point><coordinates>-78.75305556,35.7175,0</coordinates></Point></Placemark>
+<Placemark><name>Tanawha Trail/ Grandfather Corridor</name><description>testing</description><Point><coordinates>-81.82972222,36.08444444,0</coordinates></Point></Placemark>
+<Placemark><name>Tanglewood Park and Arboretum</name><description>testing</description><Point><coordinates>-80.40666667,36.00305556,0</coordinates></Point></Placemark>
+<Placemark><name>Tar River Trail</name><description>testing</description><Point><coordinates>-77.81861112,35.95166666,0</coordinates></Point></Placemark>
+<Placemark><name>Tessentee Bottomland Preserve</name><description>testing</description><Point><coordinates>-83.37972222,35.06861111,0</coordinates></Point></Placemark>
+<Placemark><name>The Bog Garden</name><description>testing</description><Point><coordinates>-79.84,36.09111111,0</coordinates></Point></Placemark>
+<Placemark><name>The Elizabethan Gardens</name><description>testing</description><Point><coordinates>-75.71138889,35.93694445,0</coordinates></Point></Placemark>
+<Placemark><name>Thurmond Chatham Game Land</name><description>testing</description><Point><coordinates>-81.16638889,36.37944444,0</coordinates></Point></Placemark>
+<Placemark><name>Town Creek Indian Mound State Historic Site</name><description>testing</description><Point><coordinates>-79.93166667,35.18472222,0</coordinates></Point></Placemark>
+<Placemark><name>Upper Perquimans River Paddle Trail</name><description>testing</description><Point><coordinates>-76.54499999,36.26833333,0</coordinates></Point></Placemark>
+<Placemark><name>Uwharrie National Forest and#x2013; Badin Lake Recreation Area</name><description>testing</description><Point><coordinates>-80.07777778,35.44777778,0</coordinates></Point></Placemark>
+<Placemark><name>Uwharrie National Forest and#x2013; Birkhead Wilderness Area</name><description>testing</description><Point><coordinates>-79.94916667,35.61805556,0</coordinates></Point></Placemark>
+<Placemark><name>Uwharrie National Forest and#x2013; Densons Creek Nature Trail</name><description>testing</description><Point><coordinates>-79.86333333,35.36138889,0</coordinates></Point></Placemark>
+<Placemark><name>Uwharrie National Forest and#x2013; Uwharrie National Recreational Trail</name><description>testing</description><Point><coordinates>-80.04888889,35.31277778,0</coordinates></Point></Placemark>
+<Placemark><name>Valle Crucis Community Park</name><description>testing</description><Point><coordinates>-81.77027778,36.20777778,0</coordinates></Point></Placemark>
+<Placemark><name>Van Swamp Game Land</name><description>testing</description><Point><coordinates>-76.7725,35.69444445,0</coordinates></Point></Placemark>
+<Placemark><name>Vance Game Land and#x2013; Crooked Run Wildlife Management Area</name><description>testing</description><Point><coordinates>-78.4175,36.38944444,0</coordinates></Point></Placemark>
+<Placemark><name>W. Kerr Scott Reservoir</name><description>testing</description><Point><coordinates>-81.24916667,36.12194444,0</coordinates></Point></Placemark>
+<Placemark><name>Waterrock Knob</name><description>testing</description><Point><coordinates>-83.14111111,35.45972222,0</coordinates></Point></Placemark>
+<Placemark><name>Weaverbarton Shuford Memorial Wildlife Sanctuary</name><description>testing</description><Point><coordinates>-82.20888889,35.23916667,0</coordinates></Point></Placemark>
+<Placemark><name>Weyerhaeuserand#8216;s Cool Springs Environmental Education Center</name><description>testing</description><Point><coordinates>-77.08611112,35.18916667,0</coordinates></Point></Placemark>
+<Placemark><name>Weymouth Woods Sandhills Nature Preserve</name><description>testing</description><Point><coordinates>-79.36888889,35.14694444,0</coordinates></Point></Placemark>
+<Placemark><name>Whippoorwill Academy and Village</name><description>testing</description><Point><coordinates>-81.37333333,36.08388889,0</coordinates></Point></Placemark>
+<Placemark><name>White Pines Nature Preserve</name><description>testing</description><Point><coordinates>-79.15694444,35.61444444,0</coordinates></Point></Placemark>
+<Placemark><name>Whiteside Mountain</name><description>testing</description><Point><coordinates>-83.14361111,35.08055556,0</coordinates></Point></Placemark>
+<Placemark><name>William B. Umstead State Park</name><description>testing</description><Point><coordinates>-78.75777778,35.88027778,0</coordinates></Point></Placemark>
+<Placemark><name>Yadkin River Greenway</name><description>testing</description><Point><coordinates>-81.15888889,36.15361111,0</coordinates></Point></Placemark>
+<Placemark><name>Yellow Mountain Gap</name><description>testing</description><Point><coordinates>-82.04861111,36.11666667,0</coordinates></Point></Placemark>
+<Placemark><name>Zekeand#8216;s Island National Estuarine Research Reserve</name><description>testing</description><Point><coordinates>-77.9413889,33.95916666,0</coordinates></Point></Placemark>
+</Document></kml>

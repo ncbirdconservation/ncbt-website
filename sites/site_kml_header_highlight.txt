@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"
+ xmlns:gx="http://www.google.com/kml/ext/2.2">
+  <Document>
+		<Style id="highlightSite">
+			<IconStyle>
+				<scale>1</scale>
+				<Icon>
+					<href>http://ncbirdingtrail.squarespace.com/storage/img/map_dot_highlight.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Style id="normalSite">
+			<IconStyle>
+				<scale>1</scale>
+				<Icon>
+					<href>http://ncbirdingtrail.squarespace.com/storage/img/map_dot.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<StyleMap id="site">
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#normalSite</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#highlightSite</styleUrl>
+			</Pair>
+		</StyleMap>

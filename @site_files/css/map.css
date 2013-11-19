@@ -1,0 +1,480 @@
+
+/* special map page css
+----------------------------------------------------------*/
+
+#splash {
+  position:absolute;
+  top:-85px;
+  background-color:#383838;
+  opacity: 0.75;
+  filter: alpha(opacity=75);
+  z-index:3;
+}
+
+#logo_group {
+  z-index: 2;
+}
+#pageHeaderWrapper {
+  margin-bottom: 0px;
+}
+
+#pageBodyWrapper {
+}
+#pageBody {
+
+}
+
+#pageBody a {
+  font-weight:normal;
+  font-size:0.9em;
+  color:white;
+  line-height:1em;
+  text-decoration:underline; 
+}
+
+#contentWrapper {
+  position: relative;
+  top: -63px;
+  width: 100%;
+  background: #BBBBBB;
+  height: 548px;
+}
+
+#map-wrapper {
+  height: 548px;
+}
+
+#map_canvas { 
+  width: inherit;
+  //width: 100%;
+  height: 450px;
+}
+
+/* transparent screen to show when loading script */
+#busy-screen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #c0c0c0;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  z-index: 999;
+}
+
+/* popup windows */
+
+.info-box {
+  border:none;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  background:#517098;
+  color:#ffffff;
+  padding:5px;
+  color:white;
+  line-height:1em;
+}
+
+.info-title {
+  font-weight:bold;
+  font-variant:small-caps;
+  font-size:1.1em;
+}
+
+.info-region-group {
+  font-weight:normal;
+  font-variant:normal;
+  font-size:1.1em;
+}
+/*  */
+
+#info-panel {
+  position: relative;
+  top: -543px;
+  height: 504px;
+  float: right;
+  width: 280px;
+  margin:0px;
+  padding:0px;
+  color: #ffffff;
+}
+
+#info-panel p{
+  line-height: 1.2em;
+  margin: 0.3em 0.3em 0em 0.3em;
+}
+
+#map-info-wrapper {
+  position:relative;
+  width:250px;
+  float:right;
+  height: 504px;
+}
+
+#map-info-wrapper, .info-tab {
+  background: #517098;
+}
+
+/* tab formatting */
+#tab-wrapper {
+  height: 504px;
+  margin: 0px;
+  padding: 0px;
+  width: 30px;
+  float:left;
+}
+ 
+.info-tab :hover {
+  background:#383838;
+}
+
+.info-tab {
+  display:block;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  font-variant: all-caps;
+  font-size: 1em;
+  vertical-align: center;
+  margin: 0px;
+  background: #708090;
+  cursor: pointer;
+  line-height: 1em;
+  -moz-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;  
+  -moz-border-top-right-radius: 5px;
+  border-top-right-radius: 5px; 
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg); 
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+#info-tab-listing { top:0px;}
+#info-tab-site-info { top:61px;}
+#info-tab-birds { top:122px;}
+#info-tab-business { top:183px;}
+
+#info-tab-listing { 
+  background: #517098;
+}
+
+/* end tab formatting */
+
+
+/*site info window formatting */
+
+.info-content {
+  height: 100%;
+}
+
+#info-site-details {
+  display:block;
+  overflow-y:scroll;
+}
+
+/*info-list*/
+
+#site-search-header {
+  font-family: 'Lato','sans-serif';
+  background: #666666;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 0.1em solid #ffffff;
+  font-weight: bold;
+  padding-left: 0.3em;
+}
+#site-search {
+  width: 150px;
+  font-family: 'Lato','sans-serif';
+  color: #ffffff;
+/*  background-color: rgb(128,128,128);*/
+  background-color: transparent;
+  border: 0px;
+  padding: 2px;
+}
+
+.info-site-region-group {
+  font-weight:normal;
+  font-variant:normal;
+  font-size: 1em;
+  margin-left: 0.5em;
+  margin-right:0.5em;
+  }
+  
+#info-list {
+  overflow-y:scroll;
+}
+
+#info-list .site-item-data{
+  display:none;
+}
+
+#info-list-content {
+  position:relative;
+  top:0px;
+}
+#info-list .region-list{
+  display:block;
+  line-height:1em;
+}
+
+#info-list .group-header:hover,
+#info-list .site-item:hover,
+#info-birds .site-item:hover{
+  background-color: rgb(128,128,128);
+}
+  
+#info-list .group-header{
+  display:block;
+  padding: 0.3em 0.3em 0.3em 1em;
+}
+
+#info-list .group-list{
+  display:block;
+}
+#info-list .site-item,
+#info-birds .site-item{
+  line-height: 1.2em;
+  padding: 0.2em 0em 0.2em 2em;
+  cursor: pointer;
+}
+#info-birds .site-item{
+  vertical-align: middle;
+}
+
+#info-list .site-item{
+  display:none;
+}
+
+#info-birds #birdlist-results {
+  overflow-y: auto;
+}
+
+#info-site {
+  display:block;
+  height: 100%;
+}
+
+#info-birds,
+#info-business,
+#info-site {
+  display:none;
+}
+
+
+
+.info-title-section{
+  background:#708090;
+}
+
+#info-title a {
+  text-decoration:none;
+  font-weight:bolder;
+}
+
+#info-title {
+  font-variant:small-caps;
+  font-size:1.5em;
+  width: 100%;
+  color:white;
+  line-height:1em;
+  text-decoration:none;
+  cursor: pointer;
+  padding: 0.3em 0.3em 0.3em 0.3em;
+}
+
+#info-title:hover{
+ background: #383838;
+}
+
+
+#button-region {
+  background:#708090;
+  text-decoration:normal;
+  display:inline;
+  cursor:pointer;
+  -moz-border-radius:3px;
+  border-radius:3px;
+  text-align:center;
+  vertical-align: middle;
+  padding: 0.1em 0.4em 0.1em 0.4em;
+  margin: 0.3em 0.4em 0em 0.3em;
+}
+
+#info-site-title-section a {
+  text-decoration:none;
+}
+
+#button-region:hover {
+  background:#383838;
+}
+
+#tab-site,
+#tab-groups,
+#tab-birds,
+#tab-business
+{
+  color: #ffffff;
+  padding: 0.3em 0.7em 0.3em 0.7em;
+}
+
+.map-info-header {
+  height: 80px;
+}
+
+.info-heading,
+/*.info-heading-clickable,*/
+#info-list .region-header{
+  background:#708090;
+  font-weight: 500;
+  font-size:1.2em;
+  margin:0em 0em 0.3em 0em;
+  padding:0.3em 0.3em 0.3em 0.3em;
+  cursor:pointer;
+}
+
+#info-heading-description a, 
+#info-heading-species a, 
+#info-heading-habitats a, 
+#info-heading-directions a 
+{
+  text-decoration: none;
+  display:block;
+  height:inherit;
+  width:inherit;
+  padding: 0.3em 0em 0.3em 0em;
+}
+
+.info-heading:hover {
+ background: #383838;
+}
+
+/*.info-heading-clickable:hover {
+  background-color: #383838;
+}
+*/
+
+/* bird finder */
+
+#select-bird-header {
+  font-size: 1.1em;
+  padding: 0.3em 0.3em 0em 0.3em;
+  }
+  
+#select-bird-title {
+  display:inline;
+  font-size: 1.5em;
+}
+
+.info-bird-key {
+  display: block;
+  height: 2em;
+  padding-top: 0.2em;
+}
+
+.legend-img {
+  height: 30px;
+}
+
+#bird-list, #bird-list-id {
+  font-family: 'Lato','sans-serif';
+  width: 230px;
+  margin-left: 0.2em;
+}
+/*#ebird-spp {
+  width: 150px;
+  height: 2em;
+  font-family:Lato;
+  font-size: 1em;
+  background:#517098;
+  color: #ffffff
+}
+*/
+#bird-finder-help {
+  position: absolute;
+  /*top: 3em;*/
+  top: -30em;
+  left: -16em;
+  width: 25em;
+  line-height: 1.3em;
+  padding: 0.7em;
+  margin: 0em;
+  font-size: 1em;
+  background:#517098;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #ffffff;
+  -moz-border-radius:1em;
+  border-radius:1em;
+  z-index; 999;
+ 
+}
+
+#full-birdlist {
+  position:absolute;
+  left:250px;
+  width: 250px;
+  height: 480px;
+  background: #517098;
+  border-style: solid;
+  border-width: 0.2em;
+  border-color: #ffffff;
+  -moz-border-radius:1em;
+  border-radius:1em;
+  overflow: auto;
+}
+
+.common-name-item{
+  font-size: 0.95em; 
+}
+.sci-name-item{
+  font-size: 0.9em;
+  font-style: italic;  
+}
+
+#bird-searched {
+  height: 2em;
+}
+
+#birdlist-results {
+  /*height: 442px;*/
+  height: 414px;
+  overflow: auto;
+}
+
+/* end bird finder */
+
+#show-recent-busy-img,
+#show-business-busy-img {
+  height: 22px;
+  display: none;
+}
+
+hr {
+  color:white;
+  background-color:white;
+  height:2px;
+  margin:5px 0px 2px 0px;
+  border:none;
+}
+
+
+#map_canvas {
+  height: 548px;
+}
+
+#content { 
+  width:inherit;
+}
+#pageFooterWrapper {   
+  /*position:absolute;
+  top:$(85px + MapHeight)$;*/
+}
+
+
+/* end special map page css
+----------------------------------------------------------*/

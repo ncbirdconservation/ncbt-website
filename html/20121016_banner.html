@@ -1,0 +1,26 @@
+<script>
+$(document).ready(function(){
+	$("#t-icon").hover(function() {$(this).attr({src:"/storage/img/t_icon.png"});}, function() {$(this).attr({src:"/storage/img/t_icon_trans.png"});});
+	$("#f-icon").hover(function() {$(this).attr({src:"/storage/img/f_icon.png"});}, function() {$(this).attr({src:"/storage/img/f_icon_trans.png"});});
+	$("#r-icon").hover(function() {$(this).attr({src:"/storage/img/r_icon.png"});}, function() {$(this).attr({src:"/storage/img/r_icon_trans.png"});});
+});
+</script>
+
+<div id="custom_header">
+	<div id="logo_group">
+		<a href="/"><img id="header_logo" src="http://ncbirdingtrail.squarespace.com/storage/img/header_logo.png"/>
+		<div id="title_group">
+			<div id="title">North Carolina Birding Trail</div></a>
+			<div id="region_text">
+				mountains<img class="region_dot" src="/storage/img/dot.png"/>piedmont<img class="region_dot" src="/storage/img/dot.png"/>coast
+			</div>
+		</div>
+	</div>
+    <div id="social-subscribe">
+		<div id="social_logos">
+			<a href="http://ncbirdingtrail.squarespace.com/news/rss.xml"><img id="r-icon" class="social_media_icon" title="rss" src="/storage/img/r_icon_trans.png"/></a>
+			<a href="https://twitter.com/ncbirdingtrail"><img id="t-icon" class="social_media_icon" title="twitter" src="/storage/img/t_icon_trans.png"/></a>
+			<a href="http://www.facebook.com/pages/North-Carolina-Birding-Trail/354654180328#"><img id="f-icon" class="social_media_icon" title="facebook" src="/storage/img/f_icon_trans.png"/></a>
+		</div>
+    </div>
+</div>

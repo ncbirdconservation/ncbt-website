@@ -1,0 +1,639 @@
+<!-- backed up 2012 08 13, code testing lighter initial load
+-->
+
+<!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBq3s5965sCxAclqaIJnvYgW80RNvuELB0&sensor=false"></script>-->
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="/storage/js/infobox.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+/*
+var ellipsis = ['', '.', '..', '...'];
+var runEllipsis = false;
+ 
+function animateEllipsis(count) {
+    <!-- el.innerHTML = ellipsis[count%4]; -->
+	$("#ellip").html(ellipsis[count%4]);
+    if(runEllipsis == true) {
+        window.setTimeout( function(){
+            animateEllipsis(++count);
+        }, 250);
+    }
+}
+
+
+function startEllipsis() {
+    runEllipsis = true;
+    animateEllipsis(0);
+}
+
+
+function stopEllipsis() {
+    runEllipsis = false;
+}
+
+startEllipsis();
+*/
+var siteMarkers = {};
+var groupLatLngs = {};
+var regionLatLngs = {};
+var infoWindows = {};
+var infoText = {};
+var ebirdMarkers = {};
+var blLoaded = false;
+
+//var defaultLatLng = new google.maps.LatLng(35.3,-80.003243);
+var defaultLatLng = new google.maps.LatLng(35.3,-78.323181); // offcenter to allow for panel
+var defaultZoomLevel = 7;
+
+//retrieve site information from full description page, and fill info into info-panel
+function getSiteData(slug) {
+	unhighlightAll();
+	$.ajax({
+		type: "GET",
+		url: "/sites/2012/8/1/" + slug + ".html",
+		dataType: "html",
+		success: function(result){
+			$("#info-description").html(trimByWord($(result).find("#description p").text())),
+			$("#info-species").html(trimByWord($(result).find("#species p").text())),
+			$("#info-habitats").html(trimByWord($(result).find("#habitats p").text()))
+			//$("#info-directions").html(trimByWord($(result).find("#directions p").text()))
+		}
+	});
+};
+
+function trimByWord(sentence) {
+	//trims text by word to 50 words, adds elipsis to the end
+	var result = sentence;
+	var resultArray = result.split(" ");
+	if(resultArray.length > 50){
+		resultArray = resultArray.slice(0, 50);
+		result = resultArray.join(" ") + "…";
+	}
+	return result;
+};
+
+function slugify(text) {
+	//removes all spaces from text input, replaces with '-'
+	return text.replace(/[ -]/g,"-");
+};
+
+function highlightArray(sitelist){
+	//highlights on map passed list of site slugs
+	zoomToDefault();
+	for (var i in sitelist) {
+		try {siteMarkers[sitelist[i]].setIcon(highlightIcon);}
+		catch (e) {}
+		}
+};
+
+function highlightGroup(group_slug) {
+	//highlights NCBT group on map using passed group slug
+	unhighlightAll();
+	highlightArray(groupSites[group_slug]); //calls highlight array and passes list of site slugs
+};
+function highlightRegion(region) {
+	//highlights NCBT region on map using passed region slug
+	unhighlightAll();
+	highlightArray(regionSites[region]);
+};
+
+function highlightSite(slug) {
+	//highlights NCBT site based on passed site slug
+	unhighlightAll();
+	siteMarkers[slug].setIcon(highlightIcon);
+};
+
+function unhighlightAll(){
+	//loop through all siteMarkers, unhighlight
+	for (var i in siteMarkers) {
+		if (siteMarkers[i].getIcon() == highlightIcon) {
+			siteMarkers[i].setIcon(siteIcon);
+		}
+	}
+};
+function unhighlightAllEbird(){
+	//loop through all ebird markers, unhighlight
+	for (var i in ebirdMarkers) {
+		ebirdMarkers[i].setMap(null);
+	}
+};
+
+//returns map to the original center and zoom level
+function zoomToDefault(){
+	map.setOptions({
+		center: defaultLatLng,
+		zoom: defaultZoomLevel
+		});
+};
+
+//zoom to particular groups of sites
+function zoomToRegion(region){
+	var LL = regionLatLngs[region];
+	map.setCenter(LL.getCenter());
+	map.fitBounds(LL); 
+};
+function zoomToGroup(group_slug){
+	var LL = groupLatLngs[group_slug];
+	map.setCenter(LL.getCenter());
+	map.fitBounds(LL); 
+};
+
+//controls the expansion/contraction of the site list info-panel
+function expandGroup(group_slug) {
+	if ($("#group-list-" + group_slug).find(".site-item").css("display")=="none") {
+		$(".group-header").css({"background-color":"rgb(81,112,152)"});
+		$(".site-item").css({"display":"none"}); //collapse all sites
+		$("#group-header-" + group_slug).css({"background-color":"rgb(128,128,128)"});
+		$("#group-list-" + group_slug).find(".site-item").css({"display":"block"});
+		//zoom to group
+		zoomToGroup(group_slug);
+	}
+	else {
+		$(".site-item").css({"display":"none"}); //collapse all sites
+		$(".group-header").css({"background-color":"rgb(81,112,152)"});
+		//zoom back to full screen
+		zoomToDefault();
+	}
+};
+
+function getSppSites(spp) {
+	//query GAE database for sites matching the species slug passed
+	//connect to xml file with basic site info, create markers, populate arrays
+	<!-- $('#bird-searched').html($(this).html()); -->
+	console.log($(this));
+	result = $.getJSON("http://ncbirdingtrail.appspot.com/sitelist?spp=" + spp + "&callback=?");
+};
+
+function sppcb(json){
+	//helper function that parses json response from GAE
+	sppResults = $("#spp-results");
+
+	//reset html elements to prepare for new list of results
+	var sitesFound = $("#birdlist-results");
+	sitesFound.empty();
+	unhighlightAll();
+	unhighlightAllEbird();
+	zoomToDefault();
+	ebirdMarkers = {};
+	
+	//loop through response elements in json
+	$.each(json, function(k,v) {
+		//birdlist includes all sites where species occurs
+		if (k=="sppinfo") {
+			//retrieve header information
+			$("#bird-searched").text(v[2] + " results");
+		}
+		else if (k=="birdlist") {
+			if (v=='none') {
+				$("<div/>",{"class":"site-item", text:"Unlikely to see this species at any NCBT Site this time of year"}).appendTo(sitesFound);
+				}
+			else if (v=='unavailable'){
+				$("<div/>",{"class":"site-item", text:"Site list unavailable at this time,please try again later"}).appendTo(sitesFound);
+				}
+			else {
+				highlightArray(v);
+				$.each(v, function(ind, val) {
+					if ( val !== "none") {
+						$("<div/>", {"class":"site-item",onclick:"google.maps.event.trigger(siteMarkers[\""+ val +"\"], \"click\")", onmouseout:"infoWindows[\"" + val +"\"].close()", onmouseover:"google.maps.event.trigger(siteMarkers[\""+ val +"\"], \"mouseover\")", text:slugSites[val]}).appendTo(sitesFound);
+					}
+				});
+			}
+		}
+		//ebird includes recent sightings of the species
+		else if (k=="ebird") {
+			if (v=='none') {}
+			else if (v=='unavailable'){}
+			else {
+				$.each(v, function(ind, val) {
+					if ( val != "none"){
+						//use val[2] lat/long values as key for ebird record
+						var ebirdKey = val[2];
+						ll = val[2].split(",");
+						
+						//add info window
+						ebirdBoxText = "<div class=\"info-title\" style=\"padding:0em;margin:0em;color:#000000;line-height:1.7em;\"><div style=\"display:inline;float:left;padding-right:0.4em;font-size:1.2em;font-weight:bold\">" + val[3] + "<br/><a href=\"http://ebird.org/ebird/GuideMe?step=saveChoices&getLocations=hotspots&parentState=US-NC&bMonth=01&bYear=1900&eMonth=12&eYear=2013&reportType=location&continue.x=57&continue.y=8&hotspots=" + val[1] +"\" target=\"_blank\" style=\"color:#517089;font-variant:normal;font-weight:normal;font-size:0.85em;\">" + val[0] + " sightings</a></div><div style=\"display:inline;width:4.5em;padding-top:1em;float:right;\"><a href=\"http://www.ebird.org\" target=\"_blank\"><img  style=\"width:4.5em;\" src=\"/storage/img/logo_ebird.png\"/></a></div></div>";
+						
+						infoWindows[ebirdKey] = new google.maps.InfoWindow({
+							content:ebirdBoxText
+						});
+						//create marker
+						ebirdMarkers[ebirdKey] = new google.maps.Marker({
+							position: new google.maps.LatLng(ll[1],ll[0]),
+							title: val[0],
+							icon: {url: "/storage/img/ebird_legend.png"}							
+						});
+						
+						// add event listener to display info window on click
+						ebirdMarkers[ebirdKey].setMap(map);
+						google.maps.event.addListener(ebirdMarkers[ebirdKey], 'click', function() {
+							infoWindows[ebirdKey].open(map, ebirdMarkers[ebirdKey]);
+						});
+					}
+					
+				});
+			}
+		}
+	});
+
+	// turn off display of full species list (if visible)
+	if ($("#full-birdlist").css("left")=='0px') {$("#full-birdlist-button").trigger("click")};
+
+};
+
+$(document).ready(function() {
+	// splash screen settings
+	/*$("#splash").css({
+		height:$(window).height(),
+		width: $(window).width()
+		});
+
+	// run splash
+	$("#splash").click(function() {
+		$(this).css({display:"none"});
+	});
+    */
+	
+
+	//code for toggling full bird list
+	$("#full-birdlist-button").click(function() {
+		
+		var $bl = $("#full-birdlist");
+		var $blbutton = $("#full-birdlist-button")
+		var leftPos = '0';
+		if ($blbutton.html() == "View All Species") {
+			//open the full bird list
+			$blbutton.html("Hide All");
+			$bl.animate(
+				{ left: '0' },
+				400,
+				function() {
+					if (!blLoaded) {
+						blLoaded = true;
+						$.ajax({
+							type: "GET",
+							url: "/storage/data/all_birds_html.txt",
+							dataType: "html",
+							success: function(html) {$bl.html(html);}
+						});
+					}
+				});
+		}
+		else {
+			//hide the full bird list
+			$blbutton.html("View All Species");
+			$bl.animate({ left: '250' })
+		};
+	});
+	// setup map
+
+	//setup marker definitions
+	siteIcon = {
+		url: "http://ncbirdingtrail.squarespace.com/storage/img/map_dot.png",
+		anchor: new google.maps.Point(13,13)
+		};
+	highlightIcon = {
+		url: "http://ncbirdingtrail.squarespace.com/storage/img/map_dot_highlight.png",
+		anchor: new google.maps.Point(13,13)
+		};
+	
+	var ncbtMapStyle = [{ featureType: "administrative", stylers: [ { visibility: "on" }, { saturation: -90 }, { lightness: 52 } ] }];
+	var myOptions = {
+	                  zoom: defaultZoomLevel,
+                      panControl: false,
+                      streetViewControl: false,
+			  center: defaultLatLng,
+			  mapTypeId: google.maps.MapTypeId.TERRAIN,
+			  mapTypeControlOptions: {position: google.maps.ControlPosition.TOP_LEFT},
+			  styles: ncbtMapStyle
+			};
+
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	//SS server - static bfb layer
+	/*bfbLayer = new google.maps.KmlLayer("http://ncbirdingtrail.squarespace.com/storage/kml/bfbs.kml", {preserveViewport:true});
+	google.maps.event.addListener(bfbLayer, 'status_changed', function() {
+		console.log(bfbLayer.getStatus());
+		if (bfbLayer.getStatus()==google.maps.KmlLayerStatus.OK) {
+			//console.log("bfb loaded!");
+		}
+		else {
+			//console.log("bfb failed!");
+		}
+		$("#show-business-busy-img").css({display:"none"});
+		return;
+	});
+	*/
+	
+	
+	//GAE server - ebird layer
+    ebirdLayer = new google.maps.KmlLayer("http://ncbirdingtrail.appspot.com/kml?t=byAll&k=ebirdwebsite", {preserveViewport:true});	
+	
+	//set up blank html text for info window setup
+	var infoWindowBlank = '<div style="top: 0px; display:block;" id="info-site" style=""><div id="info-site-title-section" class="info-title-section"><div id="info-title" title=""><a href="" id="info-title-link" target="_blank"><span></span></a></div><a id="button-region" class="info-site-region-group" ></a>:<a id="button-group" class="info-site-region-group"></a><hr></div><div id="info-site-details"><div><div class="info-heading" id="info-heading-description"><a id="info-description-link" href="" target="_blank"><span>Description</span></a></div><p class="info-text" id="info-description"></p></div><div><div id="info-heading-species" class="info-heading"><a id="info-species-link" href="" target="_blank"><span>Species of Interest</span></a></div><p class="info-text" id="info-species"></p></div><div><div id="info-heading-habitats" class="info-heading"><a id="info-habitat-link" href="" target="_blank"><span>Habitats</span></a></div><p class="info-text" id="info-habitats"></p></div><div><div id="info-heading-directions" class="info-heading"><a id="info-directions-link"><span>Directions</span></a></div></div></div></div>';
+	
+	
+	//controls display of the info-panel tabs
+	$(".info-tab").click(function(){
+		//loop through all tabs and turn color inactive, hide information
+		$(".info-tab").each(function(i) {
+			$(this).css({"background-color":"rgb(128,128,128)"});
+			$($(this).attr("title")).css({"display":"none"});
+		});
+
+		//activate clicked tab, make content visible
+		$(this).css({"background-color":"rgb(81,112,152)"});
+		$($(this).attr("title")).css({"display":"block"});
+	});
+	
+	//controls behavior of bird pick list
+	$("#ebird-spp").change(function() {
+		if ($(this).val()=='view-all-species') {
+			$('#full-birdlist-button').trigger('click');
+			$(this).val('');
+		}
+		else {
+			console.log($(this).html());
+			getSppSites($(this).val());
+			$(this).val('');
+		}
+	});
+	
+	// dictionary of sites by group
+	groupSites = {};
+	regionSites ={};
+	//new
+	slugSites = {};
+
+	//connect to xml file with basic site info, create markers, populate arrays
+	$.ajax({
+		type: "GET",
+		url: "/storage/kml/ncbt.xml",
+		dataType: "xml",
+		success: function(xml) {
+			siteList = $("<div/>",{"id":"info-list-content"});
+			$(xml).find("map").children().each(function(i,v) {
+				//console.log($(this).text());
+				var title = $(this).find("name").text();
+				var siteid = $(this).find("siteid").text();
+				var group = $(this).find("group").text();
+				var group_slug = slugify(group);
+				var region = $(this).find("region").text();
+				var slug = $(this).find("slug").text();
+				var latlong = $(this).find("coords").text();
+				var c = latlong.split(",");
+
+				var currPos = new google.maps.LatLng(c[0],c[1]);
+				groupLatLngs[group_slug];
+
+				//new - create array so we can look up title from slug
+				slugSites[slug] = title;
+				
+				//populate site/group and region/group dictionary and
+				//build html for list of sites
+				if (regionSites[region]) {
+					// region already exists, add slug to list	
+					regionSites[region].push(slug);
+					regionLatLngs[region].push(currPos); //positions in each region - for zooming later
+				}
+				else {
+					//region doesn't exist, create one and add slug
+					regionSites[region] = [slug];
+					regionLatLngs[region] = [currPos]; //positions in each region - for zooming later
+					
+					var rList = $("<div/>",{"class":"region-list",id:"region-list-" + region});
+					$("<div/>",{"class":"region-header",id:"region-header-" + region, onmouseover:"highlightRegion(\"" + region + "\")", onmouseout:"unhighlightAll()", text:region + " Region"}).appendTo(rList);
+					rList.appendTo(siteList);
+				}
+
+				var rList = siteList.find("#region-list-" + region);
+				if (groupSites[group_slug]) {
+					// group already exists, add slug to list	
+					groupSites[group_slug].push(slug);
+					groupLatLngs[group_slug].push(currPos); //positions in each group - for zooming later
+				}
+				else {
+					//group doesn't exist, create one and add slug
+					groupSites[group_slug] = [slug];
+					groupLatLngs[group_slug] = [currPos]; //positions in each group - for zooming later
+					
+					var gList = $("<div/>",{"class":"group-list",id:"group-list-" + group_slug});
+					
+					$("<div/>",{"class":"group-header",id:"group-header-" + group_slug, onmouseover:"highlightGroup(\"" + group_slug + "\")", onclick:"expandGroup(\"" + group_slug +"\")", text:group}).appendTo(gList);
+					gList.appendTo(rList);
+				}
+				
+				// add site to appropriate region/site in list
+				var siteListItem = $("<div/>", {"class":"site-item",onclick:"google.maps.event.trigger(siteMarkers[\""+ slug +"\"], \"click\")", onmouseover:"google.maps.event.trigger(siteMarkers[\""+ slug +"\"], \"mouseover\")", onmouseout:"google.maps.event.trigger(siteMarkers[\""+ slug +"\"], \"mouseout\")", text:title});
+				siteListItem.appendTo(siteList.find("#group-list-" + group_slug));
+				
+				//pre-build elements of the information window
+				//remove this from page load, only load records when requested.
+				//actual contents of sections are loaded upon request
+				boxText = $(infoWindowBlank);
+				siteLink = "/sites/2012/8/1/" + slug + ".html"
+				//boxText.find("#info-title").attr({title:slug, onclick:"highlightSite(\"" + slug + "\")"});
+				boxText.find("#info-title span").text(title);
+				boxText.find("#button-region").text(region);
+				boxText.find("#info-title-link").attr({href:siteLink});
+				boxText.find("#button-region").attr({onclick:"highlightRegion(\"" + region + "\")"}); 
+				boxText.find("#button-group").text(group)
+				boxText.find("#button-group").attr({onclick:"zoomToGroup(\"" + group_slug + "\")"}); 
+				boxText.find("#info-description-link").attr({href:siteLink + "#description"});
+				boxText.find("#info-species-link").attr({href:siteLink + "#birdlist-header"});
+				boxText.find("#info-habitat-link").attr({href:siteLink + "#habitats"});
+				boxText.find("#info-directions-link").attr({href:siteLink + "#item_directions"});
+				
+				//boxText.find("#description-link").attr({href:"/sites/2012/8/1/" + slug + ".html"});
+				infoText[slug] = boxText.html();
+				
+
+				//build html and populate array for the hover box/label
+				var hoverBoxText = "<div class=\"info-title\" style=\"border:none;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background:#517098;color:#ffffff;padding:5px;color:white;line-height:1em\"><div style=\"font-weight:bold;font-variant:small-caps;font-size:1.1em;\">" + title + "</div><hr/><div style=\"font-weight:normal;font-variant:normal;font-size:1.1em;\">" + region + " : " + group +"</div></div>"
+				
+				infoWindows[slug] = new InfoBox({
+					content: hoverBoxText,
+					alignBottom: true,
+					pixelOffset: new google.maps.Size(20,22),
+					closeBoxURL: "",
+					infoBoxClearance: new google.maps.Size(1,1),
+					pane: "floatPane",
+					boxStyle: {
+						opacity:0.9,
+						width: "250px"
+						}
+				});
+				
+				//populate array for markers - add event listeners for hover and click
+				siteMarkers[slug] = new google.maps.Marker({
+					position: currPos,
+					title: title,
+					icon: siteIcon
+				});
+				siteMarkers[slug].setMap(map);
+			
+				google.maps.event.addListener(siteMarkers[slug], "click", function() {
+					$("#info-site").html(infoText[slug]), //add function to retrieve infoText, rather than pre-loaded array
+					$('#info-tab-site-info').trigger('click'),
+					//highlightSite(slug),
+					//$(this).setIcon(highlightIcon),
+					getSiteData(slug),
+					siteMarkers[slug].setIcon(highlightIcon);
+				});
+								
+				google.maps.event.addListener(siteMarkers[slug], 'mouseover', function() {
+					infoWindows[slug].open(map, siteMarkers[slug]);
+					//siteMarkers[slug].setIcon(highlightIcon)
+				});
+				google.maps.event.addListener(siteMarkers[slug], 'mouseout', function() {
+					infoWindows[slug].close();
+					//siteMarkers[slug].setIcon(siteIcon);
+					//insert code here to return to original state
+				});
+				
+			});
+			
+			//place the completed info-window html site list onto the page
+			$("#info-list").html(siteList).end();
+			
+			//calculate bounds for each group of coords
+			$.each(groupLatLngs,function(i,v) {
+				var latlngbounds = new google.maps.LatLngBounds();
+				$.each(v, function(ind,val) {latlngbounds.extend(val);});
+				groupLatLngs[i] = latlngbounds
+			});			
+			//calculate bounds for each region of coords
+			$.each(regionLatLngs,function(i,v) {
+				var latlngbounds = new google.maps.LatLngBounds();
+				$.each(v, function(ind,val) {latlngbounds.extend(val);});
+				regionLatLngs[i] = latlngbounds
+			});
+			/*
+			// map: an instance of GMap3
+// latlng: an array of instances of GLatLng
+var latlngbounds = new google.maps.LatLngBounds();
+latlng.each(function(n){
+   latlngbounds.extend(n);
+});
+map.setCenter(latlngbounds.getCenter());
+map.fitBounds(latlngbounds); 
+			
+			*/
+			/*
+			$(".site-item").hover(function(){
+				$(this).css({"backgroundColor":"rgb(128,128,128)"});
+			}, function(){
+				$(this).css({"background-color":"rgb(81,112,152)"});
+			});	
+			
+			$(".group-header").hover(function(){
+				$(this).css({"backgroundColor":"rgb(128,128,128)"});
+			}, function(){
+				$(this).css({"background-color":"rgb(81,112,152)"});
+			});
+*/			//console.log(siteList.html());
+		}
+
+	});
+	
+	//rotate info window tabs
+	//$("info-tab").rotate(90);
+	
+	//code for bird-finder-help window
+	$("#bird-finder-help-icon").mouseover(function(){
+		$("#bird-finder-help").css("top","3em");
+	});
+	$("#bird-finder-help-icon").mouseout(function(){
+		$("#bird-finder-help").css("top","-30em");
+	});
+
+	//URL Parser - retrieves any passed values
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+			vars[key] = value;
+		});
+		return vars;
+	};
+
+	if (getUrlVars()['spp']){
+		//If species slug passed, highlight those species on map
+		getSppSites(getUrlVars()["spp"]);
+		//make bird finder tab visible
+		$('#info-tab-birds').trigger('click');
+		
+		};	
+
+	//turn off busy image
+	//stopEllipsis();
+	$("#busy-screen").css("display","none");
+	
+});
+</script>
+
+<div id="map-wrapper">
+	<div id="busy-screen"><div style="height:25px;vertical-align:middle;position:fixed;font-size:1.8em;top:50%;left:50%;margin-left:-75px;z-index:200;width:200px;"><p>Loading Map<!--<span id="ellip"></span>--><img id="map-busy-img" style="height:20px;margin-left:10px;" src="/storage/img/ajax-loader.png"/></p></div>
+	</div>
+	<div id="map_canvas"></div>
+
+	<div id="info-panel">
+		<div id="tab-wrapper">
+			<div class="info-tab" id="info-tab-listing" title="#info-list">Site<br>List</div>
+			<div class="info-tab" id="info-tab-birds" title="#info-birds">Bird<br>Finder</div>
+			<div class="info-tab" id="info-tab-site-info" title="#info-site">Site<br>Info</div>
+			<!--<div class="info-tab" id="info-tab-business" title="#info-business">Local Business</div>-->
+
+		</div>
+		<div id="map-info-wrapper">
+			<div id="info-site" class="info-content"><div class="site-item">Click on site in the map to see more information</div></div>
+			<div id="info-list" class="info-content"><!--<div id="info-title">Birding Trail Sites <span style="text-variant:normal;text-size:0.9em;float:right;"(click headings to expand)</span></div><div id="info-list-content"></div>--></div>
+			<div id="info-birds" class="info-content">
+
+				<div id="select-bird-header" class="info-title-section"><div id="select-bird-title">Select Bird:</div> <img id="bird-finder-help-icon" src="/storage/img/q_icon_trans.png" style="width:13px;align:right;"/>
+
+				<div id="full-birdlist-button" style="cursor:pointer;float:right;font-size:1em;display:inline;">View All Species</div>
+				<div id="full-birdlist"></div>
+				<div id="bird-finder-help"><span style="font-weight:bold;">Bird Finder Help</span><hr/>Map points reflect birds that occur "occasionally" to "common" for the current season at a given NCBT site. See the bird list for a given site for more information. Sightings from eBird reflect observations from other bird-watchers in the past 14 days.
+				<div class="info-bird-key"><img src="/storage/img/map_dot_highlight.png" style="vertical-align:middle;width:28px;margin-right:0.6em;"/><span style="vertical-align:middle;">Sites where this bird <span style="font-style:italic;">may</span> be seen</span><br/></div>
+				<div class="info-bird-key"><img src="/storage/img/ebird_legend.png" style="vertical-align:middle;width:28px;margin-right:0.6em;"/><div style="vertical-align:middle;display:inline;"><a href="http://www.ebird.org" target="_blank">eBird</a> sightings</div></div></div>
+				<form id="select-ebird" class="select-form">
+				<select id="ebird-spp">
+						<option value="none"></option>
+						<option value="accipiter-cooperii">Cooper's hawk</option>
+						<option value="dendroica-striata">blackpoll warbler</option>
+						<option value="helmitheros-vermivorum">worm-eating warbler</option>
+						<option value="vermivora-chrysoptera">golden-winged warbler</option>
+						<option value="setophaga-discolor">prairie warbler</option>
+						<option value="view-all-species">view all species</option>
+					</select>
+					</form>
+				<hr/>
+				<div id="bird-searched"></div>
+				</div>
+				<div id="birdlist-results">
+				</div>
+			</div>
+			<!--<div id="info-business" class="info-content">
+				<div id="show-business-header" class="info-heading">Show Businesses on Map <img style="margin-left:0.5em;width:30px;" src="/storage/img/bfb_dot.png"/><img id="show-business-busy-img" style="float:right;" src="/storage/img/ajax-loader.png" ></div>
+				<p class="info-text" id="info-business" style="display:block">We encourage birders to patronize local businesses, just as we encourage local businesses to engage with birders through our <a href="/business">Birder-Friendly Business Program</a>. Birders spend over $ million a year nationally on birding excursions and equipment. If you are a business owner, <a href="mailto:info@ncbirdingtrail.org?subject=Please%20send%20me%20information%20about%20the%20NCBT%20BFB%20program">contact us</a> to find out more about opportunities to increase your visibility among birders.</p>
+			</div>-->
+		</div>
+	</div>
+	<!--
+	<div id="map_key">
+	  <div class="legend-text">
+		<div class='legend-item' id='bfb'>
+		  <img class="legend-img" src="/storage/img/bfb_dot.png"/>Birder-Friendly Business</div>
+		<div class='legend-item' id='ebird'>
+		  <img class="legend-img" src="/storage/img/ebird_40.png"/>Bird Sightings</div>
+	  </div>
+	</div>
+	-->
+</div>
+<!--
+<div id="splash">
+	<div id="splash-text">
+	What's a Birding Trail?
+		
+	</div>
+
+</div>
+-->

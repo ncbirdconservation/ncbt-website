@@ -1,0 +1,51 @@
+augment_nc_bird_list.py Notes
+
+replaced these characters in xls file:
+1. replace "-" with "-"
+2. replace "–" with "-"
+3. replace "’" with "'"
+4. replace “ with '
+5. replace  with '
+
+import from excel file:
+1. save as tab-delimited
+2. open in notepad
+3. replace tabs with ~
+4. replace CR/LF with |
+5. replace LF with " "
+8. replace | with \n (be sure extended characters is checked)
+9. delete last lines
+
+
+
+---------------------------------------------
+Notes for formatting site descriptions
+---------------------------------------------
+
+fields/css classes:
+<div id="site">
+	<div class="site_text" id="region"></div>
+	<div class="site_text" id="group"></div>
+	<div class="site_text" id="site_description"><h1>Description</h1><a href=""><div id="map_window"></a></div></div>
+	<div class="site_text" id="species"><h1>Species of Interest</h1></div>
+	<div class="site_text" id="habitats"><h1>Habitats</h1></div>
+	<div class="site_text" id="special"><h1>Special Features/Concerns</h1></div>
+	<div class="site_text" id="access"><h1>Access and Parking</h1></div>
+	<div class="site_text" id="directions_box">
+		<h1>Directions</h1>
+		<div class="site_text" id="dir_text">DIRECTIONS TEXT</div>
+		<div class="site_text" id="dir_coordinates">COORDINATES</div>
+		<div class="site_text" id="dir_gazetteer">GAZETEER</div>
+	</div>
+	<div id="amenities">
+		<div class="amenities_icon"></div>
+	</div>
+
+	<div class="site_text" id="contact">
+		<div class="site_text" id="owner"></div>
+		<div class="site_text" id="address"></div>
+		<div class="site_text" id="website"></div>
+		<div class="site_text" id="county"></div>
+		<div class="site_text" id="phone"></div>
+	</div>
+</div>

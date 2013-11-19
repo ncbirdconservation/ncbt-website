@@ -1,0 +1,329 @@
+region|site_num|group_name|site_name|affiliation|lat_dd|lon_dd|site_id|grp_file|slug
+Coastal|2|New Hanover|Airlie Gardens|New Hanover County|34.215|-77.82944444|7||airlie-gardens
+Piedmont|6|High Rock|Alcoa Game Land - Newsom Road|NC Wildlife Resources Commission (manager); Alcoa Power Generating Incorporated (owner)|35.53694444|-80.19138889|113||alcoa-game-land-newsom-road
+Coastal|3|Pender|Abbey Nature Preserve|Poplar Grove Plantation|34.3211111|-77.76555556|4||abbey-nature-preserve
+Piedmont|6|Sandhills|All American Trail|US Department of Defense, Fort Bragg Military Installation|35.04111111|-79.23277778|114||all-american-trail
+Coastal|6|Albemarle Peninsula|Alligator River National Wildlife Refuge|US Fish and Wildlife Service|35.86388889|-75.86055556|311||alligator-river-national-wildlife-refuge
+Piedmont|6|Greater Raleigh|Anderson Point Park|Raleigh Parks and Recreation Department|35.77472222|-78.54222222|22||anderson-point-park
+Mountain|5|Catawba Valley|Bakers Mountain Park|Catawba County|35.65583333|-81.41527778|205||bakers-mountain-park
+Mountain|2|Roan Mountain|Bakersville Creek Walk|Town of Bakersville|36.015|-82.15777778|289||bakersville-creek-walk
+Coastal|6|Southeast|Bald Head Island|Bald Head Island Conservancy|33.87638889|-78.00111111|9||bald-head-island
+Coastal|3|Bay Lakes|Bay Tree Lake State Park|NC State Parks|34.68388888|-78.42916667|17||bay-tree-lake-state-park
+Mountain|2|French Broad|Beaver Lake Bird Sanctuary|Elisha Mitchell Audubon Society (manager|35.63361111|-82.55666667|235||beaver-lake-bird-sanctuary
+Coastal|2|Tri-County|Bennett's Millpond|Edenton-Chowan Parks and Recreation Department|36.13888889|-76.66527778|26||bennetts-millpond
+Mountain|2|Haywood County|Big Creek|Great Smoky Mountains National Park|35.76|-83.10555556|252||big-creek
+Mountain|4|French Broad|Biltmore Estate|The Biltmore Company|35.56166667|-82.55277778|236||biltmore-estate
+Mountain|5|Central Blue Ridge Parkway|Black Mountains|Blue Ridge Parkway|35.73444444|-82.34416667|210||black-mountains
+Piedmont|2|Falls Lake|Blue Jay Point County Park|Wake County Parks, Recreation and Open Space Department|35.96833333|-78.64361111|115||blue-jay-point-county-park
+Coastal|4|Southeast|Boiling Spring Lakes Preserve|The Nature Conservancy|34.02277778|-78.06388889|8||boiling-spring-lakes-preserve
+Mountain|3|Watauga County|Boone Greenway|Town of Boone|36.20305556|-81.6525|306||boone-greenway
+Piedmont|1|High Rock|Boone's Cave Park|Davidson County Parks and Recreation Department|35.79888889|-80.4675|116||boones-cave-park
+Mountain|2|Cleveland County|Broad River Greenway|Cleveland County, Town of Boiling Springs c/o Broad River Greenway|35.20527778|-81.66083333|233||broad-river-greenway
+Coastal|7|Southeast|Brunswick Community College|NC Community Colleges|34.03805556|-78.22972223|15||brunswick-community-college
+Coastal|2|Southeast|Brunswick Town - Fort Anderson State Historic Site|NC Department of Cultural Resources|34.04000001|-77.94694443|27||brunswick-town-fort-anderson-state-historic-site
+Mountain|5|Watauga County|Buckeye Lake Recreation Area|Town of Beech Mountain|36.22|-81.90472222|307||buckeye-lake-recreation-area
+Mountain|7|Central Blue Ridge Parkway|Bull Creek|Blue Ridge Parkway|35.64805556|-82.49083333|211||bull-creek
+Piedmont|6|Central Piedmont|Bur-Mil Park|Guilford County|36.16972222|-79.8675|14||bur-mil-park
+Coastal|3|Western Coastal Plain|Cabin Lake County Park|Duplin County|34.98083333|-77.78555556|20||cabin-lake-county-park
+Coastal|4|East Carteret|Calico Creek Boardwalk|Town of Morehead City|34.72666666|-76.72916668|312||calico-creek-boardwalk
+Piedmont|7|Sandhills|Calloway Forest|The Nature Conservancy|35.01222222|-79.30972222|117||calloway-forest
+Piedmont|7|Greater Charlotte East|Cane Creek Park|Union County Parks and Recreation Department|34.84194444|-80.68388889|118||cane-creek-park
+Piedmont|1|Sandhills|Cape Fear Botanical Garden|Cape Fear Botanical Garden|35.05583333|-78.85916667|119||cape-fear-botanical-garden
+Piedmont|3|Sandhills|Cape Fear River Trail|City of Fayetteville|35.08777778|-78.87083333|120||cape-fear-river-trail
+Coastal|4|Outer Banks|Cape Hatteras National Seashore - Bodie Island|National Park Service|35.81777778|-75.56416668|313||cape-hatteras-national-seashore-bodie-island
+Coastal|1|Southern Outer Banks|Cape Hatteras National Seashore - Hatteras Island|National Park Service|35.25138889|-75.52722223|314||cape-hatteras-national-seashore-hatteras-island
+Coastal|3|Southern Outer Banks|Cape Hatteras National Seashore - Ocracoke Island|National Park Service|35.13444445|-75.90555555|315||cape-hatteras-national-seashore-ocracoke-island
+Coastal|7|East Carteret|Cape Lookout Point, Cape Lookout National Seashore|National Park Service|34.62277778|-76.52444445|316||cape-lookout-point-cape-lookout-national-seashore
+Mountain|8|French Broad|Carl Sandburg Home National Historic Site|National Park Service|35.27277778|-82.45277778|237||carl-sandburg-home-national-historic-site
+Coastal|5|New Hanover|Carolina Beach State Park|NC State Parks|34.04694443|-77.90694445|23||carolina-beach-state-park
+Mountain|4|Greater Charlotte West|Carolina Raptor Center|Carolina Raptor Center|35.35083333|-80.91777778|243||carolina-raptor-center
+Piedmont|4|Sandhills|Carvers Creek State Park|NC State Parks|35.17305556|-78.88666667|121||carvers-creek-state-park
+Coastal|5|Roanoke|Cashie Wetlands Walk|Town of Windsor|35.99972222|-76.94527779|317||cashie-wetlands-walk
+Piedmont|1|Caswell-Person|Caswell Game Land|NC Wildlife Resources Commission|36.3575|-79.34361111|10||caswell-game-land
+Piedmont|2|High Rock|Catawba College Ecological Preserve|Catawba College|35.68944444|-80.48055556|122||catawba-college-ecological-preserve
+Mountain|6|Central Foothills|Catawba River and Freedom Trail Greenways|City of Morganton|35.74027778|-81.71805556|219||catawba-river-and-freedom-trail-greenways
+Coastal|3|Tri-County|Catherine Creek/Warwick Creek Paddle Trail|Edenton-Chowan Parks and Recreation Department|36.31388889|-76.65666666|36||catherine-creek-warwick-creek-paddle-trail
+Coastal|8|East Carteret|Cedar Island National Wildlife Refuge|US Fish and Wildlife Service|34.95499999|-76.2775|318||cedar-island-national-wildlife-refuge
+Coastal|3|Onslow Bight|Cedar Point Tideland Trail|USDA Forest Service|34.69166667|-77.0863889|16||cedar-point-tideland-trail
+Piedmont|1|Central Piedmont|Cedarock Park|Alamance County Recreation and Parks Department|35.98388889|-79.44638889|18||cedarock-park
+Mountain|8|Central Blue Ridge Parkway|Charles D. Owen Park|Buncombe County Parks, Greenways and Recreation Services|35.61|-82.42944444|212||charles-d-owen-park
+Mountain|4|Southwest Mountains|Cherohala Skyway|Nantahala National Forest|35.345|-83.89333333|299||cherohala-skyway
+Coastal|4|Lower Neuse|Cherry Branch - Minnesott Ferry|NC Department of Transportation|34.93499999|-76.81111111|31||cherry-branch-minnesott-ferry
+Mountain|1|Southern Foothills|Chimney Rock State Park|NC State Parks|35.43222222|-82.24944444|293||chimney-rock-state-park
+Piedmont|2|Rockingham County|Chinqua-Penn Walking Trail|Upper Piedmont Research Station, NC State University|36.38277778|-79.70083333|123||chinqua-penn-walking-trail
+Piedmont|7|Greater Raleigh|Clemmons Educational State Forest|NC Division of Forest Resources|35.67944444|-78.48722222|124||clemmons-educational-state-forest
+Coastal|2|Western Coastal Plain|Cliffs of the Neuse State Park|NC State Parks|35.23972222|-77.88472223|32||cliffs-of-the-neuse-state-park
+Coastal|2|Central Coastal Plain|Contentnea Creek Paddle Trail|Greene County|35.41277777|-77.49777777|30||contentnea-creek-paddle-trail
+Mountain|3|Central Foothills|Cottages at Spring House Farm|Arthur and Zee Campbell|35.54194444|-82.08916667|220||cottages-at-spring-house-farm
+Mountain|2|Greater Charlotte West|Cowan's Ford Wildlife Refuge|Mecklenburg County Park and Recreation Department|35.38138889|-80.96138889|244||cowans-ford-wildlife-refuge
+Mountain|2|Central Blue Ridge Parkway|Crabtree Meadows|Blue Ridge Parkway|35.81222222|-82.14277778|213||crabtree-meadows
+Mountain|6|Central Blue Ridge Parkway|Craggy Gardens|Blue Ridge Parkway|35.69805556|-82.39861111|214||craggy-gardens
+Coastal|2|Lower Neuse|Croatan National Forest - Island Creek Forest Walk|USDA Forest Service|35.02694444|-77.13555557|37||croatan-national-forest-island-creek-forest-walk
+Coastal|1|Onslow Bight|Croatan National Forest - Millis & Pringle Roads|USDA Forest Service|34.77111111|-76.93055556|38||croatan-national-forest-millis-and-pringle-roads
+Coastal|3|Lower Neuse|Croatan National Forest - Neusiok Trail|USDA Forest Service|34.93861111|-76.82166666|39||croatan-national-forest-neusiok-trail
+Mountain|1|Cleveland County|Crowders Mountain State Park|NC State Parks|35.21333333|-81.29361111|234||crowders-mountain-state-park
+Coastal|1|Central Coastal Plain|CSS Neuse State Historic Site|NC Department of Cultural Resources|35.26666667|-77.62138889|40||css-neuse-state-historic-site
+Mountain|1|Northern Blue Ridge Parkway|Cumberland Knob|Blue Ridge Parkway|36.55305556|-80.90861111|274||cumberland-knob
+Coastal|6b|Northeast|Currituck Banks National Estuarine Research Reserve|NC Coastal Reserve|36.38888888|-75.83055556|319||currituck-banks-national-estuarine-research-reserve
+Coastal|6c|Northeast|Currituck National Wildlife Refuge|US Fish and Wildlife Service|36.38888888|-75.83055556|320||currituck-national-wildlife-refuge
+Piedmont|3|High Rock|Dan Nicholas Park|Rowan County Parks and Recreation Department|35.63222222|-80.35638889|126||dan-nicholas-park
+Piedmont|3|Rockingham County|Dan River|Rockingham County|36.47472222|-79.75|127||dan-river
+Mountain|5|Pisgah|Davidson River|Pisgah National Forest|35.28472222|-82.72722222|283||davidson-river
+Mountain|2|Pisgah|Devil's Courthouse|Blue Ridge Parkway|35.305|-82.89944444|284||devils-courthouse
+Coastal|2|Northeast|Dismal Swamp Canal Trail|NC Department of Transportation; Dismal Swamp Canal Welcome Center (local contact|36.50694445|-76.35472222|321||dismal-swamp-canal-trail
+Coastal|1|Northeast|Dismal Swamp State Park|NC State Parks|36.50694445|-76.35472222|42||dismal-swamp-state-park
+Mountain|3|Northern Blue Ridge Parkway|Doughton Park|Blue Ridge Parkway|36.43361111|-81.17722222|275||doughton-park
+Piedmont|7|Orange-Durham|Duke Forest|Duke University|35.97777778|-79.02888889|5||duke-forest
+Piedmont|1|Lee-Harnett|Dunn Erwin Trail|Dunn Erwin Trail Authority|35.32638889|-78.63055556|128||dunn-erwin-trail
+Piedmont|4|High Rock|Dunn's Mountain History and Nature Preserve|Rowan County Parks and Recreation Department|35.62555556|-80.42527778|129||dunns-mountain-history-and-nature-preserve
+Mountain|6|Pisgah|DuPont State Forest|NC Division of Forest Resources|35.19111111|-82.62277778|285||dupont-state-forest
+Piedmont|1|Greater Raleigh|Durant Nature Park|City of Raleigh Parks and Recreation Department|35.89472222|-78.57861111|130||durant-nature-park
+Mountain|3|New River|E.B. Jeffress Park|Blue Ridge Parkway|36.24611111|-81.45805556|268||eb-jeffress-park
+Piedmont|5|High Rock|Eagle Point Nature Preserve|Rowan County Parks and Recreation Department|35.60388889|-80.26666667|131||eagle-point-nature-preserve
+Coastal|3|Albemarle Peninsula|Eastern 4-H Environmental Education Conference Center|NC State University|35.93555556|-76.35666666|43||eastern-4-h-environmental-education-conference-center
+Coastal|1|Tri-County|Edenton National Fish Hatchery|US Fish and Wildlife Service|36.05694444|-76.63694443|44||edenton-national-fish-hatchery
+Mountain|1|Watauga County|Elk Knob State Park|NC State Parks|36.3325|-81.68944444|308||elk-knob-state-park
+Coastal|4|Onslow Bight|Emerald Isle Woods|Town of Emerald Isle|34.65861112|-77.06805557|33||emerald-isle-woods
+Piedmont|3|Orange-Durham|Eno River State Park|NC State Parks|36.078|-79.00694444|132||eno-river-state-park
+Coastal|1|Southeast|Ev-Henwood Nature Preserve|University of North Carolina at Wilmington|34.16916666|-78.11555556|322||ev-henwood-nature-preserve
+Piedmont|5|Falls Lake|Falls Lake State Recreation Area - Beaverdam Reservoir|NC State Parks|36.04222222|-78.68361111|13||falls-lake-state-recreation-area-beaverdam-reservoir
+Piedmont|3|Falls Lake|Falls Lake State Recreation Area - Holly Point / Shinleaf|NC State Parks|35.99472222|-78.65555556|133||falls-lake-state-recreation-area-holly-point-shinleaf
+Piedmont|7|Falls Lake|Falls Lake State Recreation Area - Rollingview|NC State Parks|36.02277778|-78.72777778|134||falls-lake-state-recreation-area-rollingview
+Piedmont|6|Falls Lake|Falls Lake State Recreation Area - Sandling Beach|NC State Parks|36.03916667|-78.71083333|135||falls-lake-state-recreation-area-sandling-beach
+Piedmont|4|Falls Lake|Falls Lake State Recreation Area - Woodpecker Ridge|NC State Parks|36.02333333|-78.69527778|136||falls-lake-state-recreation-area-woodpecker-ridge
+Piedmont|1|Falls Lake|Falls Lake Trail|NC Wildlife Resources Commission, NC Division of Parks and Recreation, Wake County Parks and Recreation (joint managers), US Army Corps of Engineers (owner)|35.942|-78.582|137||falls-lake-trail
+Mountain|6|Cherokee|Ferguson Fields (Kituwah Farm)|Eastern Band of Cherokee Indian|35.43888889|-83.4025|227||ferguson-fields-kituwah-farm
+Mountain|6|Southwest Mountains|Fires Creek Picnic Area|Nantahala National Forest|35.09583333|-83.85861111|300||fires-creek-picnic-area
+Mountain|2|Southwest Mountains|Fontana Village|Fontana Village|35.43277778|-83.82194444|301||fontana-village
+Mountain|6|Southern Foothills|Foothills Equestrian Nature Center|Foothills Equestrian Nature Center|35.20055556|-82.17472222|294||foothills-equestrian-nature-center
+Coastal|6a|New Hanover|Fort Fisher State Historic Site|NC Department of Cultural Resources|33.97166668|-77.9175|46||fort-fisher-state-historic-site
+Coastal|6c|New Hanover|Fort Fisher State Recreation Area|NC State Parks|33.96444444|-77.9225|47||fort-fisher-state-recreation-area
+Coastal|3|East Carteret|Fort Macon State Park|NC State Parks|34.69694444|-76.67777778|48||fort-macon-state-park
+Piedmont|1|Greater Charlotte East|Frank Liske Park|Cabarrus County Parks and Recreation Department|35.36305556|-80.6225|138||frank-liske-park
+Piedmont|11|Northeast Piedmont|Franklin County Nature Preserve|Allen DeHart|36.02388889|-78.35388889|139||franklin-county-nature-preserve
+Piedmont|4|Greater Charlotte East|Freedom Park and Charlotte Nature Museum|Mecklenburg County Park and Recreation Department|35.1925|-80.8425|140||freedom-park-and-charlotte-nature-museum
+Mountain|3|French Broad|French Broad River Greenway|City of Asheville Parks & Recreation|35.56916667|-82.56416667|238||french-broad-river-greenway
+Mountain|2|Catawba Valley|Glenn C. Hilton, Jr. Memorial Park|City of Hickory|35.76194444|-81.35555556|206||glenn-c-hilton-jr-memorial-park
+Coastal|5|Lower Neuse|Goose Creek Game Land - Spring Creek Impoundment en|NC Wildlife Resources Commission|35.26722001|-76.61722001|323||goose-creek-game-land-spring-creek-impoundment-en
+Coastal|5|Central Coastal Plain|Goose Creek State Park|NC State Parks|35.47833334|-76.90249999|50||goose-creek-state-park
+Mountain|10|Nantahala|Gorges State Park|NC State Parks|35.10083333|-82.95916667|258||gorges-state-park
+Mountain|4|Grandfather Corridor|Grandfather Mountain|Grandfather Mountain, Inc.|36.09583333|-81.83166667|248||grandfather-mountain
+Mountain|2|Southern Foothills|Green River Game Land|NC Wildlife Resources Commission|35.29111111|-82.32472222|295||green-river-game-land
+Coastal|8|Southeast|Green Swamp Preserve|The Nature Conservancy|34.09277778|-78.29916666|324||green-swamp-preserve
+Mountain|2|New River|Green Valley Park|Green Valley Park, Inc.|36.28777778|-81.61138889|269||green-valley-park
+Coastal|1|New Hanover|Greenfield Park|City of Wilmington Parks and Recreation Department|34.21416666|-77.9438889|52||greenfield-park
+Piedmont|5|Central Piedmont|Guilford Courthouse National Military Park|National Park Service|36.13111111|-79.84638889|19||guilford-courthouse-national-military-park
+Coastal|7|Albemarle Peninsula|Gull Rock Game Land|NC Wildlife Resources Commission|35.37805556|-76.11222222|53||gull-rock-game-land
+Coastal|5|Onslow Bight|Hammocks Beach State Park - Bear Island & Huggins Island|NC State Parks|34.67083333|-77.14305557|54||hammocks-beach-state-park-bear-island-and-huggins-island
+Piedmont|7|Northwest Piedmont|Hanging Rock State Park|NC State Parks|36.395|-80.26638889|141||hanging-rock-state-park
+Coastal|6|East Carteret|Harkers Island Nature Trail|National Park Service|34.68527779|-76.52722222|55||harkers-island-nature-trail
+Piedmont|14|Greater Raleigh|Harris Lake County Park|Wake County Parks, Recreation and Open Space Department|35.62138889|-78.92583333|142||harris-lake-county-park
+Piedmont|3|Central Piedmont|Haw River State Park|NC State Parks|36.25|-79.75666667|143||haw-river-state-park
+Piedmont|2|Central Piedmont|Haw River Trail - Glencoe Access|Alamance County|36.13666667|-79.42694444|144||haw-river-trail-glencoe-access
+Mountain|3|Haywood County|Heintooga Spur Road|Blue Ridge Parkway, Great Smoky Mountains National Park|35.5725|-83.17944444|253||heintooga-spur-road
+Piedmont|13|Greater Raleigh|Hemlock Bluffs Nature Preserve|Town of Cary|35.73333333|-78.78333333|145||hemlock-bluffs-nature-preserve
+Mountain|3|Catawba Valley|Hickory City Park-Geitner Park Greenway|City of Hickory|35.75722222|-81.36861111|207||hickory-city-park-geitner-park-greenway
+Piedmont|1|Pee Dee|High Ridge Gardens|Mary Erickson and John Edmondson|34.93388889|-80.30694444|146||high-ridge-gardens
+Mountain|6|Nantahala|Highlands Nature Center|University of North Carolina, Highlands Biological Station|35.05222222|-83.18805556|259||highlands-nature-center
+Piedmont|1|Orange-Durham|Hill Forest|NC State University, College of Natural Resources|36.19916667|-78.89527778|147||hill-forest
+Piedmont|5|Pee Dee|Hinson Lake|City of Rockingham (on-site manager); NC Wildlife Resources Commission (owner|34.93861111|-79.75027778|148||hinson-lake
+Piedmont|4|Northwest Piedmont|Historic Bethabara Park|Historic Bethabara Park|36.15472222|-80.29611111|149||historic-bethabara-park
+Coastal|6|Roanoke|Historic Hope Plantation|Historic Hope Foundation, Inc|36.03333333|-77.01750001|56||historic-hope-plantation
+Mountain|1|Central Blue Ridge Parkway|Historic Orchard at Altapass|The Altapass Foundation|35.87861111|-82.02444444|215||historic-orchard-at-altapass
+Piedmont|10|Greater Raleigh|Historic Yates Mill County Park|Wake County Parks, Recreation and Open Space Department, and NC State University|35.72027778|-78.68722222|150||historic-yates-mill-county-park
+Coastal|2|Pender|Holly Shelter Game Land - Greentree Impoundment|NC Wildlife Resources Commission|34.54861112|-77.81611112|57||holly-shelter-game-land-greentree-impoundment
+Coastal|1|Pender|Holly Shelter Game Land - Southeast Gate|NC Wildlife Resources Commission|34.40944443|-77.65722222|58||holly-shelter-game-land-southeast-gate
+Coastal|2|East Carteret|Hoop Pole Creek Natural Area|NC Coastal Federation|34.70111111|-76.75194443|59||hoop-pole-creek-natural-area
+Coastal|1|Western Coastal Plain|Howell Woods Environmental Learning Center|Johnston Community College|35.37056|-78.30583001|60||howell-woods-environmental-learning-center
+Piedmont|4|Orange-Durham|Indian Trail Park - West Ellerbe Creek Trail/17 Acre Wood Preserve|Ellerbe Creek Watershed Association|36.02444444|-78.92916667|151||indian-trail-park-west-ellerbe-creek-trail-17-acre-wood-preserve
+Mountain|1|Central Foothills|Inn on Mill Creek|David and Brigette Walters|35.64277778|-82.25583333|221||inn-on-mill-creek
+Piedmont|2|Sandhills|J. Bayard Clark Park|City of Fayetteville|35.08777778|-78.87083333|152||j-bayard-clark-park
+Coastal|4|Western Coastal Plain|Jackson Farm|Tom and Jan Jackson|35.1463889|-78.53416668|61||jackson-farm
+Mountain|7|French Broad|Jackson Park|Henderson County Parks & Recreation|35.31833333|-82.44638889|239||jackson-park
+Coastal|3|Outer Banks|Jockey's Ridge State Park|NC State Parks|35.96416667|-75.6325|62||jockeys-ridge-state-park
+Mountain|7|Southwest Mountains|John C. Campbell Folk School|John C. Campbell Folk School, Inc.|35.03916667|-83.96361111|302||john-c-campbell-folk-school
+Piedmont|6|Orange-Durham|Johnston Mill Nature Preserve|Triangle Land Conservancy|35.99527778|-79.05416667|153||johnston-mill-nature-preserve
+Coastal|2|Bay Lakes|Jones Lake State Park|NC State Parks|34.68166667|-78.59555557|63||jones-lake-state-park
+Piedmont|5|Jordan Lake|Jordan Lake Educational State Forest|NC Division of Forest Resources|35.77388889|-79.04166667|154||jordan-lake-educational-state-forest
+Piedmont|1|Jordan Lake|Jordan Lake State Recreation Area - Ebenezer Church|NC State Parks|35.70777778|-79.02638889|155||jordan-lake-state-recreation-area-ebenezer-church
+Piedmont|2|Jordan Lake|Jordan Lake State Recreation Area - New Hope|NC State Parks|35.68222222|-79.04777778|156||jordan-lake-state-recreation-area-new-hope
+Piedmont|4|Jordan Lake|Jordan Lake State Recreation Area - Parkers Creek|NC State Parks|35.74416667|-79.04194444|157||jordan-lake-state-recreation-area-parkers-creek
+Piedmont|3|Jordan Lake|Jordan Lake State Recreation Area - Seaforth|NC State Parks|35.72611111|-79.035|158||jordan-lake-state-recreation-area-seaforth
+Piedmont|6|Jordan Lake|Jordan Lake State Recreation Area - Vista Point|NC State Parks|35.70388889|-79.04833333|159||jordan-lake-state-recreation-area-vista-point
+Mountain|5|Southwest Mountains|Joyce Kilmer Memorial Forest|Nantahala National Forest|35.35916667|-83.92888889|303||joyce-kilmer-memorial-forest
+Mountain|2|Grandfather Corridor|Julian Price Memorial Park|Blue Ridge Parkway|36.13861111|-81.73638889|249||julian-price-memorial-park
+Piedmont|6|Northeast Piedmont|Kerr Lake State Recreation Area - Bullocksville|NC State Parks|36.45833333|-78.36472222|160||kerr-lake-state-recreation-area-bullocksville
+Piedmont|7|Northeast Piedmont|Kerr Lake State Recreation Area - County Line|NC State Parks|36.51944444|-78.32027778|161||kerr-lake-state-recreation-area-county-line
+Piedmont|4|Northeast Piedmont|Kerr Lake State Recreation Area - Henderson Point|NC State Parks|36.53472222|-78.34555556|162||kerr-lake-state-recreation-area-henderson-point
+Piedmont|3|Northeast Piedmont|Kerr Lake State Recreation Area - Hibernia|NC State Parks|36.51055556|-78.37472222|163||kerr-lake-state-recreation-area-hibernia
+Piedmont|8|Northeast Piedmont|Kerr Lake State Recreation Area - Kimball Point|NC State Parks|36.53888889|-78.31666667|164||kerr-lake-state-recreation-area-kimball-point
+Piedmont|2|Northeast Piedmont|Kerr Lake State Recreation Area - Nutbush|NC State Parks|36.41277778|-78.395|165||kerr-lake-state-recreation-area-nutbush
+Piedmont|5|Northeast Piedmont|Kerr Lake State Recreation Area - Satterwhite Point|NC State Parks|36.44694444|-78.37166667|166||kerr-lake-state-recreation-area-satterwhite-point
+Piedmont|8|Greater Raleigh|Lake Benson Park|Town of Garner|35.67138889|-78.62861111|167||lake-benson-park
+Piedmont|3|Greater Raleigh|Lake Crabtree County Park|Wake County Parks, Recreation and Open Space Department|35.84166667|-78.79527778|168||lake-crabtree-county-park
+Mountain|5|Central Foothills|Lake James State Park|NC State Parks|35.73166667|-81.90305556|222||lake-james-state-park
+Piedmont|9|Greater Raleigh|Lake Johnson Park|City of Raleigh Parks and Recreation Department|35.76222222|-78.71555556|169||lake-johnson-park
+Mountain|5|Haywood County|Lake Junaluska|Lake Junaluska Assembly|35.52361111|-82.98166667|254||lake-junaluska
+Mountain|1|Greater Charlotte West|Lake Norman State Park|NC State Parks|35.65|-80.94611111|245||lake-norman-state-park
+Piedmont|1|Rockingham County|Lake Reidsville Recreational Park|City of Reidsville|36.29277778|-79.68194444|170||lake-reidsville-recreational-park
+Coastal|9|Southeast|Lake Waccamaw State Park|NC State Parks|34.27805556|-78.46555557|325||lake-waccamaw-state-park
+Piedmont|11|Greater Raleigh|Lake Wheeler|City of Raleigh Parks and Recreation Department|35.69611111|-78.69277778|171||lake-wheeler
+Mountain|4|Catawba Valley|Lakeside Park|Town of Granite Falls|35.78638889|-81.44055556|208||lakeside-park
+Mountain|3|Greater Charlotte West|Latta Plantation Nature Preserve|Mecklenburg County Park and Recreation Department|35.35583333|-80.90888889|246||latta-plantation-nature-preserve
+Mountain|4|Northern Foothills|Lenoir Greenway|City of Lenoir|35.92194444|-81.5225|279||lenoir-greenway
+Mountain|4|New River|Lewis Fork Overlook|Blue Ridge Parkway|36.26194444|-81.44055556|270||lewis-fork-overlook
+Mountain|4|Roan Mountain|Linville Falls|Blue Ridge Parkway|35.95527778|-81.92805556|290||linville-falls
+Piedmont|2|Orange-Durham|Little River Regional Park and Natural Area|Orange and Durham Counties|36.16166667|-78.975|172||little-river-regional-park-and-natural-area
+Mountain|3|Nantahala|Little Tennessee River Greenway|Macon County; Friends of the Greenway, Inc. (site manager|35.18388889|-83.37083333|260||little-tennessee-river-greenway
+Piedmont|6|Greater Charlotte East|Lower McAlpine and McMullen Creek Greenway|Mecklenburg County Park and Recreation Department|35.08722222|-80.85694445|173||lower-mcalpine-and-mcmullen-creek-greenway
+Piedmont|5|Sandhills|Lumber River State Park|NC State Parks|34.92611111|-79.35444444|65||lumber-river-state-park
+Piedmont|8|Sandhills|Lumber River State Park - Chalk Banks and upper sections|NC State Parks|34.92611111|-79.35444444|174||lumber-river-state-park-chalk-banks-and-upper-sections
+Coastal|5|Northeast|Mackay Island National Wildlife Refuge|US Fish and Wildlife Service|36.52777779|-75.99027779|326||mackay-island-national-wildlife-refuge
+Mountain|2|Northern Blue Ridge Parkway|Mahogany Rock|Blue Ridge Parkway|36.44111111|-81.09527778|276||mahogany-rock
+Piedmont|2|Greater Charlotte East|Mallard and Clark's Creek Greenway|Mecklenburg County Park and Recreation Department|35.33472222|-80.77333333|175||mallard-and-clarks-creek-greenway
+Piedmont|8|Orange-Durham|Mason Farm Biological Reserve|North Carolina Botanical Garden, The University of North Carolina at Chapel Hill|35.89222222|-79.01638889|176||mason-farm-biological-reserve
+Coastal|3|New Hanover|Mason Inlet Waterbird Management Area|New Hanover County; Audubon NC (manager|34.23472223|-77.7761111|67||mason-inlet-waterbird-management-area
+Coastal|4|New Hanover|Masonboro Island National Estuarine Research Reserve|NC Coastal Reserve|34.16583333|-77.84305557|327||masonboro-island-national-estuarine-research-reserve
+Coastal|8|Albemarle Peninsula|Mattamuskeet National Wildlife Refuge|US Fish and Wildlife Service|35.45194444|-76.17722222|328||mattamuskeet-national-wildlife-refuge
+Mountain|1|Haywood County|Max Patch|Pisgah National Forest|35.79388889|-82.9625|255||max-patch
+Piedmont|2|Caswell-Person|Mayo Park|Person County Recreation, Arts, and Parks Department|36.48138889|-78.86777778|11||mayo-park
+Piedmont|5|Greater Charlotte East|McAlpine Creek and Campbell Creek Greenways|Mecklenburg County Park and Recreation Department|35.15055556|-80.74444444|177||mcalpine-creek-and-campbell-creek-greenways
+Mountain|5|Greater Charlotte West|McDowell Nature Preserve|Mecklenburg County Park and Recreation Department|35.09444444|-81.02388889|247||mcdowell-nature-preserve
+Mountain|2|Watauga County|Meat Camp Creek Environmental Studies Area|Curtis and Mary Smalling|36.26388889|-81.62861111|309||meat-camp-creek-environmental-studies-area
+Piedmont|10|Northeast Piedmont|Medoc Mountain State Park|NC State Parks|36.26472222|-77.8875|178||medoc-mountain-state-park
+Coastal|4|Tri-County|Merchants Millpond State Park|NC State Parks|36.41694444|-76.69805555|329||merchants-millpond-state-park
+Coastal|5|Tri-County|Mill Creek Paddle Trail|Town of Hertford|36.19|-76.47083333|71||mill-creek-paddle-trail
+Piedmont|2|Northwest Piedmont|Miller Park|Winston-Salem Parks and Recreation Department|36.08694444|-80.28444444|179||miller-park
+Mountain|1|Cherokee|Mingo Falls|Eastern Band of Cherokee Indian|35.53416667|-83.27638889|228||mingo-falls
+Coastal|4|Pender|Moores Creek National Battlefield|National Park Service|34.4575|-78.10944443|72||moores-creek-national-battlefield
+Piedmont|6|Uwharrie|Morrow Mountain State Park|NC State Parks|35.37333333|-80.07305556|180||morrow-mountain-state-park
+Mountain|1|Grandfather Corridor|Moses H. Cone Memorial Park|Blue Ridge Parkway|36.15111111|-81.69166667|250||moses-h-cone-memorial-park
+Mountain|4|Central Foothills|Mount Ida Nature Preserve|City of Marion|35.67138889|-81.98916667|223||mount-ida-nature-preserve
+Mountain|5|New River|Mount Jefferson State Natural Area|NC State Parks|36.39777778|-81.48138889|271||mount-jefferson-state-natural-area
+Mountain|4|Central Blue Ridge Parkway|Mount Mitchell State Park|NC State Parks|35.76666667|-82.26472222|217||mount-mitchell-state-park
+Mountain|2|Central Foothills|Mountain Gateway Museum|NC Department of Cultural Resource|35.62777778|-82.18055556|224||mountain-gateway-museum
+Coastal|6b|New Hanover|NC Aquarium at Fort Fisher|NC Division of Environment and Natural Resources|33.96277777|-77.92694444|74||nc-aquarium-at-fort-fisher
+Coastal|1|East Carteret|NC Aquarium at Pine Knoll Shores & T. Roosevelt State Natural Area|NC Aquariums, NC State Parks|34.69916667|-76.82888888|75||nc-aquarium-at-pine-knoll-shores-and-t-roosevelt-state-natural-area
+Piedmont|1|Uwharrie|NC Zoological Park|NC Department of Environment and Natural Resources|35.63027778|-79.76611111|182||nc-zoological-park
+Mountain|1|Nantahala|Needmore Game Land|NC Wildlife Resources Commission|35.32583333|-83.5225|261||needmore-game-land
+Mountain|6|New River|New River State Park|NC State Parks|36.45611111|-81.33694444|272||new-river-state-park
+Piedmont|9|Northeast Piedmont|Newell Farms|Frank Newell|36.38472222|-78.17277778|181||newell-farms
+Mountain|4|Southern Foothills|Norman Wilder Forest|Pacolet Area Conservancy|35.22444444|-82.27388889|296||norman-wilder-forest
+Mountain|5|French Broad|North Carolina Arboretum|University of North Carolina|35.49805556|-82.60888889|240||north-carolina-arboretum
+Mountain|6|French Broad|North Mills River|Pisgah National Forest|35.40555556|-82.64194444|241||north-mills-river
+Coastal|4|Northeast|North River Game Land|NC Wildlife Resources Commission|36.26972|-76.02944001|76||north-river-game-land
+Coastal|3|I-95 Corridor North|Northampton County Nature Trail|Northampton County Cooperative Extension|36.41388888|-77.43583334|77||northampton-county-nature-trail
+Piedmont|5|Orange-Durham|Occoneechee Mountain State Natural Area|NC State Parks|36.06055556|-79.11694444|183||occoneechee-mountain-state-natural-area
+Mountain|3|Cherokee|Oconaluftee Indian Village Botanical Garden|Eastern Band of Cherokee Indian|35.48722222|-83.32305556|229||oconaluftee-indian-village-botanical-garden
+Mountain|4|Cherokee|Oconaluftee Island Park|Eastern Band of Cherokee Indian|35.47916667|-83.32027778|230||oconaluftee-island-park
+Mountain|2|Cherokee|Oconaluftee Visitor Center|Great Smoky Mountains National Park|35.51388889|-83.30611111|231||oconaluftee-visitor-center
+Coastal|6|Onslow Bight|Onslow County Cow Horn - New River Paddle Trail|Onslow County Parks and Recreation Department|34.89416667|-77.5125|78||onslow-county-cow-horn-new-river-paddle-trail
+Coastal|8|Onslow Bight|Onslow County Public Beach Access #2|Onslow County Parks and Recreation Department|34.46083333|-77.485|79||onslow-county-public-beach-access-2
+Coastal|3|Southeast|Orton Plantation Gardens|David Sprunt|34.04527779|-77.94888888|80||orton-plantation-gardens
+Coastal|6a|Northeast|Outer Banks Center for Wildlife Education|NC Wildlife Resources Commission|36.37472222|-75.83055556|330||outer-banks-center-for-wildlife-education
+Mountain|8|Nantahala|Padgett Poplar Tree Trail|Nantahala National Forest|35.04472222|-83.17583333|262||padgett-poplar-tree-trail
+Coastal|5|Albemarle Peninsula|Palmetto-Peartree Preserve|The Conservation Fund|35.98805555|-76.13416666|82||palmetto-peartree-preserve
+Coastal|2|Onslow Bight|Patsy Pond Nature Trail|NC Coastal Federation (manager), USDA Forest Service (property owner)|34.71861111|-76.96361111|83||patsy-pond-nature-trail
+Coastal|5|Outer Banks|Pea Island National Wildlife Refuge|US Fish and Wildlife Service|35.7161111|-75.49361112|331||pea-island-national-wildlife-refuge
+Mountain|3|Southern Foothills|Pearson's Falls|Tryon Garden Club, Inc.|35.215|-82.33583333|297||pearsons-falls
+Piedmont|4|Pee Dee|Pee Dee Game Land - Blewett Falls|Progress Energy (owner); NC Wildlife Resources Commission (manager)|34.99083333|-79.87666667|185||pee-dee-game-land-blewett-falls
+Piedmont|2|Pee Dee|Pee Dee National Wildlife Refuge|US Fish & Wildlife Service|35.0575|-80.09361111|184||pee-dee-national-wildlife-refuge
+Coastal|2|Albemarle Peninsula|Pettigrew State Park|NC State Parks|35.79055555|-76.40638889|332||pettigrew-state-park
+Piedmont|7|Central Piedmont|Piedmont Environmental Centerl of High Point|City of High Point|36.00388889|-79.95416667|186||piedmont-environmental-centerl-of-high-point
+Piedmont|6|Northwest Piedmont|Pilot Mountain State Park|NC State Parks|36.34027778|-80.48|187||pilot-mountain-state-park
+Mountain|3|Pisgah|Pink Beds|Pisgah National Forest|35.35305556|-82.77944444|286||pink-beds
+Mountain|4|Pisgah|Pisgah Center for Wildlife Education|NC Wildlife Resources Commission|35.28416667|-82.79166667|287||pisgah-center-for-wildlife-education
+Mountain|1|Pisgah|Pisgah Ridge|Blue Ridge Parkway|35.40083333|-82.75416667|288||pisgah-ridge
+Coastal|1|Albemarle Peninsula|Pocosin Lakes National Wildlife Refuge|US Fish and Wildlife Service|35.77305556|-76.52666667|333||pocosin-lakes-national-wildlife-refuge
+Piedmont|5|Greater Raleigh|Prairie Ridge Ecostation for Wildlife & Learning|NC State Museum of Natural Sciences|35.81166667|-78.71333333|188||prairie-ridge-ecostation-for-wildlife-and-learning
+Mountain|2|Nantahala|Queen Branch|The Land Trust for the Little Tennessee|35.28361111|-83.46694444|263||queen-branch
+Coastal|5|East Carteret|Rachel Carson National Estuarine Research Reserve|NC Coastal Reserve|34.71472223|-76.66777778|87||rachel-carson-national-estuarine-research-reserve
+Piedmont|5|Sandhills|Raft Swamp Farms|Louie and Jackie Hough|34.90388889|-79.21166667|189||raft-swamp-farms
+Coastal|7|Roanoke|Rail Switch Nature Trail|Town of Plymouth|35.86916666|-76.74416666|88||rail-switch-nature-trail
+Mountain|5|Nantahala|Ranger Falls Trail|Nantahala National Forest|35.08583333|-83.2175|264||ranger-falls-trail
+Piedmont|2|Lee-Harnett|Raven Rock State Park|NC State Parks|35.46027778|-78.91305556|190||raven-rock-state-park
+Piedmont|3|Greater Charlotte East|Reedy Creek Nature Preserve|Mecklenburg County Park and Recreation Department|35.26222222|-80.72|191||reedy-creek-nature-preserve
+Coastal|3|Northeast|Regional Fitness Trail|College of the Albemarle and Albemarle Hospital|36.32555556|-76.21805557|334||regional-fitness-trail
+Piedmont|3|Northwest Piedmont|Reynolda Gardens of Wake Forest University|Wake Forest University|36.12722222|-80.28444444|192||reynolda-gardens-of-wake-forest-university
+Mountain|3|Central Blue Ridge Parkway|Ridge Junction Overlook|Blue Ridge Parkway|35.71722222|-82.27861111|218||ridge-junction-overlook
+Coastal|3|Central Coastal Plain|River Park North|City of Greenville|35.62861111|-77.36027777|90||river-park-north
+Mountain|1|Catawba Valley|Riverbend Park|Catawba County|35.82|-81.1875|209||riverbend-park
+Mountain|5|Cherokee|Riverwalk at Riverbend|Eastern Band of Cherokee Indian|35.47555556|-83.31916667|232||riverwalk-at-riverbend
+Coastal|1|I-95 Corridor North|Roanoke Canal Trail and Museum|Roanoke Canal Trail and Museum|36.47444445|-77.64805557|92||roanoke-canal-trail-and-museum
+Coastal|2|Outer Banks|Roanoke Island Marsh Game Land|NC Wildlife Resources Commission|35.88388889|-75.65833334|93||roanoke-island-marsh-game-land
+Coastal|3|Roanoke|Roanoke River National Wildlife Refuge - The Kuralt Trail|US Fish and Wildlife Service|35.86500001|-77.03583334|94||roanoke-river-national-wildlife-refuge-the-kuralt-trail
+Coastal|4|Roanoke|Roanoke River Paddle Trail - Cashie River, Broad Creek|Roanoke River Partners|35.99194445|-76.94305556|98||roanoke-river-paddle-trail-cashie-river-broad-creek
+Coastal|8|Roanoke|Roanoke River Paddle Trail - Conaby Creek|Roanoke River Partners|35.89555555|-76.705|95||roanoke-river-paddle-trail-conaby-creek
+Coastal|2|Roanoke|Roanoke River Paddle Trail - Mainstem Roanoke, Devil's Gut, Gardner Creek, Broad Creek, Cow Creek|Roanoke River Partners|35.85916667|-77.03916668|96||roanoke-river-paddle-trail-mainstem-roanoke-devils-gut-gardner-creek-broad-creek-cow-creek
+Coastal|2|I-95 Corridor North|Roanoke River Paddle Trail - Weldon to US 258 Bridge|Contact: Roanoke River Partners|36.42722222|-77.59111111|97||roanoke-river-paddle-trail-weldon-to-us-258-bridge
+Piedmont|1|Northwest Piedmont|Salem Lake, Salem Lake Greenway, and Civitan Park|Winston-Salem Parks and Recreation Department|36.09472222|-80.19305556|193||salem-lake-salem-lake-greenway-and-civitan-park
+Piedmont|10|Sandhills|Sandhills Game Land|NC Wildlife Resources Commission|35.00805556|-79.62472222|194||sandhills-game-land
+Mountain|1|French Broad|Sandy Mush Game Land|NC Wildlife Resources Commission|35.71916667|-82.67111111|242||sandy-mush-game-land
+Piedmont|3|Lee-Harnett|San-Lee Environmental Education and Recreation Park|Lee County Parks and Recreation|35.48277778|-79.12638889|195||san-lee-environmental-education-and-recreation-park
+Piedmont|4|Greater Raleigh|Schenck Forest|NC State University, College of Natural Resources|35.81611111|-78.72027778|196||schenck-forest
+Coastal|4|Albemarle Peninsula|Scuppernong River Interpretive Trail|US Fish and Wildlife Service and The Partnership for the Sounds|35.91527778|-76.25333334|99||scuppernong-river-interpretive-trail
+Coastal|2|Southern Outer Banks|Seabirding Pelagic Trips|Brian Patteson|35.20916667|-75.70166666|335||seabirding-pelagic-trips
+Mountain|1|New River|Shady Grove Gardens at the Peak|Brent Cochran and Susan Wright|36.41027778|-81.65194444|273||shady-grove-gardens-at-the-peak
+Coastal|4|Bay Lakes|Singletary Lake State Park|NC State Parks|34.58722223|-78.44750001|101||singletary-lake-state-park
+Mountain|3|Southwest Mountains|Snowbird Mountain Lodge|Robert Rankin|35.31916667|-83.86222222|304||snowbird-mountain-lodge
+Mountain|7|Central Foothills|South Mountains Game Land|NC Wildlife Resources Commission|35.56583333|-81.72222222|225||south-mountains-game-land
+Mountain|8|Central Foothills|South Mountains State Park|NC State Parks|35.6025|-81.62833333|226||south-mountains-state-park
+Mountain|6|Haywood County|Southern Great Balsam Mountains||35.35972222|-82.98666667|256||southern-great-balsam-mountains
+Coastal|5|Southeast|Southport Riverwalk|City of Southport|33.91722222|-78.01777778|91||southport-riverwalk
+Mountain|3|Roan Mountain|Spruce Pine Riverside Park|Town of Spruce Pine|35.91388889|-82.07|291||spruce-pine-riverside-park
+Mountain|1|Southwest Mountains|Stecoah Gap|Nantahala National Forest|35.35777778|-83.71861111|305||stecoah-gap
+Coastal|4|Central Coastal Plain|Stewart Parkway Riverwalk and Boardwalk|NC Estuarium|35.53972222|-77.05388889|102||stewart-parkway-riverwalk-and-boardwalk
+Mountain|4|Northern Blue Ridge Parkway|Stone Mountain State Park|NC State Parks|36.37944444|-81.02555556|277||stone-mountain-state-park
+Coastal|7|Onslow Bight|Stump Sound Park|Onslow County Parks and Recreation Department|34.54916668|-77.44999999|103||stump-sound-park
+Coastal|1|Bay Lakes|Suggs Mill Pond Game Land|NC Wildlife Resources Commission|34.80722223|-78.65138889|104||suggs-mill-pond-game-land
+Coastal|10|Southeast|Sunset Beach Island|Town of Sunset Beach|33.86833333|-78.50694444|105||sunset-beach-island
+Mountain|7|Nantahala|Sunset Rock Trail|Highlands-Cashiers Land Trust, Town of Highlands|35.05194444|-83.18805556|265||sunset-rock-trail
+Coastal|9|Albemarle Peninsula|Swanquarter National Wildlife Refuge|US Fish and Wildlife Service|35.44305556|-76.37638889|106||swanquarter-national-wildlife-refuge
+Piedmont|12|Greater Raleigh|Swift Creek Bluffs|Triangle Land Conservancy|35.7175|-78.75305556|197||swift-creek-bluffs
+Mountain|3|Grandfather Corridor|Tanawha Trail/ Grandfather Corridor|Blue Ridge Parkway|36.08444444|-81.82972222|251||tanawha-trail-grandfather-corridor
+Piedmont|5|Northwest Piedmont|Tanglewood Park & Arboretum|Forsyth County|36.00305556|-80.40666667|198||tanglewood-park-and-arboretum
+Coastal|4|I-95 Corridor North|Tar River Trail|City of Rocky Mount Parks & Recreation Department|35.95166666|-77.81861112|107||tar-river-trail
+Mountain|4|Nantahala|Tessentee Bottomland Preserve|The Land Trust for the Little Tennessee|35.06861111|-83.37972222|266||tessentee-bottomland-preserve
+Piedmont|4|Central Piedmont|The Bog Garden|Greensboro Parks & Recreation Department|36.09111111|-79.84|12||the-bog-garden
+Coastal|1|Outer Banks|The Elizabethan Gardens|The Elizabethan Gardens|35.93694445|-75.71138889|108||the-elizabethan-gardens
+Mountain|5|Northern Blue Ridge Parkway|Thurmond Chatham Game Land|NC Wildlife Resources Commission|36.37944444|-81.16638889|278||thurmond-chatham-game-land
+Piedmont|3|Pee Dee|Town Creek Indian Mound State Historic Site|NC Department of Cultural Resources|35.18472222|-79.93166667|199||town-creek-indian-mound-state-historic-site
+Coastal|6|Tri-County|Upper Perquimans River Paddle Trail|Town of Hertford|36.26833333|-76.54499999|109||upper-perquimans-river-paddle-trail
+Piedmont|5|Uwharrie|Uwharrie National Forest - Badin Lake Recreation Area|USDA Forest Service|35.44777778|-80.07777778|200||uwharrie-national-forest-badin-lake-recreation-area
+Piedmont|2|Uwharrie|Uwharrie National Forest - Birkhead Wilderness Area|USDA Forest Service|35.61805556|-79.94916667|201||uwharrie-national-forest-birkhead-wilderness-area
+Piedmont|3|Uwharrie|Uwharrie National Forest - Densons Creek Nature Trail|USDA Forest Service|35.36138889|-79.86333333|202||uwharrie-national-forest-densons-creek-nature-trail
+Piedmont|4|Uwharrie|Uwharrie National Forest - Uwharrie National Recreational Trail|USDA Forest Service|35.31277778|-80.04888889|203||uwharrie-national-forest-uwharrie-national-recreational-trail
+Mountain|4|Watauga County|Valle Crucis Community Park|Valle Crucis Community Park, Inc.|36.20777778|-81.77027778|310||valle-crucis-community-park
+Coastal|9|Roanoke|Van Swamp Game Land|NC Wildlife Resources Commission|35.69444445|-76.7725|336||van-swamp-game-land
+Piedmont|1|Northeast Piedmont|Vance Game Land - Crooked Run Wildlife Management Area|US Army Corps of Engineers (managed by NC Wildlife Resources Commission)|36.38944444|-78.4175|125||vance-game-land-crooked-run-wildlife-management-area
+Mountain|2|Northern Foothills|W. Kerr Scott Reservoir|US Army Corps of Engineers|36.12194444|-81.24916667|280||w-kerr-scott-reservoir
+Mountain|4|Haywood County|Waterrock Knob|Blue Ridge Parkway|35.45972222|-83.14111111|257||waterrock-knob
+Mountain|5|Southern Foothills|Weaverbarton Shuford Memorial Wildlife Sanctuary|Pacolet Area Conservancy|35.23916667|-82.20888889|298||weaverbarton-shuford-memorial-wildlife-sanctuary
+Coastal|1|Lower Neuse|Weyerhaeuser's Cool Springs Environmental Education Center|Weyerhaeuser Company|35.18916667|-77.08611112|111||weyerhaeusers-cool-springs-environmental-education-center
+Piedmont|9|Sandhills|Weymouth Woods Sandhills Nature Preserve|NC State Parks|35.14694444|-79.36888889|204||weymouth-woods-sandhills-nature-preserve
+Mountain|3|Northern Foothills|Whippoorwill Academy and Village|Edith Carter|36.08388889|-81.37333333|281||whippoorwill-academy-and-village
+Piedmont|7|Jordan Lake|White Pines Nature Preserve|Triangle Land Conservancy|35.61444444|-79.15694444|337||white-pines-nature-preserve
+Mountain|9|Nantahala|Whiteside Mountain|Nantahala National Forest|35.08055556|-83.14361111|267||whiteside-mountain
+Piedmont|2|Greater Raleigh|William B. Umstead State Park|NC State Parks|35.88027778|-78.75777778|338||william-b-umstead-state-park
+Mountain|1|Northern Foothills|Yadkin River Greenway|Yadkin River Greenway Council|36.15361111|-81.15888889|282||yadkin-river-greenway
+Mountain|1|Roan Mountain|Yellow Mountain Gap|Pisgah National Forest|36.11666667|-82.04861111|292||yellow-mountain-gap
+Coastal|6d|New Hanover|Zeke's Island National Estuarine Research Reserve|NC Coastal Reserve|33.95916666|-77.9413889|112||zekes-island-national-estuarine-research-reserve
+Coastal|7|New Hanover|Oakdale Cemetary|The Oakdale Cemetery|34.24388889|-77.93111111|339||oakdale-cemetary
+Coastal|5|Western Coastal Plain|Old Waynesborough Historical Village|Old Waynesborough Commission|35.3757143|-78.0128424|340||old-waynesborough-historical-village
+Coastal|8|New Hanover|Smith Creek Park|New Hanover County Parks & Gardens|34.28458333|-77.85461111|341||smith-creek-park
+Coastal|5|I-95 Corridor North|Sylvan Heights Waterfowl Park|Sylvan Heights Waterfowl Park|36.14522222|-77.41430556|342||sylvan-heights-waterfowl-park
+Coastal|6|Bay Lakes|Turnbull Creek Educational State Forest|NC Forest Service|31.68941389|-78.59004167|343||turnbull-creek-educational-state-forest
+Coastal|6|I-95 Corridor North|Wilson Botanical Gardens|North Carolina Cooperative Extension|35.70666667|-77.92694444|344||wilson-botanical-gardens
+Mountain|7|Pisgah|Brevard Hike and Bike Path including Hospital Fields|Transylvania County, City of Brevard, Pisgah Ranger District, Transylvania Community Hospital|35.25666667|-82.70555556|345||brevard-hike-and-bike-path-including-hospital-fields
+Mountain|7|Haywood County|Cataloochee Ranch|Cataloochee Ranch|35.55014|-83.09231|346||cataloochee-ranch
+Mountain|8|Pisgah|Cradle of Forestry in America|USDA Forest Service|35.35055556|-82.77861111|347||cradle-of-forestry-in-america
+Mountain|11|Nantahala|High Hampton Inn and Country Club |Will KcKee|35.09855|-83.08628|348||high-hampton-inn-and-country-club-
+Mountain|9|French Broad|Richmond Hill Park|City of Asheville|35.61804722|-82.58889722|349||richmond-hill-park
+Piedmont|15|Greater Raleigh|Crowder District Park|Wake County Parks, Recreation and Open Space|35.694004|-78.76533|350||crowder-district-park
+Piedmont|8|Falls Lake|Falls Lake Tailrace Fishing Area|US Army Corps of Engineers|35.94|-78.5807|351||falls-lake-tailrace-fishing-area
+Piedmont|8|Jordan Lake|Lake Jordan Dam and Visitor Assistance Center|US Army Corps of Engineers|35.65415|-79.0704|352||lake-jordan-dam-and-visitor-assistance-center
+Piedmont|4|Rockingham County|Mayo River State Park|NC State Parks|36.43|-79.95083333|353||mayo-river-state-park
+Piedmont|8|Northwest Piedmont|Mitchell's Nursery & Greenhouse |James and Judy Mitchell|36.298802|-80.389456|354||mitchells-nursery-and-greenhouse-
+Piedmont|9|Northwest Piedmont|Sander's Ridge (Winery & Restaurant) |Neil A. Shore|36.197239|-80.666903|355||sanders-ridge-winery-and-restaurant-
+Piedmont|8|Greater Charlotte East|West Branch Wetland Nature Preserve and West Branch Greenway|Mecklenburg County Parks and Recreation|35.464445|-80.779381|356||west-branch-wetland-nature-preserve-and-west-branch-greenway
+Piedmont|16|Greater Raleigh|White Deer Park|Town of Garner|35.68055556|-78.6275|357||white-deer-park

@@ -1,0 +1,81 @@
+<script type="text/javascript">
+/*
+function getBirdList(siteid){
+	var birdlist_url = "http://ncbirdingtrail.appspot.com/birdlist?site_id=" + siteid + "&callback=?";
+	$.getJSON(birdlist_url);
+};
+*/
+function getBirdListSlug(slug){
+	console.log('getBirdListSlug');
+	var birdlist_url = "http://ncbirdingtrail.appspot.com/birdlist?site_slug=" + slug + "&callback=?";
+	return $.getJSON(birdlist_url);
+};
+	
+function callback(json){
+	//build and insert bird list table - called from json request
+	var list = $('<div/>',{"class":"birdlist"});
+	//insert header row into table
+	var hrow = $('<div/>',{"class":'header_row'});
+	var firstCell = $('<div/>',{"class": "data_cell common_name",text: 'Common Name'});
+	$('<br/>').appendTo(firstCell);
+	$('<span/>',{"class":'scientific_name',text:'Scientific Name'}).appendTo(firstCell);
+	firstCell.appendTo(hrow);
+	$('<div/>',{"class": "data_cell season",text: 'Spring'}).appendTo(hrow);
+	$('<div/>',{"class": "data_cell season",text: 'Summer'}).appendTo(hrow);
+	$('<div/>',{"class": "data_cell season",text: 'Winter'}).appendTo(hrow);
+	$('<div/>',{"class": "data_cell season",text: 'Fall'}).appendTo(hrow);
+	hrow.appendTo(list);
+	var i=0;
+	//loop through json, build table
+	$.each(json,function(k,v) {
+		var r = 'row';
+		i += 1;
+		if (i%2 ==0){r = 'row';}
+		else {r = 'odd_row';}
+		
+		var row = $('<div/>', {"class": r});
+
+		var nameCell = $('<div/>',{
+			"class": "data_cell common_name",
+			text: k
+		});
+		$('<br/>').appendTo(nameCell);
+		
+		$.each(v, function(i,d) {
+			if (i==0){
+				$('<span/>', {"class":'scientific_name',text:d}).appendTo(nameCell);
+				nameCell.appendTo(row);
+			}
+			else {
+				$('<div/>', {"class": 'data_cell season',text:d}).appendTo(row);
+			}
+		});
+		row.appendTo(list);
+	});
+	list.insertAfter('#birdlist');
+	//return list;
+};
+</script>
+
+<div id="listTitle">
+<div style="cursor:pointer;" onclick="getBirdListSlug('airlie-gardens')">See Bird List Slug</div>
+<div style="cursor:pointer;" onclick="getBirdList('4')">See Bird List Number</div>
+</div>
+
+<!--
+<div class="table">
+<div class="header_row">
+	<div class="data_cell common_name">Common Name <br/><span class="scientific_name">Scientific Name</span></div>
+	<div class="data_cell season">Spring</div>
+	<div class="data_cell season">Summer</div>
+	<div class="data_cell season">Fall</div>
+	<div class="data_cell season">Winter</div>
+</div>
+<div class="header_row">
+	<div class="data_cell common_name">Common Name <br/><span class="scientific_name">Scientific Name</span></div>
+	<div class="data_cell season">Spring</div>
+	<div class="data_cell season">Summer</div>
+	<div class="data_cell season">Fall</div>
+	<div class="data_cell season">Winter</div>
+</div>
+-->

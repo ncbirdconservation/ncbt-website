@@ -1,0 +1,755 @@
+[
+{
+"comName":"Cooper's Hawk",
+"howMany":2,
+"lat":35.468361,
+"lng":-76.1490664,
+"locID":"L195402",
+"locName":"Lake Mattamuskeet NWR--Wildlife Drive",
+"locationPrivate":false,
+"obsDt":"2013-03-20 11:28",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.3217702,
+"lng":-82.4483866,
+"locID":"L207852",
+"locName":"Jackson Park",
+"locationPrivate":false,
+"obsDt":"2013-03-20 08:42",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.3069042,
+"lng":-80.9706169,
+"locID":"L2070434",
+"locName":"Lee Webers Home",
+"locationPrivate":true,
+"obsDt":"2013-03-19 17:30",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.1073477,
+"lng":-78.8050175,
+"locID":"L508336",
+"locName":"Butner Gamelands--Brickhouse Rd. (Durham Co.)",
+"locationPrivate":false,
+"obsDt":"2013-03-19 10:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":2,
+"lat":36.0241422,
+"lng":-78.9252663,
+"locID":"L785746",
+"locName":"17 Acre Woods",
+"locationPrivate":false,
+"obsDt":"2013-03-19 09:45",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.28743,
+"lng":-81.001965,
+"locID":"L2068034",
+"locName":"Reventure; US-NC-Charlotte-12041 Mt Holly Rd",
+"locationPrivate":true,
+"obsDt":"2013-03-18 15:57",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.1020991,
+"lng":-80.3603554,
+"locID":"L434074",
+"locName":"Muddy Creek Greenway",
+"locationPrivate":false,
+"obsDt":"2013-03-18 12:30",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.7244963,
+"lng":-78.7843323,
+"locID":"L579849",
+"locName":"Hemlock Bluffs Nature Preserve",
+"locationPrivate":false,
+"obsDt":"2013-03-18 10:25",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.78676,
+"lng":-78.800383,
+"locID":"L2065213",
+"locName":"DUTCHESS VILLAGE",
+"locationPrivate":true,
+"obsDt":"2013-03-18 10:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":34.2611499,
+"lng":-77.8663972,
+"locID":"L779294",
+"locName":"Kings Grant",
+"locationPrivate":true,
+"obsDt":"2013-03-17 12:45",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":2,
+"lat":35.8419736,
+"lng":-78.7977126,
+"locID":"L303621",
+"locName":"Lake Crabtree County Park",
+"locationPrivate":false,
+"obsDt":"2013-03-17 09:31",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.2258333,
+"lng":-81.1597222,
+"locID":"L367257",
+"locName":"Steve Tracy's Backyard",
+"locationPrivate":true,
+"obsDt":"2013-03-17 07:45",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.7252233,
+"lng":-78.6938453,
+"locID":"L1275889",
+"locName":"Mid Pines Road",
+"locationPrivate":true,
+"obsDt":"2013-03-17 07:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":2,
+"lat":36.1511131,
+"lng":-80.2993298,
+"locID":"L477250",
+"locName":"Bethabara City Park",
+"locationPrivate":false,
+"obsDt":"2013-03-17 07:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.3483736,
+"lng":-83.2092879,
+"locID":"L1485490",
+"locName":"nc_jackson_scc",
+"locationPrivate":true,
+"obsDt":"2013-03-17",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.6889689,
+"lng":-81.1908531,
+"locID":"L1060232",
+"locName":"Owenby Bottoms",
+"locationPrivate":true,
+"obsDt":"2013-03-16 17:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.231248,
+"lng":-81.6706252,
+"locID":"L1928726",
+"locName":"Home",
+"locationPrivate":true,
+"obsDt":"2013-03-16 15:30",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.0998383,
+"lng":-80.2441711,
+"locID":"L142800",
+"locName":"Winston-Salem",
+"locationPrivate":true,
+"obsDt":"2013-03-16 15:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.8927354,
+"lng":-78.6512947,
+"locID":"L901831",
+"locName":"MonumentLane-UpperLake-OldLeadMineRoads",
+"locationPrivate":true,
+"obsDt":"2013-03-16 15:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.144719,
+"lng":-80.825375,
+"locID":"L2062416",
+"locName":"US-NC-Charlotte-6901 Garden Terrace Ct",
+"locationPrivate":true,
+"obsDt":"2013-03-16 08:40",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.4619602,
+"lng":-80.7759512,
+"locID":"L1537460",
+"locName":"West Branch Nature Preserve",
+"locationPrivate":false,
+"obsDt":"2013-03-16 07:36",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.8189963,
+"lng":-78.7266111,
+"locID":"L654314",
+"locName":"Schenck Forest",
+"locationPrivate":false,
+"obsDt":"2013-03-16 07:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.144736,
+"lng":-80.825158,
+"locID":"L2062602",
+"locName":"1032 court drive, Charlotte, nc 28211",
+"locationPrivate":true,
+"obsDt":"2013-03-15 18:30",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.35315,
+"lng":-80.855138,
+"locID":"L2061798",
+"locName":"US-NC-Charlotte-6801 Northlake Mall Dr",
+"locationPrivate":true,
+"obsDt":"2013-03-15 10:27",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.9572703,
+"lng":-78.8281488,
+"locID":"L598905",
+"locName":"Ashton Hall",
+"locationPrivate":true,
+"obsDt":"2013-03-15 08:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.3099739,
+"lng":-83.1913493,
+"locID":"L1879688",
+"locName":"Cullowhee Trail",
+"locationPrivate":true,
+"obsDt":"2013-03-14 17:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.0402506,
+"lng":-80.3019691,
+"locID":"L386755",
+"locName":"Archie Elledge Treatment Plant",
+"locationPrivate":false,
+"obsDt":"2013-03-14 09:05",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.5746648,
+"lng":-77.3649955,
+"locID":"L1830885",
+"locName":"2814 Mulberry lane, Greenville, NC",
+"locationPrivate":true,
+"obsDt":"2013-03-13 13:30",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.0862513,
+"lng":-80.2836013,
+"locID":"L386545",
+"locName":"Miller Park",
+"locationPrivate":false,
+"obsDt":"2013-03-13 13:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":34.8940626,
+"lng":-80.5318289,
+"locID":"L1891917",
+"locName":"Olsen's Yard - yard only",
+"locationPrivate":true,
+"obsDt":"2013-03-13 11:30",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.932201,
+"lng":-78.9410203,
+"locID":"L1815782",
+"locName":"Cordova House",
+"locationPrivate":true,
+"obsDt":"2013-03-12 11:45",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":2,
+"lat":35.1985851,
+"lng":-80.858024,
+"locID":"L1762713",
+"locName":"Sedgefield Park",
+"locationPrivate":false,
+"obsDt":"2013-03-12 09:08",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.016407,
+"lng":-80.4116821,
+"locID":"L389553",
+"locName":"Tanglewood County Park",
+"locationPrivate":false,
+"obsDt":"2013-03-11 14:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.1746698,
+"lng":-79.8817847,
+"locID":"L1888418",
+"locName":"Lake Brandt",
+"locationPrivate":true,
+"obsDt":"2013-03-10 11:30",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.211524,
+"lng":-81.7755318,
+"locID":"L548708",
+"locName":"Valle Crucis Community Park",
+"locationPrivate":true,
+"obsDt":"2013-03-10 11:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.8959338,
+"lng":-79.0383053,
+"locID":"L1008472",
+"locName":"kings mill",
+"locationPrivate":true,
+"obsDt":"2013-03-10 11:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":34.7672108,
+"lng":-76.5368986,
+"locID":"L1023805",
+"locName":"North River Farms (permission required)",
+"locationPrivate":false,
+"obsDt":"2013-03-10 10:45",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.3653958,
+"lng":-80.6219673,
+"locID":"L514993",
+"locName":"Frank Liske Park",
+"locationPrivate":false,
+"obsDt":"2013-03-10 10:30",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.6628229,
+"lng":-78.8393283,
+"locID":"L1282594",
+"locName":"Woodlands at Oakhall, Holly Springs, NC",
+"locationPrivate":true,
+"obsDt":"2013-03-10 10:15",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.0955454,
+"lng":-79.298737,
+"locID":"L1048777",
+"locName":"Mebane",
+"locationPrivate":true,
+"obsDt":"2013-03-10 09:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.1719712,
+"lng":-78.8570094,
+"locID":"L2021347",
+"locName":"Lake Michie, Bahama, NC",
+"locationPrivate":true,
+"obsDt":"2013-03-09 16:30",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.7190698,
+"lng":-78.6884165,
+"locID":"L486971",
+"locName":"Yates Mill County Park",
+"locationPrivate":false,
+"obsDt":"2013-03-09 15:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.86161,
+"lng":-78.98408,
+"locID":"L2047486",
+"locName":"Hope Valley Experimental Forest",
+"locationPrivate":true,
+"obsDt":"2013-03-09 14:20",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.214237,
+"lng":-81.29471,
+"locID":"L192764",
+"locName":"Crowders Mountain State Park",
+"locationPrivate":false,
+"obsDt":"2013-03-09 11:30",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.633465,
+"lng":-82.55752,
+"locID":"L166279",
+"locName":"Beaver Lake Sanctuary",
+"locationPrivate":false,
+"obsDt":"2013-03-09 10:30",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.465644,
+"lng":-80.957468,
+"locID":"L2043202",
+"locName":"US-NC-Denver-1887 Hagers Point Ln",
+"locationPrivate":true,
+"obsDt":"2013-03-09 10:15",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.15534,
+"lng":-80.29959,
+"locID":"L2053116",
+"locName":"Bethabara Park--Lower Trail",
+"locationPrivate":true,
+"obsDt":"2013-03-09 08:32",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.1508807,
+"lng":-80.740993,
+"locID":"L594684",
+"locName":"McAlpine Creek Park",
+"locationPrivate":false,
+"obsDt":"2013-03-09 08:18",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":34.2439026,
+"lng":-77.918663,
+"locID":"L1826310",
+"locName":"Princess Place",
+"locationPrivate":true,
+"obsDt":"2013-03-09 07:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.6988499,
+"lng":-82.0462418,
+"locID":"L2043057",
+"locName":"US 70/Marion/Old Fort",
+"locationPrivate":true,
+"obsDt":"2013-03-09 06:45",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":35.8188434,
+"lng":-81.1959991,
+"locID":"L231605",
+"locName":"Lake Hickory - Oxford Access Area",
+"locationPrivate":false,
+"obsDt":"2013-03-08 15:10",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.1268136,
+"lng":-80.0946182,
+"locID":"L2027103",
+"locName":"313 Susanna Dr.",
+"locationPrivate":true,
+"obsDt":"2013-03-08 11:45",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.0896847,
+"lng":-80.3169411,
+"locID":"L2029847",
+"locName":"Wright's Backyard Birding Center",
+"locationPrivate":true,
+"obsDt":"2013-03-08 08:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"
+},
+
+{
+"comName":"Cooper's Hawk",
+"howMany":1,
+"lat":36.1875245,
+"lng":-80.3499269,
+"locID":"L477350",
+"locName":"Lake Hills",
+"locationPrivate":true,
+"obsDt":"2013-03-07 16:00",
+"obsReviewed":false,
+"obsValid":true,
+"sciName":"Accipiter cooperii"}]

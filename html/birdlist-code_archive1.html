@@ -1,0 +1,17 @@
+<script type="application/javascript">
+$(document).ready(function(){
+	//var birdlist_url = "http://ncbirdingtrail.appspot.com/birdlist?s=4"
+	var birdlist_url = "storage/birdlist_full_page.html"
+	$.ajax({
+		type: "GET",
+		url: birdlist_url,
+		cache: false
+		}).done(function(html){
+			$("#birdlist").append(html);
+		});
+});
+
+</script>
+
+
+<span id="birdlist"></span>

@@ -1,0 +1,57 @@
+﻿NCBT Website features
+
+
+attendees
+
+map
+• Disappearing panel on the right
+• Search for bird sightings
+• Search bird lists dynamically (autocomplete?)
+o Highlight markers where those birds can be seen
+• Search sites dynamically (autocomplete?)
+• Highlight groups on hover
+• Link infoboxes/markers to slug rather than counter
+• Click on group link on site page; link to map highlighting the group
+o Zoom to group
+Site description page
+• Add links of species to bird lists
+• Page numbers in guide
+
+for BFBs/ sites
+
+Provide a suite of tools for websites and promotional materials
+
+• NCBT logo badges (like mailchimp, google, etc.)
+o Different sizes (trim, bigger, more/less detail)
+o Different links (to main site, to specific site page)
+• eBird Tools
+o Their hotspot link id
+o How to retrieve recently seen birds
+o Tool to display recently seen birds on their website (little plug-in)
+o How to enter data into eBird
+•  Group BFBs by group
+o Highlight on hover in list
+• Add BFB tab to info window
+• Build info window for BFB information?
+o How to link bird sites with BFBs better?
+• Put ebird button on birds tab/infowindow
+• Seachable site list by species 
+o Build response object SiteList on GAE
+o Code for multiple species (joined by AND)
+o Return list of site slugs
+• Birds tab
+o Autocomplete search tab?
+o When selected from list, add species as a “button” below with X to remove it from the query
+o Highlight sites returned
+• Build generic highlightSites function on map page
+o Pass a list of slugs
+o Call from other functions? (highlightGroup and highlightRegion)
+• 	
+Bird Sightings
+• Show all recent sightings
+• Where can I see ____________?:
+o This is a map of where you can see the chosen species
+o Two symbols
+• Can be seen (birdlist)
+• Seen recently (ebird)
+• 

@@ -1,0 +1,178 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+ 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+
+	<script type="text/javascript" src="http://code.google.com/apis/gears/gears_init.js"></script>
+
+	<style type="text/css">
+
+		html{ height: 100% }
+
+		body{ background-color:#4E5963; height:100%; margin:0; padding:0 }
+
+		#map_canvas{ position:absolute; top:25px; bottom:0px; left:0; right:0; }
+
+		.title{ font-variant:caps;width:inherit;font-family:sans-serif;font-size:1em;color: white;font-weight:bold;height:25px;padding-top:5px;padding-left:5px;padding-bottom:5px; }
+
+	</style>
+
+	<script type="text/javascript">
+
+		var initialLocation;
+
+		var siberia = new google.maps.LatLng(60, 105);
+
+		var northcarolina = new google.maps.LatLng(35.693183, -78.777168);
+
+		var browserSupportFlag =  new Boolean();
+
+		
+
+		function initialize() {
+
+			var latlng = new google.maps.LatLng(35.693183, -78.777168);
+
+			var myOptions = {
+
+			  zoom: 11,
+
+			  mapTypeId: google.maps.MapTypeId.ROADMAP
+
+			};
+
+			var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+
+
+			//server - dynamic
+
+			//var siteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml?t=byAll&k=site', {preserveViewport:true});
+
+			//server - static
+
+			var siteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml_files/sites.kml', {preserveViewport:true});
+
+			//local
+
+			//var siteLayer = new google.maps.KmlLayer('localhost:8083/kml?t=byAll&k=site', {preserveViewport:true});
+
+			siteLayer.setMap(map);
+
+			
+
+			//server - static bfb layer
+
+			var bfbLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml_files/bfbs.kml', {preserveViewport:true});
+
+			bfbLayer.setMap(map);
+
+
+
+			//server - ebird layer
+
+			var ebirdLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml?t=byAll&k=ebird', {preserveViewport:true});
+
+			//var ebirdLayer = new google.maps.KmlLayer('localhost:8083/kml?t=byAll&k=ebird', {preserveViewport:true});
+
+			ebirdLayer.setMap(map);
+
+			
+
+			//Listener for changing kml response when map moved...
+
+			//google.maps.event.addListener(map, '', update_kml());
+
+			//google.maps.event.addListener(map, 'bounds_changed', function() {alert(map.getBounds().toURLValue());});
+
+			
+
+			// Eventually tie this to a "center on my location" button, disable when zooming to a particular site
+
+			//build into kml: get directions, nearby ebird?, link to descriptions pdf, bird list link
+
+			// Try W3C Geolocation (Preferred)
+
+			if(navigator.geolocation) {
+
+				browserSupportFlag = true;
+
+				navigator.geolocation.getCurrentPosition(function(position) {
+
+				  initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+
+				  map.setCenter(initialLocation);
+
+				}, function() {
+
+				  handleNoGeolocation(browserSupportFlag);
+
+				});
+
+			  // Try Google Gears Geolocation
+
+			} else if (google.gears) {
+
+				browserSupportFlag = true;
+
+				var geo = google.gears.factory.create('beta.geolocation');
+
+				geo.getCurrentPosition(function(position) {
+
+				  initialLocation = new google.maps.LatLng(position.latitude,position.longitude);
+
+				  map.setCenter(initialLocation);}, function() {handleNoGeoLocation(browserSupportFlag);});
+
+			// Browser doesn't support Geolocation
+
+			} else {
+
+				browserSupportFlag = false;
+
+				handleNoGeolocation(browserSupportFlag);
+
+			}
+
+			  
+
+			function handleNoGeolocation(errorFlag) {
+
+			    alert("Geolocation service failed.");
+
+			    initialLocation = northcarolina;
+
+				map.setCenter(initialLocation);
+
+				map.setZoom(8);
+
+			}
+
+
+
+			//var localsiteLayer = new google.maps.KmlLayer('http://ncbirdingtrail.appspot.com/kml?t=byKey&k=ag5uY2JpcmRpbmd0cmFpbHILCxIEc2l0ZRiOVgw');
+
+			//localsiteLayer.setMap(map);	
+
+		}
+
+	</script>
+
+</head>
+
+<body onload="initialize()">
+
+<div class="title">NC Birding Trail Sites</div> <br/>
+
+<div id="map_canvas"></div>
+
+</body>
+
+</html>
