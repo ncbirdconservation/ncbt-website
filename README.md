@@ -18,6 +18,9 @@ www.ncbirdingtrail.org
 ###Mobile
 - Display map of sites and recent eBird sightings
 
+##Bird Lists
+- White Pines Nature Preserve: missing
+
 ##Bugs
 - Bird Finder does not clear selections when displaying results for a second bird
 - Some sites do not display properly - check console.log
