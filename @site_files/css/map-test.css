@@ -171,6 +171,21 @@
   height: 100%;
 }
 
+#landing-quote {
+  width: 95%;
+  font-size: 1em;
+  text-align:left;
+  padding: 1em 2em 2em 1em;
+  color: #eeeeee;
+  font-style: italic;
+}
+
+#landing-quote a {
+  color: white;
+  font-size:0.9em;
+}
+
+
 #info-site-details {
   display:block;
   overflow-y:scroll;

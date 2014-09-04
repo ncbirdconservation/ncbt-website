@@ -24,6 +24,7 @@ www.ncbirdingtrail.org
 ##Bugs
 - Bird Finder does not clear selections when displaying results for a second bird
 - Some sites do not display properly - check console.log
+- Fix Catherine Creek/Warwick Creek Paddle Trail - no site found
 
 ##Future
 - review descriptions of new sites
