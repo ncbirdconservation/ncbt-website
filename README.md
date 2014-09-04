@@ -28,6 +28,9 @@ www.ncbirdingtrail.org
 ##Future
 - review descriptions of new sites
 - complete bird lists for all sites
+- create page with bird list
+- incorporate localStorage for site list data - speed up loading after initial load
+	-include version to allow checking for updates
 
 ###Mobile
 -incorporate Bird Search (recent eBird records nearby - list should be only those spp seen)
