@@ -1,0 +1,104 @@
+/* birding for science and timeline css */
+
+#top-info{
+margin:0em 0em 100em 0em;
+}
+#top-info p{
+font-size: 1.2em;
+}
+
+#top-info-timeline{
+margin:0em 0em 10em 0em;
+}
+#top-info-timeline p{
+font-size: 1.2em;
+}
+
+#project-list {
+display:block;
+margin-left:auto;
+margin-right:auto;
+padding: 2em 0em 2em 0em;
+}
+
+#project-list a {
+display:inline;
+
+/*text-transform:uppercase;*/
+color: #ffffff;
+padding: 1em;
+margin: 0.5em 0.3em 0.5em 0.3em;
+height: 2em;
+background:#383838;
+-moz-border-top-left-radius: 5px;
+border-top-left-radius: 5px;  
+-moz-border-top-right-radius: 0px;
+border-top-right-radius: 0px;  
+-moz-border-bottom-left-radius: 0px;
+border-bottom-left-radius: 0px;  
+-moz-border-bottom-right-radius: 5px;
+border-bottom-right-radius: 5px;  
+}
+
+#top-info a:hover{
+background-color: #666666;
+text-decoration: none;
+}
+
+h1 {
+padding-bottom: 0.8em;
+}
+
+.project {
+padding: 3em 0em 10em 0em;
+}
+
+.project h1{
+padding: 0em 0em 0.5em 0em;
+margin: 0em;
+}
+
+.project-title h1{
+display:inline;
+float: left;
+}
+
+.project-title a{
+float: right;
+vertical-align: text-bottom;
+}
+
+.project .citation {
+font-size: 1.15em;
+margin: 0em;
+margin: 1em 0em 0.2em 0em;
+color: #444444;
+font-style: italic;
+}
+.project p {
+margin: 0em 0em 1em 0.4em;
+}
+.project hr{
+clear:both;
+margin: 0.2em 0em 0.5em 0em;
+padding: 0em;
+}
+
+.image {
+float: right;
+margin: 0.3em 0em 0.3em 0.3em;
+}
+
+.image-text {
+font-size: 0.8em;
+}
+
+.project .label {
+font-weight: normal;
+color:#444444;
+display:inline;
+}
+
+.project a {
+text-decoration: underline;
+}
