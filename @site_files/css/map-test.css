@@ -176,13 +176,14 @@
 #landing-ncbt-span {
   font-weight: 600;
   font-size: 1.1em;
+  color:#f1d347;
 }
 
 #landing-quote {
   width: 95%;
   font-size: 1em;
   text-align:left;
-  padding: 1em;
+  padding: 7px 7px 0px 7px;
   color: #eeeeee;
   font-style: italic;
 }
@@ -196,10 +197,10 @@
   float: left;
   /* width: 22em; */
   width:242px;
-  height: 19.5em;
-  margin: 0.2em;
+  /* height: 19.5em; */
+  margin: 1em 0.3em 0em 0.3em;
   padding: 0.4em;
-  background: #708090;
+  /* background: #708090; */
   /* border: 3px solid #f5f5f5;*/
   /* border: 3px solid #fef4c1; */
   /* border: 3px solid #fef7d0; */
@@ -210,7 +211,16 @@
 /*   -webkit-transition-property: box-shadow, opacity; 
   -webkit-transition-timing-function: ease-in;
  */}
-.landing-tile-section {
+
+ .landing-tile h2 {
+   color: #ffffff;
+   font-weight:550;
+   font-size:1.3em;
+   color:#f1d347;
+   margin:0px;
+ }
+ 
+ .landing-tile-section {
   margin: 0em;
   padding-bottom: 0.75em;
 }
@@ -225,8 +235,9 @@
 }
 
 .landing-tile-img {
-  width: 90px;
-  padding-left: 0.8em;
+  display:block;
+  /* width: 90px; */
+  /* padding-left: 0.8em; */
 }
 
 .landing-book-cover {
