@@ -62,7 +62,11 @@ function displaySiteDetails(slug) {
 				
 	//load html into site info panel
 	$("#info-site").html(boxText.html());
-	$('#info-tab-site-info').trigger('click');
+	$('#info-tab-listing').trigger('click'); //changes current tab to site list
+	//insert code to display site details instead of site list
+	$("#info-list").css({"display":"none"}) //turn off site list
+	$("#info-site").css({"display":"block"}) //display site list
+	
 	getSiteBlogData(slug);
 	siteMarkers[slug].setIcon(icons["highlight"]);
 
@@ -150,11 +154,8 @@ function highlightSites(siteList, icon) {
 
 //loop through all siteMarkers, unhighlight
 function unhighlightAll(){
-	console.log("unhighlightall");
 	for (var i in siteMarkers) {
-		console.log("unhighlght marker: " + String(i));
 		if (siteMarkers[i].getIcon()["url"] == icons["highlight"]["url"]) {
-			console.log("unhighlight: " + String(i));
 			siteMarkers[i].setIcon(icons["site"]);
 		}
 	}
@@ -343,6 +344,7 @@ $(document).ready(function() {
 		$(".info-tab").each(function(i) {
 			$(this).css({"background-color":"rgb(128,128,128)"});
 			$($(this).attr("title")).css({"display":"none"});
+			$("#info-site").css({"display":"none"});
 		});
 
 		//activate clicked tab, make content visible
