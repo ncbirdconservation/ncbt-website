@@ -150,8 +150,11 @@ function highlightSites(siteList, icon) {
 
 //loop through all siteMarkers, unhighlight
 function unhighlightAll(){
+	console.log("unhighlightall");
 	for (var i in siteMarkers) {
-		if (siteMarkers[i].getIcon() == icons["highlight"]) {
+		console.log("unhighlght marker: " + String(i));
+		if (siteMarkers[i].getIcon()["url"] == icons["highlight"]["url"]) {
+			console.log("unhighlight: " + String(i));
 			siteMarkers[i].setIcon(icons["site"]);
 		}
 	}
