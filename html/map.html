@@ -404,7 +404,10 @@ $(document).ready(function() {
 	$(".group-header").mouseover(function(){highlightMarkers('group',$(this).attr("id").slice(13));});
 	$(".group-header").mouseout(function(){
 		//unhighlight if group not expanded
-		if ($(this).siblings(".site-item").first().css("display")=="none"){unhighlightAll()};
+		if ($(this).siblings(".site-item").first().css("display")=="none"){
+			//console.log(String($(this).siblings(".site-item").first().css("display")));
+			unhighlightAll();
+			};
 	});
 	$(".group-header").click(function(){
 		$(this).trigger('mouseover');
