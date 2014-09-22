@@ -145,7 +145,7 @@ function highlightSites(siteList, icon) {
 //loop through all siteMarkers, unhighlight
 function unhighlightAll(){
 	for (var i in siteMarkers) {
-		if (siteMarkers[i].getIcon() == icons["highlight"]) {
+		if (siteMarkers[i].getIcon()["url"] == icons["highlight"]["url"]) {
 			siteMarkers[i].setIcon(icons["site"]);
 		}
 	}
