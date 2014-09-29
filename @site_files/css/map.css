@@ -131,8 +131,8 @@
 .info-tab {
   display:block;
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   text-align: center;
   font-variant: all-caps;
   font-size: 1em;
@@ -152,12 +152,13 @@
   -ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
-#info-tab-listing { top:0px;}
-#info-tab-site-info { top:61px;}
-#info-tab-birds { top:122px;}
-#info-tab-business { top:183px;}
+#info-tab-landing { top:0px;}
+#info-tab-listing { top:66px;}
+/* #info-tab-site-info { top:61px;} */
+#info-tab-birds { top:132px;}
+#info-tab-business { top:198px;}
 
-#info-tab-listing { 
+#info-tab-landing { 
   background: #517098;
 }
 
@@ -170,12 +171,94 @@
   height: 100%;
 }
 
+
+/* landing sidebar */
+#landing-ncbt-span {
+  font-weight: 600;
+  font-size: 1.1em;
+  color:#f1d347;
+}
+
+#landing-quote {
+  width: 95%;
+  font-size: 1em;
+  text-align:left;
+  padding: 7px 7px 0px 7px;
+  color: #eeeeee;
+  font-style: italic;
+}
+
+#landing-quote a {
+  color: white;
+  font-size:0.9em;
+}
+
+.landing-tile {
+  float: left;
+  /* width: 22em; */
+  width:242px;
+  /* height: 19.5em; */
+  margin: 1.3em 0.3em 0em 0.3em;
+  padding: 0.4em;
+  /* background: #708090; */
+  /* border: 3px solid #f5f5f5;*/
+  /* border: 3px solid #fef4c1; */
+  /* border: 3px solid #fef7d0; */
+  /* border-top: 2px solid #ebca43; */
+ /*  opacity: 0.5;
+  filter: alpha(opacity=50); */
+ /*  box-shadow: 1px 1px 5px rgba(169, 169, 169, 0.3); */
+/*   -webkit-transition-property: box-shadow, opacity; 
+  -webkit-transition-timing-function: ease-in;
+ */}
+
+ .landing-tile h2 {
+   color: #ffffff;
+   font-weight:550;
+   font-size:1.2em;
+   color:#f1d347;
+   margin:0px;
+   text-align:center;
+   background:#708090;
+   padding-top:0.3em;
+ }
+ 
+ .landing-tile-section {
+  margin: 0em;
+  padding: 0.5em 0em 0.5em 0em;
+}
+
+.landing-tile-section p {
+  font-family: 'Lato', 'sans-serif';
+  font-size: 0.85em;
+  padding: 0em;
+  margin: 0em;
+  text-align: center;
+
+}
+
+.landing-tile-img {
+  display:block;
+  /* width: 90px; */
+  /* padding-left: 0.8em; */
+}
+
+.landing-book-cover {
+  position:relative;
+  margin: 0px 0px 0px 0px;
+  padding: 0em;
+}
+
+#landing-guide-container {
+    text-align: center;
+}
+
 #info-site-details {
   display:block;
   overflow-y:scroll;
 }
 
-/*info-list*/
+/*info-list site list sidebar*/
 
 #site-search-header {
   font-family: 'Lato','sans-serif';
@@ -259,9 +342,10 @@
   height: 100%;
 }
 
+#info-site,
+#info-list,
 #info-birds,
-#info-business,
-#info-site {
+#info-business {
   display:none;
 }
 
@@ -367,7 +451,7 @@
   
 #select-bird-title {
   display:inline;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 .info-bird-key {
