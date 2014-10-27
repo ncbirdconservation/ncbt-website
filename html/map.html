@@ -1,3 +1,9 @@
+<script type="text/javascript">
+	//check if mobile device, redirect if so
+	var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|opera|smartphone|iemobile|palm/i.test(navigator.userAgent.toLowerCase()));  
+	if (mobile) {document.location = "http://ncbirdingtrail.appspot.com";};
+</script>
+
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" src="/storage/js/spp_lookup.js"></script>
 <!--<script type="text/javascript" src="/storage/js/20130812_spp_lookup.js"></script>-->
@@ -11,9 +17,6 @@
 <link rel="stylesheet" type="text/css" href="/storage/css/map.css"></link>
 
 <script type="text/javascript">
-	//check if mobile device, redirect if so
-	var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|opera|smartphone|iemobile|palm/i.test(navigator.userAgent.toLowerCase()));  
-	if (mobile) {document.location = "http://ncbirdingtrail.appspot.com";};
 
 var siteMarkers = {};
 var groupLatLngs = {};
